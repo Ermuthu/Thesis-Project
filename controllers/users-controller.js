@@ -28,5 +28,12 @@ usersController.create = (req,res) => {
     });
 }
 
+usersController.index = (req,res) => {
+    res.json({
+        user: req.user,
+        data: 'user profile'
+    });
+}
+
 
 module.exports = usersController;

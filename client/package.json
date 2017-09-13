@@ -7,7 +7,11 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.2",    
-    "react-scripts": "1.0.13"
+    "react-scripts": "1.0.13",
+    "babelify": "^7.2.0",
+    "body-parser": "^1.14.1",
+    "browserify": "^12.0.1", 
+    "express": "^4.13.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -17,3 +21,5 @@
   },
   "proxy": "http://localhost:3001"
 }
+
+

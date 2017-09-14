@@ -10,7 +10,7 @@ passport.use(
     {
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
-      callbackURL: "http://localhost:3000/auth/google/callback"
+      callbackURL: "/auth/google/callback"
     },
     accessToken => {
       console.log(accessToken);
@@ -35,6 +35,13 @@ passport.use(
       console.log(accessToken);
     }
   )
+);
+app.get(
+  "/auth/spotify",
+  passport.authenticate("spotify", {
+    scope: ["user-read-email", "user-read-private"],
+    showDialog: true
+  })
 );
 
 const PORT = process.env.PORT || 3000;

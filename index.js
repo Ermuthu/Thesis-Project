@@ -4,6 +4,10 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const SpotifyStrategy = require("passport-spotify").Strategy;
 
+passport.use(new SpotifyStrategy());
+passport.use(new GoogleStrategy());
+
+
 // when incoming "/" request (req), respond (res) send json data
 // arrow function called automatically every time request comes in
 app.get("/", (req, res) => {
@@ -12,6 +16,6 @@ app.get("/", (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 9999;
-//express tells node to listen on port 2600
+const PORT = process.env.PORT || 3000;
+//express tells node to listen on port 3000
 app.listen(PORT);

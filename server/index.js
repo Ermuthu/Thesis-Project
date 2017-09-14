@@ -11,8 +11,16 @@ passport.use(new GoogleStrategy());
 
 passport.use(
   new GoogleStrategy({
-    clientID: keys.googleClientID,
-    clientSecret: keys.googleClientSecret;
+    googleClientID: keys.googleClientID,
+    googleClientSecret: keys.googleClientSecret
+  })
+);
+
+passport.use(
+  new SpotifyStrategy({
+    spotifyClientID: keys.spotifyClientID,
+    spotifyClientSecret: keys.spotifyClientSecret,
+    callbackURL: "http://localhost:3000/auth/spotify/callback"
   })
 );
 

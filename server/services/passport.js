@@ -18,3 +18,18 @@ passport.use(
     }
   )
 );
+
+passport.use(
+  new SpotifyStrategy(
+    {
+      clientID: keys.spotifyClientID,
+      clientSecret: keys.spotifyClientSecret,
+      callbackURL: "http://localhost:3000/auth/spotify/callback"
+    },
+    (accessToken, refreshToken, profile, done) => {
+      console.log('access token', accessToken);
+      console.log('refresh token', refreshToken);
+      console.log('profile:', profile);
+    }
+  )
+);

@@ -5,27 +5,30 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const SpotifyStrategy = require("passport-spotify").Strategy;
 const keys = require("./config/keys");
 
-passport.use(new SpotifyStrategy());
-passport.use(new GoogleStrategy());
-
 passport.use(
   new GoogleStrategy(
     {
-      googleClientID: keys.googleClientID,
-      googleClientSecret: keys.googleClientSecret,
-      callbackURL: "/auth/google/callback"
+      clientID: keys.googleClientID,
+      clientSecret: keys.googleClientSecret,
+      callbackURL: "http://localhost:3000/auth/google/callback"
     },
     accessToken => {
       console.log(accessToken);
     }
   )
 );
+app.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"]
+  })
+);
 
 passport.use(
   new SpotifyStrategy(
     {
-      spotifyClientID: keys.spotifyClientID,
-      spotifyClientSecret: keys.spotifyClientSecret,
+      clientID: keys.spotifyClientID,
+      clientSecret: keys.spotifyClientSecret,
       callbackURL: "http://localhost:3000/auth/spotify/callback"
     },
     accessToken => {

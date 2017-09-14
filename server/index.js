@@ -1,9 +1,10 @@
 const express = require("express");
-const app = express();
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const SpotifyStrategy = require("passport-spotify").Strategy;
 const keys = require("./config/keys");
+
+const app = express();
 
 passport.use(
   new GoogleStrategy(
@@ -12,8 +13,10 @@ passport.use(
       clientSecret: keys.googleClientSecret,
       callbackURL: "/auth/google/callback"
     },
-    accessToken => {
-      console.log(accessToken);
+    (accessToken, refreshToken, profile, done) => {
+      console.log('access token', accessToken);
+      console.log('refresh token', refreshToken);
+      console.log('profile:', profile);
     }
   )
 );
@@ -23,6 +26,7 @@ app.get(
     scope: ["profile", "email"]
   })
 );
+app.get("/auth/google/callback", passport.authenticate("google"));
 
 passport.use(
   new SpotifyStrategy(
@@ -31,8 +35,10 @@ passport.use(
       clientSecret: keys.spotifyClientSecret,
       callbackURL: "http://localhost:3000/auth/spotify/callback"
     },
-    accessToken => {
-      console.log(accessToken);
+    (accessToken, refreshToken, profile, done) => {
+      console.log('access token', accessToken);
+      console.log('refresh token', refreshToken);
+      console.log('profile:', profile);
     }
   )
 );
@@ -43,6 +49,8 @@ app.get(
     showDialog: true
   })
 );
+app.get("/auth/spotify/callback", passport.authenticate("spotify"));
+
 
 const PORT = process.env.PORT || 3000;
 //express tells node to listen on port 3000

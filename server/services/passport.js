@@ -24,7 +24,8 @@ passport.use(
     {
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
-      callbackURL: "/auth/google/callback"
+      callbackURL: "/auth/google/callback",
+      proxy: true
     },
     (accessToken, refreshToken, profile, done) => {
       User.findOne({ googleId: profile.id }).then(existingUser => {
@@ -47,7 +48,8 @@ passport.use(
     {
       clientID: keys.spotifyClientID,
       clientSecret: keys.spotifyClientSecret,
-      callbackURL: "http://localhost:3000/auth/spotify/callback"
+      callbackURL: "http://localhost:3001/auth/spotify/callback",
+      proxy: true
     },
     (accessToken, refreshToken, profile, done) => {
       User.findOne({ spotifyId: profile.id }).then(existingUser => {

@@ -29,6 +29,7 @@ passport.use(
       callbackURL: "http://localhost:3000/auth/spotify/callback"
     },
     (accessToken, refreshToken, profile, done) => {
+      new User({ spotifyId: profile.id}).save();            
     }
   )
 );

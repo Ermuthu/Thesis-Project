@@ -21,5 +21,15 @@ app.use(passport.session());
 
 require("./routes/auth-routes")(app);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT);
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, (err) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log(`${PORT} is da bombski.. suhh~?`)
+    }
+});
+
+app.get("*", function(req, res) {
+  res.status(404).send({ message: "Oops! Not found." });
+});

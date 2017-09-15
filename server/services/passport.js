@@ -4,8 +4,7 @@ const SpotifyStrategy = require("passport-spotify").Strategy;
 const mongoose = require("mongoose");
 const keys = require("../config/keys");
 
-const User = mongoose.model('users');
-
+const User = mongoose.model("users");
 
 passport.use(
   new GoogleStrategy(
@@ -17,10 +16,13 @@ passport.use(
     (accessToken, refreshToken, profile, done) => {
       User.findOne({ googleId: profile.id }).then(existingUser => {
         if (existingUser) {
+          done(null, existingUser);
           // already have a googleId for user
         } else {
           // no user with this googleId, create one in mongo
-          new User({ googleId: profile.id }).save()
+          new User({ googleId: profile.id })
+            .save()
+            .then(user => done(null, user));
         }
       });
     }
@@ -37,20 +39,23 @@ passport.use(
     (accessToken, refreshToken, profile, done) => {
       User.findOne({ spotifyId: profile.id }).then(existingUser => {
         if (existingUser) {
+          done(null, existingUser);
           // already have a spotifyId for user
         } else {
           // no user with this spotifyId, create one in mongo
-          new User({ spotifyId: profile.id }).save()
+          new User({ spotifyId: profile.id })
+            .save()
+            .then(user => done(null, user));
         }
       });
     }
   )
 );
 
-      // console.log("access token", accessToken);
-      // console.log("refresh token", refreshToken);
-      // console.log("profile:", profile);
+// console.log("access token", accessToken);
+// console.log("refresh token", refreshToken);
+// console.log("profile:", profile);
 
-            // console.log("access token", accessToken);
-      // console.log("refresh token", refreshToken);
-      // console.log("profile:", profile);
+// console.log("access token", accessToken);
+// console.log("refresh token", refreshToken);
+// console.log("profile:", profile);

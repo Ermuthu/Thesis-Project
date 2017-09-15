@@ -7,13 +7,10 @@
     "npm": "5.4.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "server": "nodemon index.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "client": "npm run start --prefix client",
-    "debugger": "DEBUG=*:* npm run dev",
-    "deploy": "cd client && yarn build && cp -a ./build/ ../public/"
+    "client": "npm run start --prefix client",    
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",

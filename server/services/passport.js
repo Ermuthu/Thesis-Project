@@ -13,7 +13,7 @@ passport.serializeUser((user, done) => {
 
 // search over collection of users, after finding user with that id, return done
 passport.deserializeUser((id, done) => {
-  User.findbyId(id)
+  User.findById(id)
   .then(user => {
     done(null, user);
   });

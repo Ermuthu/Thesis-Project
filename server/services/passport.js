@@ -13,8 +13,7 @@ passport.serializeUser((user, done) => {
 
 // search over collection of users, after finding user with that id, return done
 passport.deserializeUser((id, done) => {
-  User.findById(id)
-  .then(user => {
+  User.findById(id).then(user => {
     done(null, user);
   });
 });
@@ -27,18 +26,15 @@ passport.use(
       callbackURL: "/auth/google/callback",
       proxy: true
     },
-    (accessToken, refreshToken, profile, done) => {
-      User.findOne({ googleId: profile.id }).then(existingUser => {
-        if (existingUser) {
-          done(null, existingUser);
-          // already have a googleId for user
-        } else {
-          // no user with this googleId, create one in mongo
-          new User({ googleId: profile.id })
-            .save()
-            .then(user => done(null, user));
-        }
-      });
+    async (accessToken, refreshToken, profile, done) => {
+      const existingUser = await User.findOne({ googleId: profile.id });
+
+      if (existingUser) {
+        return done(null, existingUser);
+      }
+      
+      const user = await new User({ googleId: profile.id }).save();
+      done(null, user);
     }
   )
 );
@@ -51,18 +47,15 @@ passport.use(
       callbackURL: "http://localhost:3001/auth/spotify/callback",
       proxy: true
     },
-    (accessToken, refreshToken, profile, done) => {
-      User.findOne({ spotifyId: profile.id }).then(existingUser => {
-        if (existingUser) {
-          done(null, existingUser);
-          // already have a spotifyId for user
-        } else {
-          // no user with this spotifyId, create one in mongo
-          new User({ spotifyId: profile.id })
-            .save()
-            .then(user => done(null, user));
-        }
-      });
+    async (accessToken, refreshToken, profile, done) => {
+      const existingUser = await User.findOne({ spotifyId: profile.id });
+
+      if (existingUser) {
+        return done(null, existingUser);
+      }
+      
+      const user = await new User({ spotifyId: profile.id }).save();
+      done(null, user);
     }
   )
 );

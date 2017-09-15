@@ -15,8 +15,14 @@ passport.use(
       callbackURL: "/auth/google/callback"
     },
     (accessToken, refreshToken, profile, done) => {
-      new User({ googleId: profile.id}).save();      
-
+      User.findOne({ googleId: profile.id }).then(existingUser => {
+        if (existingUser) {
+          // already have a googleId for user
+        } else {
+          // no user with this googleId, create one in mongo
+          new User({ googleId: profile.id }).save()
+        }
+      });
     }
   )
 );
@@ -29,7 +35,6 @@ passport.use(
       callbackURL: "http://localhost:3000/auth/spotify/callback"
     },
     (accessToken, refreshToken, profile, done) => {
-      new User({ spotifyId: profile.id}).save();            
     }
   )
 );

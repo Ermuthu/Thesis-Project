@@ -35,6 +35,14 @@ passport.use(
       callbackURL: "http://localhost:3000/auth/spotify/callback"
     },
     (accessToken, refreshToken, profile, done) => {
+      User.findOne({ spotifyId: profile.id }).then(existingUser => {
+        if (existingUser) {
+          // already have a spotifyId for user
+        } else {
+          // no user with this spotifyId, create one in mongo
+          new User({ spotifyId: profile.id }).save()
+        }
+      });
     }
   )
 );

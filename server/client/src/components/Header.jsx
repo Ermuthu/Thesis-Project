@@ -2,13 +2,22 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class Header extends Component {
+  renderContent() {
+    switch (this.props.auth) {
+      case null:
+        return "...";
+      case false:
+        return "log in";
+      default:
+        return "log out";
+    }
+  }
   render() {
     console.log(this.props);
     return (
       <nav>
         <div>
-          <a>Login with Google</a>
-          <a>Login with Spotify</a>
+        <ul className="right">{this.renderContent()}</ul>
         </div>
       </nav>
     );

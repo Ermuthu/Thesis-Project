@@ -24,13 +24,13 @@ class Header extends Component {
         );
     }
   }
-
   render() {
     console.log(this.props);
     return (
       <nav>
         <div>
           <ul className="right">{this.renderContent()}</ul>
+          {this.props.auth ? <a href="/logout">logout</a> : ""}
         </div>
       </nav>
     );

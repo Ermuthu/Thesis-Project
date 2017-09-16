@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
   renderContent() {
@@ -18,6 +19,7 @@ class Header extends Component {
           </ul>
         );
       default:
+      console.log(this.props.auth.spotifyId);
         return (
           `${this.props.auth.spotifyId}, you are signed in with Spotify!` ||
           `${this.props.auth.googleId}, you are signed in with Google!`
@@ -29,8 +31,13 @@ class Header extends Component {
     return (
       <nav>
         <div>
-          <ul className="right">{this.renderContent()}</ul>
-          {this.props.auth ? <a href="/logout">logout</a> : ""}
+          <Link 
+          to={this.props.auth ? '/home' : '/'}
+          >App</Link>
+          <ul>{this.props.auth ? <a href="/api/logout">logout</a> : ""}</ul>
+``
+          <ul>{this.renderContent()}</ul>
+          {/* {this. props.auth === 'spotifId' ? this.props.auth.spotifyId : this.props.auth.googleId}} */}
         </div>
       </nav>
     );

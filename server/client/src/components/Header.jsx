@@ -18,9 +18,13 @@ class Header extends Component {
           </ul>
         );
       default:
-        return "logout";
+        return (
+          `${this.props.auth.spotifyId}, you are signed in with Spotify!` ||
+          `${this.props.auth.googleId}, you are signed in with Google!`
+        );
     }
   }
+
   render() {
     console.log(this.props);
     return (

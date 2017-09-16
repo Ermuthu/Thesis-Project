@@ -7,9 +7,18 @@ class Header extends Component {
       case null:
         return "...";
       case false:
-        return "log in";
+        return (
+          <ul>
+            <li>
+              <a href="/auth/google">Login with google</a>
+            </li>
+            <li>
+              <a href="/auth/spotify">Login with Spotify</a>
+            </li>
+          </ul>
+        );
       default:
-        return "log out";
+        return "logout";
     }
   }
   render() {
@@ -17,7 +26,7 @@ class Header extends Component {
     return (
       <nav>
         <div>
-        <ul className="right">{this.renderContent()}</ul>
+          <ul className="right">{this.renderContent()}</ul>
         </div>
       </nav>
     );

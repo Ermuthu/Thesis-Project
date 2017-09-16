@@ -8,7 +8,12 @@ module.exports = app => {
       showDialog: true
     })
   );
-  app.get("/auth/spotify/callback", passport.authenticate("spotify"));
+  app.get("/auth/spotify/callback", 
+  passport.authenticate("spotify"),
+  (req, res) => {
+      res.redirect("/user");
+    }
+  );
 
   app.get(
     "/auth/google",
@@ -16,7 +21,13 @@ module.exports = app => {
       scope: ["profile", "email"]
     })
   );
-  app.get("/auth/google/callback", passport.authenticate("google"));
+  app.get(
+    "/auth/google/callback",
+    passport.authenticate("google"),
+    (req, res) => {
+      res.redirect("/user");
+    }
+  );
 
   app.get("/api/current_user", (req, res) => {
     res.send(req.user);

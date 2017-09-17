@@ -2,10 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
-import reduxThunk from 'redux-thunk';
+import reduxThunk from "redux-thunk";
 
 import App from "./components/App";
-import reducers from './reducers';
+import reducers from "./reducers";
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
@@ -15,3 +15,5 @@ ReactDOM.render(
   </Provider>,
   document.querySelector("#root")
 );
+
+// console.log("environment is", process.env.NODE_ENV);

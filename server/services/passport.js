@@ -32,7 +32,7 @@ passport.use(
       if (existingUser) {
         return done(null, existingUser);
       }
-      
+
       const user = await new User({ googleId: profile.id }).save();
       done(null, user);
     }
@@ -44,17 +44,26 @@ passport.use(
     {
       clientID: keys.spotifyClientID,
       clientSecret: keys.spotifyClientSecret,
-      callbackURL: "http://localhost:3001/auth/spotify/callback",
+      callbackURL: "http://localhost:3000/auth/spotify/callback",
+      response_type: "code",
+      scope: "user-read-private, user-read-email",
+
+      // state: state,
       proxy: true
     },
-    async (accessToken, refreshToken, profile, done) => {
+    async (accessToken, token_type, refreshToken, profile, done) => {
       const existingUser = await User.findOne({ spotifyId: profile.id });
 
       if (existingUser) {
         return done(null, existingUser);
       }
-      
-      const user = await new User({ spotifyId: profile.id }).save();
+
+      const user = await new User({
+        spotifyId: profile.id,
+        token_type,
+        accessToken,
+        refreshToken
+      }).save();
       done(null, user);
     }
   )

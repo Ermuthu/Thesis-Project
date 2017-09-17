@@ -1,17 +1,18 @@
 const passport = require("passport");
 
+var scopes = 'user-read-email playlist-read-private playlist-modify-public user-library-read user-read-private'
 module.exports = app => {
   app.get(
     "/auth/spotify",
     passport.authenticate("spotify", {
-      scope: ["user-read-email", "user-read-private"],
-      showDialog: true
+      scope: scopes,
+      showDialogue: true
     })
   );
   app.get("/auth/spotify/callback", 
   passport.authenticate("spotify"),
   (req, res) => {
-      res.redirect("/user");
+      res.redirect("/home");
     }
   );
 

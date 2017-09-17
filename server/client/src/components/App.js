@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 
 import Header from "./Header";
-const Home = () => <h1> Home Page </h1>;
+import Home from "./Home";
+import Search from "./Search";
 const User = () => <h1> User Page </h1>;
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={Home} />
             <Route exact path="/user" component={User} />
+            <Route exact path="/search" component={Search} />
           </div>
         </BrowserRouter>
       </div>

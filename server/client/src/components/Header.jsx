@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Stripe from "./Stripe";
 
 class Header extends Component {
   renderContent() {
@@ -10,30 +11,52 @@ class Header extends Component {
       case false:
         return (
           <div>
-            <ul><li>
-              <a href="/auth/google">Login with google</a></li>
-              <li><a href="/auth/spotify">Login with Spotify</a></li>
-              </ul>
-              </div>
+            <ul>
+              <li>
+                <a href="/auth/google">
+                  Login with google<i className="material-icons right">face</i>
+                </a>
+              </li>
+              <li>
+                <a href="/auth/spotify">
+                  Login with Spotify<i className="material-icons right">
+                    account_circle
+                  </i>
+                </a>
+              </li>
+            </ul>
+          </div>
         );
       default:
-      return <a href="/api/logout">logout</a>
+        return [
+          <li key="1">
+            <Stripe />
+          </li>,
+          <li key="3" style={{ margin: "0 10px" }} />,
+          <li key="2">
+            <a href="/api/logout">
+              <i className="large material-icons right">exit_to_app</i>Logout
+            </a>
+          </li>
+        ];
     }
   }
   render() {
     // console.log(this.props.auth);
     return (
       <nav>
-        <div>
+        <div className="container">
           <Link to={this.props.auth ? "/home" : "/"}>App</Link>
-          {/* <ul> */}
-            {this.renderContent()}
-            {/* {console.log(this.props.auth)} */}
-            {(this.props.auth) ?  (this.props.auth.spotifyId) || (this.props.auth.googleId) : ''}
-          {/* `${this.props.auth.spotifyId}, you are signed in with Spotify!` || */}
-          {/* `${this.props.auth.googleId}, you are signed in with Google!` */}
-            {/* </ul>/ */}
-          {/* {this. props.auth === 'spotifId' ? this.props.auth.spotifyId : this.props.auth.googleId}} */}
+          <ul className="right">{this.renderContent()}</ul>
+          {/* {console.log(this.props.auth)} */}
+          <b className="left">
+            {this.props.auth ? (
+              `Welcome, ${this.props.auth.spotifyId ||
+                this.props.auth.googleId}`
+            ) : (
+              ""
+            )}
+          </b>
         </div>
       </nav>
     );

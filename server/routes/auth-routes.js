@@ -1,17 +1,20 @@
 const passport = require("passport");
 
-var scopes = 'user-read-email playlist-read-private playlist-modify-public user-library-read user-read-private'
 module.exports = app => {
   app.get(
     "/auth/spotify",
     passport.authenticate("spotify", {
-      scope: scopes,
-      showDialogue: true
-    })
+      scope: [
+        "user-read-email playlist-read-private playlist-modify-public user-library-read user-read-private"
+      ],
+      showDialog: true
+    }),
+    function(req, res) {}
   );
-  app.get("/auth/spotify/callback", 
-  passport.authenticate("spotify"),
-  (req, res) => {
+  app.get(
+    "/auth/spotify/callback",
+    passport.authenticate("spotify"),
+    (req, res) => {
       res.redirect("/home");
     }
   );
@@ -19,7 +22,8 @@ module.exports = app => {
   app.get(
     "/auth/google",
     passport.authenticate("google", {
-      scope: ["profile", "email"]
+      scope: ["profile", "email"],
+      showDialog: true
     })
   );
   app.get(
@@ -36,6 +40,11 @@ module.exports = app => {
 
   app.get("/api/logout", (req, res) => {
     req.logout();
-    res.redirect('/');
+    res.redirect("/");
   });
 };
+
+// app.get("/spotify", (req, res) => {
+//   scope: scopes, console.log(req.body);
+//   res.send(req.user);
+// });

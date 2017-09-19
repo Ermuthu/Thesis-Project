@@ -26,52 +26,91 @@ passport.use(
       callbackURL: "/auth/google/callback",
       proxy: true
     },
-    async (accessToken, refreshToken, profile, done) => {
-      const existingUser = await User.findOne({ googleId: profile.id });
-
-      if (existingUser) {
-        return done(null, existingUser);
-      }
-
-      const user = await new User({ googleId: profile.id }).save();
-      done(null, user);
+    (accessToken, refreshToken, profile, done) => {
+      new User({
+        googleId: profile.id,
+        accessToken,
+        refreshToken
+      }).save();
+      console.log(accessToken);
+      console.log(refreshToken);
+      console.log(profile);
+      console.log(profile._json.displayName);
     }
   )
 );
+
+//     async (accessToken, token_type, refreshToken, profile, done) => {
+//       const existingUser = await User.findOne({ googleId: profile.id });
+
+//       if (existingUser) {
+//         return done(null, existingUser);
+//       }
+
+//       const user = await new User({ googleId: profile.id }).save();
+//       done(null, user);
+//     }
+//   )
+// );
 
 passport.use(
   new SpotifyStrategy(
     {
       clientID: keys.spotifyClientID,
       clientSecret: keys.spotifyClientSecret,
-      callbackURL: "http://localhost:3000/auth/spotify/callback",
-      response_type: "code",
-      scope: "user-read-private, user-read-email",
-
-      // state: state,
-      proxy: true
+      callbackURL: "http://localhost:3000/auth/spotify/callback"
     },
-    async (accessToken, token_type, refreshToken, profile, done) => {
-      const existingUser = await User.findOne({ spotifyId: profile.id });
-
-      if (existingUser) {
-        return done(null, existingUser);
-      }
-
-      const user = await new User({
-        spotifyId: profile.id,
-        token_type,
-        accessToken,
-        refreshToken
-      }).save();
-      done(null, user);
+    (accessToken, refreshToken, playlists, profile, done) => {
+      console.log(accessToken);
+      console.log(refreshToken);
+      console.log(profile);
+      console.log(profile._json.display_name);
+      console.log(profile._json.images);
+      console.log(profile._json.images[0].url);
+      User.findOne({ accessToken: accessToken }).then(existingUser => {
+        if (existingUser) {
+          return done(null, existingUser);
+        } else {
+          new User({
+            spotifyId: profile.id,
+            ...profile,
+            accessToken,
+            refreshToken: refreshToken
+          })
+            .save()
+            .then(user => done(null, user));
+          // done(null, ...profile, accessToken, refreshToken, user);
+        }
+      });
     }
   )
 );
 
-// console.log("access token", accessToken);
-// console.log("refresh token", refreshToken);
-// console.log("profile:", profile);
+// console.log(accessToken);
+// console.log(refreshToken);
+//       console.log(profile);
+//       console.log(profile._json.displayName);
+//     async (accessToken, token_type, refreshToken, profile, done) => {
+//       const existingUser = await User.findOne({ spotifyId: profile.id });
+
+//       if (existingUser) {
+//         return done(null, existingUser);
+//       }
+
+//       const user = await new User({
+//         ...profile,
+//         spotifyId: profile.id,
+//         // image: profile.images[1].url,
+//         // display_name: user.display_name,
+//         // images: newUser.images[1].url,
+//         token_type,
+//         accessToken,
+//         refreshToken
+//       }).save();
+//       done(null, ...profile, accessToken, refreshToken, user);
+//     }
+//   )
+// );
 
 // console.log("access token", accessToken);
 // console.log("refresh token", refreshToken);

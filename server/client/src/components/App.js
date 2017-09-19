@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
+import "../App.css";
 import * as actions from "../actions";
 
 import Header from "./Header";
 import Home from "./Home";
-import Search from "./Search";
-const User = () => <h1> User Page </h1>;
+import Dashboard from "./Dashboard";
+import SurveyNew from "./surveys/SurveyNew";
+import SearchNew from "./spotify/SearchNew";
+import Youtube from "./youtube/Youtube";
+import Spotify from "./spotify/Spotify";
 
 class App extends Component {
   componentDidMount() {
@@ -17,11 +21,14 @@ class App extends Component {
     return (
       <div>
         <BrowserRouter>
-          <div>
+          <div className="container">
             <Header />
-            <Route exact path="/" component={Home} />
-            <Route exact path="/user" component={User} />
-            <Route exact path="/search" component={Search} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/surveys" component={Dashboard} />
+            <Route exact path="/search/new" component={SearchNew} />
+            <Route exact path="/surveys/new" component={SurveyNew} />
+            <Route exact path="/youtube" component={Youtube} />
+            <Route exact path="/spotify" component={Spotify} />
           </div>
         </BrowserRouter>
       </div>

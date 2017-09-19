@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import Stripe from "./Stripe";
 
 class Header extends Component {
-  renderContent() {
+  renderHeaderFiller() {
+    return <div>{<h1 style={{ color: "black" }}> Welcome </h1>}</div>;
+  }
+  renderHeader() {
     switch (this.props.auth) {
       case null:
-        return;
+        return "Loading...";
       case false:
         return (
           <div>
@@ -25,19 +28,25 @@ class Header extends Component {
                 </a>
               </li>
             </ul>
+            {this.renderHeaderFiller()}
           </div>
         );
       default:
         return [
-          <li key="1">
-            <Stripe />
-          </li>,
-          <li key="3" style={{ margin: "0 10px" }} />,
-          <li key="2">
-            <a href="/api/logout">
-              <i className="large material-icons right">exit_to_app</i>Logout
-            </a>
-          </li>
+          <div key="1">
+            <ul>
+              <li>
+                <Link to={this.props.auth ? "/home" : "/"}>Home</Link>
+              </li>
+              <li key="2">
+                <a href="/api/logout">
+                  <i className="large material-icons right">
+                    exit_to_app
+                  </i>Logout
+                </a>
+              </li>
+            </ul>
+          </div>
         ];
     }
   }
@@ -46,13 +55,12 @@ class Header extends Component {
     return (
       <nav>
         <div className="container">
-          <Link to={this.props.auth ? "/home" : "/"}>App</Link>
-          <ul className="right">{this.renderContent()}</ul>
-          {/* {console.log(this.props.auth)} */}
+          <ul className="right">{this.renderHeader()}</ul>
+          {console.log(this.props.auth)}
           <b className="left">
             {this.props.auth ? (
               `Welcome, ${this.props.auth.spotifyId ||
-                this.props.auth.googleId}`
+                this.props.auth.displayName}`
             ) : (
               ""
             )}
@@ -63,12 +71,12 @@ class Header extends Component {
   }
 }
 
-// function mapStateToProps(state) {
-//     return { auth: state.auth };
+// function mapStateToProps({ auth }) {
+//   return { auth };
 // }
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps(state) {
+  return { auth: state.auth };
 }
 
 export default connect(mapStateToProps)(Header);

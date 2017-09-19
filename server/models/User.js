@@ -3,22 +3,32 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
   created: { type: Date, default: Date.now },
+  credits: { type: Number, default: 0 },
+  profile: Object,
   googleId: String,
   spotifyId: String,
-  // user: String,
-  accessToken: String,
   token_type: String,
-  scope: String,
   expires_in: Number,
-  refresh_token: String,
+  refreshToken: String,
   display_name: String,
   accessToken: String,
   name: String,
   email: String,
   alltracks: [],
-  image: [],
+  images: [[Object]],
   playlists: [],
-  ownPlaylist: [],
+  ownPlaylist: []
 });
 
 mongoose.model("users", userSchema);
+
+// user: {
+// country: null,
+//   display_name: String,
+//   email: String,
+//   external_urls: {},
+// image: [],
+//   // product: String,
+//   type: String,
+// uri: String
+// }

@@ -31,7 +31,7 @@ class SpotifyForm extends Component {
       return (
         <form
           key={name}
-          onSubmit={this.props.handleSubmit(search => console.log(search))}
+          onSubmit={this.props.handleSubmit(() => this.props.onSearchSubmit())}
         >
           <Field
             key={kind}
@@ -56,5 +56,6 @@ class SpotifyForm extends Component {
 }
 
 export default reduxForm({
-  form: "spotifyForm"
+  form: "spotifyForm",
+  destroyOnUnmount: false
 })(SpotifyForm);

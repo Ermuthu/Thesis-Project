@@ -1,7 +1,20 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const SpotifyResult = () => {
-  return <div>results</div>;
+const SpotifyResult = ({ onCancel }) => {
+  return (
+    <div>
+      results
+      <button className="red btn-flat" onClick={onCancel}>
+        back
+      </button>
+    </div>
+  );
 };
 
-export default SpotifyResult;
+function mapStateToProps(auth) {
+  console.log(auth);
+  return {};
+}
+
+export default connect(mapStateToProps)(SpotifyResult);

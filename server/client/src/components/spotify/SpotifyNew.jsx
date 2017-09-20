@@ -4,17 +4,22 @@ import SpotifyForm from "./SpotifyForm";
 import SpotifyResult from "./SpotifyResult";
 
 class SearchNew extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { results: true };
+  state = { showResult: false };
+
+  renderResult() {
+    if (this.state.showResult) {
+      return (
+        <SpotifyResult onCancel={() => this.setState({ showResult: false })} />
+      );
+    }
+
+    return (
+      <SpotifyForm onSearchSubmit={() => this.setState({ showResult: true })} />
+    );
   }
 
   render() {
-    return (
-      <div>
-        <SpotifyForm />
-      </div>
-    );
+    return <div>{this.renderResult()}</div>;
   }
 }
 

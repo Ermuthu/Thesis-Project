@@ -2,10 +2,10 @@ import { FETCH_SONG } from "../actions/types";
 // import { RECEIVE_RESULTS } from "../actions/search_actions";
 
 export default function(state = null, action) {
-  // console.log(action);
+  // console.log("reducer fetch song -> ", action);
   switch (action.type) {
     case FETCH_SONG:
-      return action.results || false;
+      return action.payload || false;
     default:
       return state;
   }

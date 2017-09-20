@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Stripe from "./Stripe";
+// import Stripe from "./Stripe";
 
 class Header extends Component {
   renderHeaderFiller() {
@@ -56,7 +56,7 @@ class Header extends Component {
       <nav>
         <div className="container">
           <ul className="right">{this.renderHeader()}</ul>
-          {console.log(this.props.auth)}
+          {/* {console.log(this.props.auth)} */}
           <b className="left">
             {this.props.auth ? (
               `Welcome, ${this.props.auth.spotifyId ||

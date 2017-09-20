@@ -1,20 +1,42 @@
 import axios from "axios";
-import { FETCH_USER, FETCH_SURVEYS } from "./types";
+import { FETCH_USER, FETCH_SURVEYS, FETCH_SONG } from "./types";
+
+// const user = { state };
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get("/api/current_user");
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const submitSong = values => {
-  return { type: "submit_song" };
-};
-export const submitArtist = values => {
-  return { type: "submit_song" };
-};
-export const submitAlbum = values => {
-  return { type: "submit_song" };
-};
-export const submitGenre = values => {
-  return { type: "submit_song" };
+// function mapDispatchToProps(auth) {
+//   console.log(auth);
+//   return { auth };
+// }
+
+export const fetchSong = (
+  accessToken,
+  auth,
+  state,
+  values
+) => async dispatch => {
+  // const access_token = `${auth.accessToken}`;
+  const headers = { Authorization: "Bearer " + accessToken };
+  console.log(headers);
+  console.log(accessToken);
+  const res = await axios.get(
+    `https://api.spotify.com/v1/search?q=${values}&type=track`,
+    {
+      method: "get",
+      headers: headers
+    }
+    //   "Content-Type": "application/json",
+    //   Authorization: "Bearer " + this.getToken()
+    // }
+  );
+  console.log(res.data);
+
+  return {
+    type: FETCH_SONG,
+    payload: res.data
+  };
 };

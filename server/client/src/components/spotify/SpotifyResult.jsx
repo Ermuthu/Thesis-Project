@@ -5,15 +5,16 @@ import * as actions from "../../actions";
 const SpotifyResult = ({
   onCancel,
   formValues,
-  submitSong,
+  fetchSong,
   submitArtist,
   submitAlbum,
-  submitGenre
+  submitGenre,
+  auth
 }) => {
   return (
     <div>
       <h3> {formValues.title}</h3>
-      <button onClick={() => submitSong(formValues)}>submit search</button>
+      <button onClick={() => fetchSong(auth)}>submit search</button>
 
       <h3> {formValues.artist}</h3>
       <button onClick={() => submitArtist(formValues)}>submit search</button>
@@ -32,7 +33,11 @@ const SpotifyResult = ({
 };
 
 function mapStateToProps(state) {
-  return { formValues: state.form.spotifyForm.values };
+  console.log(state.auth.accessToken);
+  return {
+    formValues: state.form.spotifyForm.values,
+    auth: state.auth.accessToken
+  };
 }
 
 export default connect(mapStateToProps, actions)(SpotifyResult);

@@ -1,28 +1,57 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import SpotifyField from "./SpotifyField";
+const TYPES = [
+  {
+    kind: "Search Title",
+    name: "title",
+    placeholder: "title"
+  },
+  {
+    kind: "Search Arist",
+    name: "artist",
+    placeholder: "artist"
+  },
+  {
+    kind: "Search Album",
+    name: "album",
+    placeholder: "album"
+  },
+  {
+    kind: "Search Playlist",
+    name: "playlist",
+    placeholder: "playlist"
+  }
+];
 
 class SpotifyForm extends Component {
   spotifySearchField() {
-    return (
-      <div>
-        <Field type="text" name="spotifySearch" component={SpotifyField} />
-      </div>
-    );
-  }
-
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.props.handleSubmit(search => console.log(search))}>
-          {this.spotifySearchField()}
-          <button type="submit" className="teal btn-flat right white-text">
+    return _.map(TYPES, ({ kind, name, placeholder }) => {
+      return (
+        <form
+          key={name}
+          onSubmit={this.props.handleSubmit(search => console.log(search))}
+        >
+          <Field
+            key={kind}
+            type="text"
+            label={kind}
+            name={name}
+            placeholder={placeholder}
+            component={SpotifyField}
+          />
+          <button type="submit" className="green btn-flat right white-text">
             Search!
             <i className="material-icons right">search</i>
           </button>
         </form>
-      </div>
-    );
+      );
+    });
+  }
+
+  render() {
+    return <div>{this.spotifySearchField()}</div>;
   }
 }
 

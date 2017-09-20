@@ -1,7 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import SpotifySongResult from "./SpotifySongResult";
 
+// const renderTitle = state => {
+//   console.log("state in render results", state);
+//   if (true) return;
+//   console.log(state);
+// };
 const SpotifyResult = ({
   onCancel,
   formValues,
@@ -9,12 +15,15 @@ const SpotifyResult = ({
   submitArtist,
   submitAlbum,
   submitGenre,
-  auth
+  auth,
+  dispatch
 }) => {
+  // console.log(dispatch);
   return (
     <div>
       <h3> {formValues.title}</h3>
-      <button onClick={() => fetchSong(auth)}>submit search</button>
+      {/* {renderTitle()} */}
+      <button onClick={() => fetchSong(formValues, auth)}>submit search</button>
 
       <h3> {formValues.artist}</h3>
       <button onClick={() => submitArtist(formValues)}>submit search</button>
@@ -32,12 +41,16 @@ const SpotifyResult = ({
   );
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state, res) {
   console.log(state.auth.accessToken);
+  console.log(state);
   return {
     formValues: state.form.spotifyForm.values,
-    auth: state.auth.accessToken
+    auth: state.auth.accessToken,
+    data: state.data
+    // song: state.res.data
   };
+  // console.log(state);
 }
 
 export default connect(mapStateToProps, actions)(SpotifyResult);

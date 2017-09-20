@@ -13,16 +13,11 @@ export const fetchUser = () => async dispatch => {
 //   return { auth };
 // }
 
-export const fetchSong = (
-  accessToken,
-  auth,
-  state,
-  values
-) => async dispatch => {
-  // const access_token = `${auth.accessToken}`;
+export const fetchSong = (accessToken, values) => async dispatch => {
+  console.log("values of the query -> ", values);
   const headers = { Authorization: "Bearer " + accessToken };
-  console.log(headers);
-  console.log(accessToken);
+  // console.log(headers);
+  // console.log(accessToken);
   const res = await axios.get(
     `https://api.spotify.com/v1/search?q=${values}&type=track`,
     {
@@ -33,6 +28,7 @@ export const fetchSong = (
     //   Authorization: "Bearer " + this.getToken()
     // }
   );
+  dispatch({ type: FETCH_SONG, payload: res.data });
   console.log(res.data);
 
   return {
@@ -40,3 +36,18 @@ export const fetchSong = (
     payload: res.data
   };
 };
+
+// export const fetchSong = (accessToken, values) => {
+//   const baseUrl = "https://api.spotify.com/";
+//   const search = `v1/search?q=${values}&type=artist&limit=1`;
+//   return dispatch => {
+//     const headers = { Authorization: "Bearer " + window.accessToken };
+//     fetch(`${baseUrl}${search}`, { headers })
+//       .then(response => response.json())
+//       .then(json => {
+//         dispatch(displaySearchedArtist(values, json));
+//         dispatch(setArtistId(values, json));
+//       })
+//       .catch(err => "err");
+//   };
+// };

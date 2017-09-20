@@ -1,6 +1,6 @@
 // this will show search options and search results
 import React, { Component } from "react";
-import SearchForm from "./SearchForm";
+import SpotifyForm from "./SpotifyForm";
 
 class SearchNew extends Component {
   render() {

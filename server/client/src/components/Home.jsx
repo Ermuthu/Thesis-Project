@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import * as actions from "../actions";
 import Header from "./Header";
 
 class Home extends Component {
@@ -37,8 +36,8 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps({ auth, actions }) {
-  return { auth, actions };
+function mapStateToProps({ auth }) {
+  return { auth };
 }
 
 export default connect(mapStateToProps)(Home);

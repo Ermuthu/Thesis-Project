@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addLogs } from "../../actions";
-import { fetchSong } from "../../actions";
+import * as actions from "../../actions";
 
 class Spotify extends Component {
   constructor(props) {
@@ -13,7 +12,7 @@ class Spotify extends Component {
     };
   }
   addLogs() {
-    this.props.addLogs(this.state.text);
+    this.props.actions.addLogs(this.state.text);
     // console.log("logs", this);
   }
 
@@ -33,12 +32,12 @@ class Spotify extends Component {
   // }
 
   fetchSong() {
-    this.props.fetchSong(this.state.song, this.state.accessToken);
+    this.props.actions.fetchSong(this.state.song, this.state.accessToken);
   }
 
   renderSongs() {
     // const { song } = this.props;
-    // console.log("songs", song);
+    console.log("song", this.props);
   }
   render() {
     // console.log("props at render", this.props);
@@ -59,7 +58,7 @@ class Spotify extends Component {
             className="btn btn-success"
             onClick={() => this.addLogs()}
           >
-            {/* {this.renderlogs()} */}
+            {/*this.renderlogs()*/}
           </button>
           <input
             className="form-control"
@@ -69,31 +68,40 @@ class Spotify extends Component {
                 accessToken: this.props.auth,
                 song: event.target.value
               })}
+            onKeyPress={event => {
+              if (event.key === "Enter") {
+                this.fetchSong();
+              }
+            }}
           />
         </div>
         <button
           type="button"
           className="btn btn-success"
-          onClick={auth => this.fetchSong(this.props.auth)}
+          onClick={() => this.fetchSong()}
         >
           Search for song
         </button>
+        {this.renderSongs()}
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  console.log("state", state);
-  console.log("props", state.accessToken);
+  // console.log("state", state);
+  console.log("spotify state", state.spotify);
   return {
     logs: state,
-    auth: state.auth
+    auth: state.auth,
+    spotify: state.spotify
   };
 }
 
 function mapDispatchtoProps(dispatch) {
-  return bindActionCreators({ addLogs, fetchSong }, dispatch);
+  return {
+    actions: bindActionCreators(actions, dispatch)
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchtoProps)(Spotify);

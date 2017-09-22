@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
 import logsReducer from "./logsReducer";
-import songReducer from "./songReducer";
+import spotifyReducer from "./spotifyReducer";
 
 export default combineReducers({
   auth: authReducer,
-  song: songReducer,
+  spotify: spotifyReducer,
   logs: logsReducer
 });

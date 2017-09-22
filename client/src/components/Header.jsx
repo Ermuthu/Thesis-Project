@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 class Header extends Component {
-  // renderHeaderFiller() {
-  //   return <div>{<h1 style={{ color: "black" }}> Welcome </h1>}</div>;
-  // }
+  renderHeaderFiller() {
+    return <div>{<h1 style={{ color: "black" }}> Welcome </h1>}</div>;
+  }
   renderHeader() {
     switch (this.props.auth) {
       case null:
@@ -55,7 +55,7 @@ class Header extends Component {
       <nav>
         <div className="container">
           <ul className="right">{this.renderHeader()}</ul>
-          {console.log(this.props.auth)}
+          {/* {console.log(this.props.auth)} */}
           <b className="left">
             {this.props.auth ? (
               `Welcome, ${this.props.auth.spotifyId ||

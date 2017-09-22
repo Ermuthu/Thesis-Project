@@ -17,19 +17,19 @@ module.exports = app => {
     // console.log(users);
   });
 
-  app.get("/spotify", (req, res) => {
-    spotify
-      .request("https://api.spotify.com/v1/users/dmartss/playlists")
-      .then(function(data) {
-        console.log(data);
-        req.body(data);
-        data = data;
-      })
-      .catch(function(err) {
-        console.error("Error occurred: " + err);
-      });
-    spotifyApi.setAccessToken("req.body.accessToken");
-  });
+  // app.get("/spotify", (req, res) => {
+  //   spotify
+  //     .request("https://api.spotify.com/v1/users/dmartss/playlists")
+  //     .then(function(data) {
+  //       console.log(data);
+  //       req.body(data);
+  //       data = data;
+  //     })
+  //     .catch(function(err) {
+  //       console.error("Error occurred: " + err);
+  //     });
+  //   spotifyApi.setAccessToken("req.body.accessToken");
+  // });
 };
 // var token = newUser.accessToken;
 

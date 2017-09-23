@@ -6,18 +6,18 @@ class Header extends Component {
   renderHeaderFiller() {
     return (
       <div>
-        {
+        {!this.props.auth ? (
           <h3
             style={{
               paddingTop: "50px",
               color: "white"
-              // display: "flex",
-              // alignItems: "center"
             }}
           >
             Welcome, please log in for good times
           </h3>
-        }
+        ) : (
+          ""
+        )}
       </div>
     );
   }
@@ -53,16 +53,16 @@ class Header extends Component {
         );
       default:
         return [
-          <div key="1">
+          <div>
             <ul>
-              <li key="2">
+              <li>
                 <a href="/api/logout">
                   <i className="large material-icons right">
                     exit_to_app
                   </i>Logout
                 </a>
               </li>
-              <li className="center">
+              <li className="left">
                 <Link to={this.props.auth ? "/home" : "/"}>
                   <i className="large material-icons">home</i>
                 </Link>
@@ -79,7 +79,7 @@ class Header extends Component {
         <div className="container">
           {this.renderHeader()}
           {/*console.log(this.props.auth)*/}
-          <h5 className="right">
+          <h5 className="right" style={{ color: "black" }}>
             {this.props.auth
               ? `Welcome, ${this.props.auth.spotifyId ||
                   this.props.auth.displayName}`
@@ -91,12 +91,8 @@ class Header extends Component {
   }
 }
 
-// function mapStateToProps({ auth }) {
-//   return { auth };
-// }
-// same thing
-function mapStateToProps(state) {
-  return { auth: state.auth };
+function mapStateToProps({ auth }) {
+  return { auth };
 }
 
 export default connect(mapStateToProps)(Header);

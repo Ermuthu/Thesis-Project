@@ -26,50 +26,49 @@ class Spotify extends Component {
   render() {
     return (
       <div>
-        <div className="search">
-          <input
-            className="form-control"
-            placeholder="search by artist"
-            onChange={event =>
-              this.setState({
-                accessToken: this.props.auth,
-                input: event.target.value
-              })}
-            onKeyPress={event => {
-              if (event.key === "Enter") {
-                this.submitArtist();
-              }
-            }}
-          />
-        </div>
-        <Button
-          type="button"
-          className="btn btn-success"
-          onClick={() => this.submitArtist()}
-        >
-          "Search for an Artist!"
-        </Button>
-        <Button
-          type="button"
-          className="btn btn-success"
-          onClick={() => this.submitSong()}
-        >
-          "Search for a Song!"
-        </Button>
-        {this.props.spotify ? <SpotifyArtist /> : ""}
-        {this.props.song ? <SpotifySong /> : ""}
+        {this.props.auth ? (
+          <div className="search">
+            <input
+              className="form-control"
+              placeholder="search by artist"
+              onChange={event =>
+                this.setState({
+                  accessToken: this.props.auth,
+                  input: event.target.value
+                })}
+              onKeyPress={event => {
+                if (event.key === "Enter") {
+                  this.submitArtist();
+                }
+              }}
+            />
+            <Button
+              type="button"
+              className="btn btn-success"
+              onClick={() => this.submitArtist()}
+            >
+              "Search for an Artist!"
+            </Button>
+            <Button
+              type="button"
+              className="btn btn-success"
+              onClick={() => this.submitSong()}
+            >
+              "Search for a Song!"
+            </Button>
+            {this.props.spotify ? <SpotifyArtist /> : ""}
+            {this.props.song ? <SpotifySong /> : ""}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  const { auth, spotify, song } = state;
-  return {
-    auth,
-    spotify,
-    song
-  };
+function mapStateToProps({ auth, spotify, song }) {
+  return { auth, spotify, song };
 }
 
 function mapDispatchtoProps(dispatch) {

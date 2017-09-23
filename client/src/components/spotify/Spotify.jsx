@@ -7,9 +7,7 @@ import SpotifyArtist from "./SpotifyArtist";
 import SpotifySong from "./SpotifySong";
 
 class Spotify extends Component {
-  state = {
-    input: ""
-  };
+  state = { input: "" };
 
   submitArtist() {
     this.props.actions.fetchArtist(this.state.input, this.state.accessToken);
@@ -18,10 +16,14 @@ class Spotify extends Component {
   submitSong() {
     this.props.actions.fetchSong(this.state.input, this.state.accessToken);
   }
+  submitGenre() {
+    this.props.actions.fetchArtist(this.state.input, this.state.accessToken);
+  }
+  submitPlaylist() {
+    this.props.actions.fetchSong(this.state.input, this.state.accessToken);
+  }
 
   render() {
-    // console.log("props at render", this.props);
-    // console.log("auth");
     return (
       <div>
         <div className="search">
@@ -62,13 +64,11 @@ class Spotify extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log("state", state);
-  // console.log("spotify state", state.spotify);
-  // console.log("song state", state.song);
+  const { auth, spotify, song } = state;
   return {
-    auth: state.auth,
-    spotify: state.spotify,
-    song: state.song
+    auth,
+    spotify,
+    song
   };
 }
 

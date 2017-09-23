@@ -1,11 +1,15 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import * as actions from "../../actions";
 import { connect } from "react-redux";
 
 class SpotifySong extends Component {
+  componentWillMount() {
+    this.props.actions.clearSearch();
+  }
+
   renderSong() {
-    const { song, items } = this.props;
-    // console.log("spotify after render", spotify.artists.items[0]);
-    // console.log("spotify images", spotify.artists.items[0].images);
+    const { song } = this.props;
     const tracks = song.tracks.items;
     console.log("song", song);
     console.log("tracks", tracks[0]);
@@ -30,11 +34,17 @@ class SpotifySong extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log("spotifyresult", state.spotify);
+  const { auth, song } = state;
   return {
-    auth: state.auth,
-    song: state.song
+    auth,
+    song
   };
 }
 
-export default connect(mapStateToProps)(SpotifySong);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SpotifySong);

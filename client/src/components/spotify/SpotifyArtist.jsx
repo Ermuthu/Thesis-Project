@@ -4,10 +4,7 @@ import { connect } from "react-redux";
 class SpotifyArtist extends Component {
   renderArtist() {
     const { spotify, tracks } = this.props;
-    // console.log("spotify after render", spotify.artists.items[0]);
-    // console.log("spotify images", spotify.artists.items[0].images);
     const track = spotify.artists.items;
-    // console.log(track);
     return (
       <div className="row">
         {track.map((item, index) => (
@@ -31,11 +28,12 @@ class SpotifyArtist extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("spotifyresult", state.spotify);
+  // console.log("spotifyresult", state.spotify);
+  const { auth, spotify, song } = state;
   return {
-    auth: state.auth,
-    spotify: state.spotify,
-    song: state.song
+    auth,
+    spotify,
+    song
   };
 }
 

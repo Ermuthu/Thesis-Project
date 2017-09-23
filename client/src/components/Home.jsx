@@ -21,12 +21,29 @@ class Home extends Component {
   }
   render() {
     return (
-      <div>
-        Welcome to your #1 ~ meditation destination ~
-        <div className="waves-effect waves-light">
-          <Link to="/spotify">Spotify Search</Link>
-          <Link to="/youtube">Search Youtube</Link>
+      <div style={{ paddingTop: "100px", color: "white" }}>
+        <div
+          style={{
+            display: "flex",
+            textAlign: "center",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-around"
+          }}
+        >
+          <Link style={{ fontSize: "3em", color: "#2DCD90" }} to="/spotify">
+            <b className="hover">Spotify Search</b>
+          </Link>
+          <Link
+            style={{ fontSize: "3em", color: "rgb(255, 75, 75)" }}
+            to="/youtube"
+          >
+            Search Youtube
+          </Link>
         </div>
+        <h1 style={{ paddingTop: "100px", textAlign: "center" }}>
+          Welcome to your #1 ~ meditation destination
+        </h1>
       </div>
     );
   }

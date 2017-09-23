@@ -4,7 +4,22 @@ import { Link } from "react-router-dom";
 
 class Header extends Component {
   renderHeaderFiller() {
-    return <div>{<h1 style={{ color: "black" }}> Welcome </h1>}</div>;
+    return (
+      <div>
+        {
+          <h3
+            style={{
+              paddingTop: "50px",
+              color: "white"
+              // display: "flex",
+              // alignItems: "center"
+            }}
+          >
+            Welcome, please log in for good times
+          </h3>
+        }
+      </div>
+    );
   }
   renderHeader() {
     switch (this.props.auth) {
@@ -12,7 +27,13 @@ class Header extends Component {
         return "Loading...";
       case false:
         return (
-          <div>
+          <div
+            style={{
+              display: "inline-flex",
+              flexDirection: "column",
+              alignItems: "center"
+            }}
+          >
             <ul>
               <li>
                 <a href="/auth/google">
@@ -27,22 +48,24 @@ class Header extends Component {
                 </a>
               </li>
             </ul>
-            {/* {this.renderHeaderFiller()} */}
+            {this.renderHeaderFiller()}
           </div>
         );
       default:
         return [
           <div key="1">
             <ul>
-              <li>
-                <Link to={this.props.auth ? "/home" : "/"}>Home</Link>
-              </li>
               <li key="2">
                 <a href="/api/logout">
                   <i className="large material-icons right">
                     exit_to_app
                   </i>Logout
                 </a>
+              </li>
+              <li className="center">
+                <Link to={this.props.auth ? "/home" : "/"}>
+                  <i className="large material-icons">home</i>
+                </Link>
               </li>
             </ul>
           </div>
@@ -52,18 +75,16 @@ class Header extends Component {
   render() {
     // console.log("props.auth in header", this.props.auth);
     return (
-      <nav>
+      <nav className="green accent-2">
         <div className="container">
-          <ul className="right">{this.renderHeader()}</ul>
-          {/* {console.log(this.props.auth)} */}
-          <b className="left">
-            {this.props.auth ? (
-              `Welcome, ${this.props.auth.spotifyId ||
-                this.props.auth.displayName}`
-            ) : (
-              ""
-            )}
-          </b>
+          {this.renderHeader()}
+          {/*console.log(this.props.auth)*/}
+          <h5 className="right">
+            {this.props.auth
+              ? `Welcome, ${this.props.auth.spotifyId ||
+                  this.props.auth.displayName}`
+              : ""}
+          </h5>
         </div>
       </nav>
     );

@@ -1,0 +1,29 @@
+body {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: white;
+}
+
+.hover {
+  transition: ease-in-out 3s;
+}
+
+.hover:hover {
+  color: white;
+  cursor: pointer;
+  animation: pulse 2s linear infinite;
+}
+
+@keyframes pulse {
+  0% {
+    color: #485095;
+  }
+  50% {
+    color: white;
+  }
+  100% {
+    color: #00ffee;
+  }
+}

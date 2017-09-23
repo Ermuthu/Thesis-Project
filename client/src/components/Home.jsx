@@ -31,26 +31,42 @@ class Home extends Component {
             justifyContent: "space-around"
           }}
         >
-          <Link style={{ fontSize: "3em", color: "#2DCD90" }} to="/spotify">
-            <b className="hover">Spotify Search</b>
-          </Link>
-          <Link
-            style={{ fontSize: "3em", color: "rgb(255, 75, 75)" }}
-            to="/youtube"
-          >
-            Search Youtube
-          </Link>
+          {this.props.auth ? (
+            <div>
+              <Link
+                style={{
+                  fontSize: "3em",
+                  color: "#2DCD90",
+                  padding: "40px"
+                }}
+                to="/spotify"
+              >
+                <b className="spotify">Spotify Search</b>
+              </Link>
+              <Link
+                style={{
+                  fontSize: "3em",
+                  color: "rgb(255, 75, 75)",
+                  padding: "40px"
+                }}
+                to="/youtube"
+              >
+                <b className="youtube">Search Youtube</b>
+              </Link>
+            </div>
+          ) : (
+            <h1 style={{ paddingTop: "100px", textAlign: "center" }}>
+              Welcome to your #1 ~ meditation destination{" "}
+            </h1>
+          )}
         </div>
-        <h1 style={{ paddingTop: "100px", textAlign: "center" }}>
-          Welcome to your #1 ~ meditation destination
-        </h1>
       </div>
     );
   }
 }
 
-function mapStateToProps({ state }) {
-  return { auth: state };
+function mapStateToProps({ auth }) {
+  return { auth };
 }
 
 export default connect(mapStateToProps)(Home);

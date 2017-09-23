@@ -8,6 +8,9 @@ import SpotifySong from "./SpotifySong";
 
 class Spotify extends Component {
   state = { input: "" };
+  componentWillMount() {
+    this.props.actions.clearSearch();
+  }
 
   submitArtist() {
     this.props.actions.fetchArtist(this.state.input, this.state.accessToken);
@@ -27,35 +30,47 @@ class Spotify extends Component {
     return (
       <div>
         {this.props.auth ? (
-          <div className="search">
+          <div>
             <input
+              style={{
+                width: "300px",
+                textAlign: "center"
+              }}
               className="form-control"
-              placeholder="search by artist"
+              placeholder="search by artist or song"
               onChange={event =>
                 this.setState({
                   accessToken: this.props.auth,
                   input: event.target.value
                 })}
               onKeyPress={event => {
-                if (event.key === "Enter") {
-                  this.submitArtist();
+                if (event.key === "Enter" && this.state.input) {
+                  {
+                    this.submitArtist();
+                  }
                 }
               }}
             />
-            <Button
+
+            <button
               type="button"
-              className="btn btn-success"
+              className="btn waves-effect waves-light"
+              type="submit"
+              name="action"
+              disabled={!this.state.input}
+              className="btn"
               onClick={() => this.submitArtist()}
             >
-              "Search for an Artist!"
-            </Button>
-            <Button
+              Search for an Artist!
+            </button>
+            <button
               type="button"
+              disabled={!this.state.input}
               className="btn btn-success"
               onClick={() => this.submitSong()}
             >
-              "Search for a Song!"
-            </Button>
+              Search for a Song!
+            </button>
             {this.props.spotify ? <SpotifyArtist /> : ""}
             {this.props.song ? <SpotifySong /> : ""}
           </div>

@@ -18,7 +18,7 @@ const BASE_URL = "https://api.spotify.com/v1/search?";
 export const fetchArtist = (input, state, auth) => async dispatch => {
   const FETCH_URL = `${BASE_URL}q=${input}&type=artist&limit=1`;
   // console.log("FETCH_URL", FETCH_URL);
-  console.log("searchType");
+  // console.log("type", `${type}`);
   const headers = {
     Authorization: "Bearer " + state.accessToken
   };
@@ -38,7 +38,7 @@ export const fetchArtist = (input, state, auth) => async dispatch => {
 export const fetchSong = (input, state, auth) => async dispatch => {
   const FETCH_URL = `${BASE_URL}q=${input}&type=track`;
   // console.log("FETCH_URL", FETCH_URL);
-  console.log("search", input);
+  // console.log("search", input);
   const headers = {
     Authorization: "Bearer " + state.accessToken
   };
@@ -48,10 +48,10 @@ export const fetchSong = (input, state, auth) => async dispatch => {
   });
   dispatch({ type: FETCH_SONG, payload: res.data });
   // console.log(res.data.artists.items);
-  return {
-    type: FETCH_SONG,
-    payload: res.data
-  };
+  // return {
+  //   type: FETCH_SONG,
+  //   payload: res.data
+  // };
   // console.log(res);
 };
 

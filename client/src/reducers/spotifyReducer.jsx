@@ -1,17 +1,10 @@
-import { FETCH_ARTIST, FETCH_SONG, CLEAR_SEARCH } from "../actions/constants";
+import { FETCH_ARTIST } from "../actions/constants";
 
 export default function(state = null, action) {
   // console.log("reducer fetch song -> ", action.payload);
   switch (action.type) {
     case FETCH_ARTIST:
       return action.payload;
-    case FETCH_SONG:
-      return action.payload;
-    case CLEAR_SEARCH:
-      return {
-        ...state,
-        data: action.data
-      };
     default:
       return state;
   }

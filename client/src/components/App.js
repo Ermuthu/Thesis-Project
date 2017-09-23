@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <div>
         <BrowserRouter>
-          <div className="container">
+          <div>
             <Header />
             <Route exact path="/home" component={Home} />
             <Route exact path="/spotify" component={Spotify} />

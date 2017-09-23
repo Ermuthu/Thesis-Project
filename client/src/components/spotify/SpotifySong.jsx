@@ -7,6 +7,10 @@ class SpotifySong extends Component {
   componentWillMount() {
     this.props.actions.clearSearch();
   }
+  playSong(url) {
+    let audio = new Audio(url);
+    audio.play();
+  }
 
   renderSong() {
     const { song } = this.props;
@@ -14,14 +18,24 @@ class SpotifySong extends Component {
     console.log("song", song);
     console.log("tracks", tracks[0]);
     return (
-      <div className="column">
-        ;
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+          textAlign: "center"
+        }}
+      >
         {tracks.map((track, index) => {
           const trackImg = track.album.images[0].url;
           return (
-            <div key={index}>
-              <img src={trackImg} alt="track" />
+            <div key={index} onClick={() => this.playSong(track.preview_url)}>
               <p>{track.name}</p>
+              <img
+                src={trackImg}
+                alt="track"
+                style={{ width: "200px", height: "200px" }}
+              />
             </div>
           );
         })}

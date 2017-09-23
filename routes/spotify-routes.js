@@ -14,7 +14,7 @@ module.exports = app => {
     const users = await Users.find({ _user: req.user.id }).select({});
 
     res.send(users);
-    // console.log(users);
+    console.log(users);
   });
 
   // app.get("/spotify", (req, res) => {

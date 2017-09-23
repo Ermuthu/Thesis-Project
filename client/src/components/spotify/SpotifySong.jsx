@@ -6,10 +6,23 @@ class SpotifySong extends Component {
     const { song, items } = this.props;
     // console.log("spotify after render", spotify.artists.items[0]);
     // console.log("spotify images", spotify.artists.items[0].images);
-    const track = song.tracks.items;
+    const tracks = song.tracks.items;
     console.log("song", song);
-    console.log("track", track);
-    return <div className="row" />;
+    console.log("tracks", tracks[0]);
+    return (
+      <div className="column">
+        ;
+        {tracks.map((track, index) => {
+          const trackImg = track.album.images[0].url;
+          return (
+            <div key={index}>
+              <img src={trackImg} alt="track" />
+              <p>{track.name}</p>
+            </div>
+          );
+        })}
+      </div>
+    );
   }
   render() {
     return <div>{this.renderSong()}</div>;

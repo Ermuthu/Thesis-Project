@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button } from "react-bootstrap";
 import * as actions from "../../actions";
 import SpotifyArtist from "./SpotifyArtist";
 import SpotifySong from "./SpotifySong";
+import SpotifyPlaylist from "./SpotifyPlaylist";
+import SpotifyGenre from "./SpotifyGenre";
 
 class Spotify extends Component {
   state = { input: "" };
@@ -15,15 +16,14 @@ class Spotify extends Component {
   submitArtist() {
     this.props.actions.fetchArtist(this.state.input, this.state.accessToken);
   }
-
   submitSong() {
     this.props.actions.fetchSong(this.state.input, this.state.accessToken);
   }
   submitGenre() {
-    this.props.actions.fetchArtist(this.state.input, this.state.accessToken);
+    this.props.actions.fetchGenre(this.state.input, this.state.accessToken);
   }
   submitPlaylist() {
-    this.props.actions.fetchSong(this.state.input, this.state.accessToken);
+    this.props.actions.fetchPlaylist(this.state.input, this.state.accessToken);
   }
 
   render() {
@@ -45,23 +45,18 @@ class Spotify extends Component {
                 })}
               onKeyPress={event => {
                 if (event.key === "Enter" && this.state.input) {
-                  {
-                    this.submitArtist();
-                  }
+                  this.submitArtist();
                 }
               }}
             />
-
             <button
               type="button"
               className="btn waves-effect waves-light"
-              type="submit"
               name="action"
               disabled={!this.state.input}
-              className="btn"
               onClick={() => this.submitArtist()}
             >
-              Search for an Artist!
+              Search for an Artist
             </button>
             <button
               type="button"
@@ -71,8 +66,26 @@ class Spotify extends Component {
             >
               Search for a Song!
             </button>
-            {this.props.spotify ? <SpotifyArtist /> : ""}
+            <button
+              type="button"
+              disabled={!this.state.input}
+              className="btn btn-success"
+              onClick={() => this.submitPlaylist()}
+            >
+              Search for a Playlist
+            </button>
+            <button
+              type="button"
+              disabled={!this.state.input}
+              className="btn btn-success"
+              onClick={() => this.submitPlaylist()}
+            >
+              Search for a Genre
+            </button>
+            {this.props.artist ? <SpotifyArtist /> : ""}
             {this.props.song ? <SpotifySong /> : ""}
+            {this.props.playlist ? <SpotifyPlaylist /> : ""}
+            {this.props.genre ? <SpotifyGenre /> : ""}
           </div>
         ) : (
           ""
@@ -82,8 +95,8 @@ class Spotify extends Component {
   }
 }
 
-function mapStateToProps({ auth, spotify, song }) {
-  return { auth, spotify, song };
+function mapStateToProps({ auth, artist, song, playlist, genre }) {
+  return { auth, artist, song, playlist, genre };
 }
 
 function mapDispatchtoProps(dispatch) {

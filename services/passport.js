@@ -23,7 +23,8 @@ passport.use(
     {
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
-      callbackURL: "/auth/google/callback",
+      callbackURL:
+        "https://salty-river-38974.herokuapp.com/auth/google/callback",
       proxy: true
     },
     (accessToken, refreshToken, profile, done) => {
@@ -45,7 +46,8 @@ passport.use(
     {
       clientID: keys.spotifyClientID,
       clientSecret: keys.spotifyClientSecret,
-      callbackURL: "http://localhost:3000/auth/spotify/callback"
+      callbackURL:
+        "https://salty-river-38974.herokuapp.com/auth/spotify/callback"
     },
     (accessToken, refreshToken, playlists, profile, done) => {
       // console.log(accessToken);

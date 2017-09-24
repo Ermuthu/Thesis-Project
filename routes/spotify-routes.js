@@ -8,8 +8,8 @@ const keys = require("../config/keys");
 module.exports = app => {
   var spotify = new Spotify({
     id: keys.spotifyClientID,
-    secret: keys.spotifyClientSecret,
-    callbackURL: "http://localhost:3000/auth/spotify/callback"
+    secret: keys.spotifyClientSecret
+    // callbackURL: "http://localhost:3000/auth/spotify/callback"
   });
   // app.get("/spotify", requireLogin, async (req, res) => {
   //   const users = await Users.find({ _user: req.user.id }).select({});

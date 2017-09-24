@@ -32,18 +32,10 @@ I got the YouTube/Google OAuth to work, yet haven't had enough time to let users
 
 #### User stories
 
-- On initial render of home page, users will be prompted to login through their spotify account, once successfully logged in, they are redirected to their home page (/home).
-- On the home screen, they will have a nav bar with a playlist, progress, logout, and home button
-- They can search for a new song through different types of meditations
-- They can set goals for their meditations and keep track of them, as well as keep track of the meditations they liked
-
-
-### Technologies
-  *  REACT: Frontend
-  *  Express: Backend and API
-  *  Postgres
-  *  CSS
-  *  Auth
+- On initial render of home page, users will be prompted to login through their spotify or google accounts, once successfully logged in, they are redirected to their home page (/home).
+- On the home screen, they have the option to search through Spotify's API or youtubes.
+- They can search through artists, songs, playlists or genres.
+- They will soon be able to set goals for their meditations and keep track of them, as well as keep track of the meditations they liked
 
 **Login Page**
 ![Wireframe 1](./images/login.jpg)

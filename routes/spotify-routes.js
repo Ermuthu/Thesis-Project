@@ -3,34 +3,42 @@ const requireLogin = require("../middlewares/require-login");
 var Spotify = require("node-spotify-api");
 var SpotifyWebApi = require("spotify-web-api-node");
 const mongoose = require("mongoose");
+const keys = require("../config/keys");
 
 module.exports = app => {
   var spotify = new Spotify({
-    id: "881e962deffc4409b2f70f70335737e3",
-    secret: "af3a4abcae794901be83ff8610848c8b",
-    redirectUri: "http://localhost:3000/callback"
+    id: keys.spotifyClientID,
+    secret: keys.spotifyClientSecret,
+    callbackURL: "http://localhost:3000/auth/spotify/callback"
   });
-  app.get("/spotify", requireLogin, async (req, res) => {
-    const users = await Users.find({ _user: req.user.id }).select({});
-
-    res.send(users);
-    console.log(users);
-  });
-
-  // app.get("/spotify", (req, res) => {
-  //   spotify
-  //     .request("https://api.spotify.com/v1/users/dmartss/playlists")
-  //     .then(function(data) {
-  //       console.log(data);
-  //       req.body(data);
-  //       data = data;
-  //     })
-  //     .catch(function(err) {
-  //       console.error("Error occurred: " + err);
-  //     });
-  //   spotifyApi.setAccessToken("req.body.accessToken");
-  // });
+  // app.get("/spotify", requireLogin, async (req, res) => {
+  //   const users = await Users.find({ _user: req.user.id }).select({});
+  spotify
+    .request("https://api.spotify.com/v1/users/dmartss/playlists")
+    .then(function(data) {
+      console.log(data);
+      // req.body(data);
+      // data = data;
+    });
 };
+// res.send(users);
+// console.log(users);
+// });
+
+// app.get("/spotify", (req, res) => {
+//   spotify
+//     .request("https://api.spotify.com/v1/users/dmartss/playlists")
+//     .then(function(data) {
+//       console.log(data);
+//       // req.body(data);
+//       data = data;
+//     })
+//     .catch(function(err) {
+//       console.error("Error occurred: " + err);
+//     });
+// spotifyApi.setAccessToken("req.body.accessToken");
+// });
+
 // var token = newUser.accessToken;
 
 // app.get("/playlists", function(req, res) {

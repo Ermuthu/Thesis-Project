@@ -1,12 +1,16 @@
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
 import logsReducer from "./logsReducer";
-import spotifyReducer from "./spotifyReducer";
+import artistReducer from "./artistReducer";
 import songReducer from "./songReducer";
+import playlistReducer from "./playlistReducer";
+import genreReducer from "./genreReducer";
 
 export default combineReducers({
   auth: authReducer,
-  spotify: spotifyReducer,
+  artist: artistReducer,
   song: songReducer,
+  playlist: playlistReducer,
+  genre: genreReducer,
   logs: logsReducer
 });

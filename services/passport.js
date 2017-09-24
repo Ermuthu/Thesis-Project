@@ -60,7 +60,6 @@ passport.use(
         } else {
           new User({
             spotifyId: profile.id,
-            ...profile,
             accessToken,
             refreshToken: refreshToken
             // profile._json.images[0].url

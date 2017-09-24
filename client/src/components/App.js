@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
+import ReallySmoothScroll from "really-smooth-scroll";
 import * as actions from "../actions";
-
-import Header from "./Header";
-import Home from "./Home";
+import Header from "./Header/Header";
+import Home from "./Home/Home";
 import Spotify from "./spotify/Spotify";
+
+ReallySmoothScroll.shim();
 
 class App extends Component {
   componentWillMount() {

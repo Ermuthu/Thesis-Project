@@ -29,7 +29,7 @@ class Header extends Component {
         );
       default:
         return [
-          <Div>
+          <Div key="1">
             <Logout key="1">
               <a href="/api/logout">
                 <i className="large material-icons">exit_to_app</i>

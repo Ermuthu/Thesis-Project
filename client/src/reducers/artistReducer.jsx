@@ -1,7 +1,7 @@
 import { FETCH_ARTIST } from "../actions/constants";
 
 export default function(state = null, action) {
-  // console.log("reducer fetch song -> ", action.payload);
+  // console.log("reducer fetch artist -> ", action.payload);
   switch (action.type) {
     case FETCH_ARTIST:
       return action.payload;

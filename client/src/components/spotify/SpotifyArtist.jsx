@@ -1,25 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { ArtistContainer } from "./Spotify.Style";
 
 class SpotifyArtist extends Component {
   renderArtist() {
-    const { spotify, tracks } = this.props;
-    const track = spotify.artists.items;
+    const { artist } = this.props;
+    const list = artist.artists.items;
     return (
-      <div className="row">
-        {track.map((item, index) => (
-          <div className="row-two" key={index}>
-            {item.images.length > 0 ? (
-              <a href={item.external_urls.spotify}>
-                <p>{item.name}</p>
+      <ArtistContainer>
+        {list.map((item, index) => {
+          /* const trackImg = item.images[0].url; */
+          return (
+            <div key={index}>
+              <div>
+                <div>{item.name}</div>
                 <img src={item.images[0].url} alt="" />
-              </a>
-            ) : (
-              <a href={item.external_urls.spotify}>listen</a>
-            )}
-          </div>
-        ))}
-      </div>
+              </div>
+            </div>
+          );
+        })}
+      </ArtistContainer>
     );
   }
   render() {
@@ -29,10 +29,10 @@ class SpotifyArtist extends Component {
 
 function mapStateToProps(state) {
   // console.log("spotifyresult", state.spotify);
-  const { auth, spotify, song } = state;
+  const { auth, artist, song } = state;
   return {
     auth,
-    spotify,
+    artist,
     song
   };
 }

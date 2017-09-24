@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
+import { SongContainer, Inner } from "./Spotify.Style";
 
 class SpotifySong extends Component {
   state = { playUrl: "", audio: null, playing: false };
@@ -43,48 +44,21 @@ class SpotifySong extends Component {
     // console.log("song", song);
     // console.log("tracks", tracks[0]);
     return (
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          textAlign: "center"
-        }}
-      >
+      <SongContainer>
         {tracks.map((track, index) => {
           const trackImg = track.album.images[0].url;
           return (
             <div key={index} onClick={() => this.playSong(track.preview_url)}>
               <div>{track.name}</div>
-              <div>
-                <div
-                  className="inner"
-                  style={{
-                    position: "absolute",
-                    display: "flex",
-                    justifyContent: "center",
-                    textAlign: "center",
-                    fontSize: "2em",
-                    backgroundColor: "black",
-                    borderRadius: "30px",
-                    width: "60px",
-                    height: "60px",
-                    color: "white",
-                    paddingTop: "13px",
-                    marginLeft: "80px",
-                    marginTop: "80px",
-                    opacity: "0"
-                  }}
-                >
-                  {this.state.playing ? (
-                    <span>
-                      <i class="material-icons">pause</i>
-                    </span>
-                  ) : (
-                    <span>&#9654;</span>
-                  )}
-                </div>
-              </div>
+              <Inner>
+                {this.state.playing ? (
+                  <span>
+                    <i className="material-icons">pause</i>
+                  </span>
+                ) : (
+                  <span>&#9654;</span>
+                )}
+              </Inner>
               <img
                 src={trackImg}
                 alt="track"
@@ -93,7 +67,7 @@ class SpotifySong extends Component {
             </div>
           );
         })}
-      </div>
+      </SongContainer>
     );
   }
   render() {

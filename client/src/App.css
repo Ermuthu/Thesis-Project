@@ -6,12 +6,6 @@ body {
   color: white;
 }
 
-.inner:hover {
-  opacity: 0.8;
-  animation: fade-in 3s linear infinite;
-  cursor: pointer;
-}
-
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -21,30 +15,25 @@ body {
   }
 }
 
-.spotify {
-  transition: ease-in-out 2s;
-}
-
-.spotify:hover {
-  cursor: pointer;
-  animation: pulse 1.5s linear infinite;
-}
-
 @keyframes pulse {
+  0% {
+    color: black;
+  }
+  15% {
+    color: #00ffe1;
+  }
   25% {
     color: #00ffe1;
+  }
+  50% {
+    color: white;
   }
   75% {
     color: #00ffe1;
   }
-}
-.youtube {
-  transition: ease-in-out 2s;
-}
-
-.youtube:hover {
-  cursor: pointer;
-  animation: pulse-yt 1.5s linear infinite;
+  100% {
+    color: black;
+  }
 }
 
 @keyframes pulse-yt {
@@ -54,7 +43,11 @@ body {
   /*50% {*/
   /*color: white;*/
   /*5}*/
-  74% {
+  75% {
     color: #ff9500;
   }
+}
+
+a {
+  color: white;
 }

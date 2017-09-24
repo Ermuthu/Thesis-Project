@@ -17,5 +17,3 @@ ReactDOM.render(
   </Provider>,
   document.querySelector("#root")
 );
-
-// console.log("environment is", process.env.NODE_ENV);

@@ -21,6 +21,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static("public"));
 
 require("./routes/auth-routes")(app);
 require("./routes/spotify-routes")(app);

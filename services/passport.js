@@ -23,8 +23,7 @@ passport.use(
     {
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
-      callbackURL:
-        "https://salty-river-38974.herokuapp.com/auth/google/callback",
+      callbackURL: "/auth/google/callback",
       proxy: true
     },
     (accessToken, refreshToken, profile, done) => {
@@ -46,29 +45,25 @@ passport.use(
     {
       clientID: keys.spotifyClientID,
       clientSecret: keys.spotifyClientSecret,
-      callbackURL:
-        "https://salty-river-38974.herokuapp.com/auth/spotify/callback"
+      callbackURL: "http://localhost:3000/auth/spotify/callback",
+      proxy: true
     },
     (accessToken, refreshToken, playlists, profile, done) => {
       // console.log(accessToken);
       // console.log(refreshToken);
-      // console.log(profile);
-      // console.log(profile._json.display_name);
-      // console.log(profile._json.images);
-      // console.log(profile._json.images[0].url);
+      console.log(profile);
       User.findOne({ accessToken: accessToken }).then(existingUser => {
         if (existingUser) {
           return done(null, existingUser);
         } else {
           new User({
             spotifyId: profile.id,
+            profile,
             accessToken,
             refreshToken: refreshToken
-            // profile._json.images[0].url
           })
             .save()
             .then(user => done(null, user));
-          // done(null, ...profile, accessToken, refreshToken, user);
         }
       });
     }

@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import VideoListItem from "./VideoListItem";
 
 const VideoList = ({ youtube }) => {
-  console.log(youtube);
+  // const { videos } = this.props;
+  // console.log("videos", videos);
+  console.log("youtube", youtube);
 
-  const videoResults = youtube.videos.map(video => {
-    return <VideoListItem video={video} />;
+  const videoResults = youtube.map(video => {
+    return <VideoListItem key={video.etag} video={video} />;
   });
 
   return <ul className="col-md-4 list-group">{videoResults}</ul>;

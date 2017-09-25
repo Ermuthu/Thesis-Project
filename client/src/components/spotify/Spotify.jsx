@@ -28,7 +28,6 @@ class Spotify extends Component {
 
   render() {
     const { auth, artist, song, playlist, genre } = this.props;
-    console.log(auth);
     return (
       <div>
         {auth ? (

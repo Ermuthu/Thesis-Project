@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { SongContainer, Inner } from "./Spotify.Style";
 
 class SpotifyPlaylist extends Component {
-  state = { playUrl: "", audio: null, playing: false };
   componentDidMount() {
     this.props.actions.clearSearch();
   }
@@ -77,12 +76,13 @@ class SpotifyPlaylist extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { auth, playlist } = state;
-  // console.log("playlist", playlist);
+function mapStateToProps({ auth, playlist, playUrl, audio, playing }) {
   return {
     auth,
-    playlist
+    playlist,
+    playUrl,
+    audio,
+    playing
   };
 }
 

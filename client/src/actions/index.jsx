@@ -1,24 +1,17 @@
 import axios from "axios";
 import * as actions from "./constants";
+import YTSearch from "youtube-api-search";
+const API = "AIzaSyBZpZmAdTa0lMogVGolFT2sIVUEnIk-yQ0";
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get("/api/current_user");
-  // const token = res.data.accessToken;
   dispatch({ type: actions.FETCH_USER, payload: res.data });
-  // dispatch(setToken(token));
-  // dispatch({ type: actions.SET_TOKEN, payload: res.data.accessToken });
-  // dispatch(fetchArtist(actions.SET_TOKEN));
 };
 
-// export const setToken = token => async dispatch => {
-//   const action = {
-//     type: actions.SET_TOKEN,
-//     token
-//   };
-//   dispatch(fetchArtist(token));
-//   console.log("action in token", token);
-//   return token;
-// };
+export const fetchYouTube = videos => async dispatch => {
+  const res = await YTSearch({ key: API, term: "" });
+  dispatch({ type: actions.FETCH_YOUTUBE, payload: res.data });
+};
 
 const BASE_URL = "https://api.spotify.com/v1/search?";
 
@@ -107,4 +100,19 @@ export const addSearch = text => {
 //       })
 //       .catch(err => "err");
 //   };
+// };
+
+// const token = res.data.accessToken;
+// dispatch(setToken(token));
+// dispatch({ type: actions.SET_TOKEN, payload: res.data.accessToken });
+// dispatch(fetchArtist(actions.SET_TOKEN));
+
+// export const setToken = token => async dispatch => {
+//   const action = {
+//     type: actions.SET_TOKEN,
+//     token
+//   };
+//   dispatch(fetchArtist(token));
+//   console.log("action in token", token);
+//   return token;
 // };

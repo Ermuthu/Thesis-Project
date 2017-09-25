@@ -10,3 +10,4 @@ export const ADD_SEARCH = "ADD_SEARCH";
 
 export const ADD_LOG = "ADD_LOG";
 export const CLEAR_SEARCH = "CLEAR_SEARCH";
+export const FETCH_YOUTUBE = "FETCH_YOUTUBE";

@@ -1,10 +1,22 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as actions from "../../actions";
 
 class SearchBar extends Component {
-  state = { term: "" };
   render() {
     return <input onChange={event => console.log(event.target.value)} />;
   }
 }
 
-export default SearchBar;
+function mapStateToProps({ youtube }) {
+  return { youtube };
+}
+
+function mapDispatchtoProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps)(SearchBar);

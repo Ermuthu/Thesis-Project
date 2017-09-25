@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import SearchBar from "./SearchBar";
-import VideoList from "./VideoList";
+import SearchBar from "./YouTubeSearch";
+import VideoList from "./YouTubeList";
 import * as actions from "../../actions";
+import { ytc } from "./YouTube.Style";
 
 class Youtube extends Component {
   componentDidMount() {
@@ -10,9 +11,27 @@ class Youtube extends Component {
   }
   render() {
     return (
-      <div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          textAlign: "center"
+        }}
+      >
         <SearchBar />
-        <VideoList />
+        <div
+          style={{
+            paddingTop: "70px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            alignContent: "center"
+            /* justifyContent: "center" */
+          }}
+        >
+          <VideoList />
+        </div>
       </div>
     );
   }

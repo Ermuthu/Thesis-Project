@@ -2,18 +2,19 @@ import axios from "axios";
 import * as actions from "./constants";
 import YTSearch from "youtube-api-search";
 const API = "AIzaSyBZpZmAdTa0lMogVGolFT2sIVUEnIk-yQ0";
+const BASE_URL = "https://api.spotify.com/v1/search?";
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get("/api/current_user");
   dispatch({ type: actions.FETCH_USER, payload: res.data });
 };
 
-export const fetchYouTube = videos => async dispatch => {
-  const res = await YTSearch({ key: API, term: "" });
-  dispatch({ type: actions.FETCH_YOUTUBE, payload: res.data });
+export const fetchYouTube = () => async dispatch => {
+  YTSearch({ key: API, term: "surf" }, videos => {
+    console.log(videos);
+    dispatch({ type: actions.FETCH_YOUTUBE, payload: videos });
+  });
 };
-
-const BASE_URL = "https://api.spotify.com/v1/search?";
 
 export const fetchArtist = (input, state, auth) => async dispatch => {
   const FETCH_URL = `${BASE_URL}q=${input}&type=artist&limit=1`;

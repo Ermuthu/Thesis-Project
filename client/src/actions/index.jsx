@@ -9,9 +9,9 @@ export const fetchUser = () => async dispatch => {
   dispatch({ type: actions.FETCH_USER, payload: res.data });
 };
 
-export const fetchYouTube = () => async dispatch => {
-  YTSearch({ key: API, term: "meditation" }, videos => {
-    // console.log(videos);
+export const fetchYouTube = term => async dispatch => {
+  YTSearch({ key: API, term: `${term}` }, videos => {
+    console.log("term", `${term}`);
     dispatch({ type: actions.FETCH_YOUTUBE, payload: videos });
   });
 };

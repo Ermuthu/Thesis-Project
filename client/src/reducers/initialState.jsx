@@ -5,6 +5,7 @@ export default {
     playing: false
   },
   videos: [],
+  selectedVideo: null,
   term: "",
   accessToken: null,
   refreshToken: null,

@@ -17,5 +17,9 @@ class Youtube extends Component {
     );
   }
 }
+// function mapStateToProps({ youtube }) {
+//   return { youtube };
+// }
 
+// export default connect(mapStateToProps, actions)(Youtube);
 export default connect(null, actions)(Youtube);

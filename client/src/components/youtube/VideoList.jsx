@@ -5,7 +5,9 @@ import VideoListItem from "./VideoListItem";
 const VideoList = ({ youtube }) => {
   // const { videos } = this.props;
   // console.log("videos", videos);
-  console.log("youtube", youtube);
+  // console.log("youtube", youtube);
+  // const videos = youtube;
+  // console.log(videos);
 
   const videoResults = youtube.map(video => {
     return <VideoListItem key={video.etag} video={video} />;

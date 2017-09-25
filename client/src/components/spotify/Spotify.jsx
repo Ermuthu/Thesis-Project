@@ -27,9 +27,11 @@ class Spotify extends Component {
   }
 
   render() {
+    const { auth, artist, song, playlist, genre } = this.props;
+    console.log(auth);
     return (
       <div>
-        {this.props.auth ? (
+        {auth ? (
           <div>
             <input
               style={{
@@ -52,7 +54,6 @@ class Spotify extends Component {
             <button
               type="button"
               className="btn waves-effect waves-light"
-              name="action"
               disabled={!this.state.input}
               onClick={() => this.submitArtist()}
             >
@@ -82,10 +83,10 @@ class Spotify extends Component {
             >
               Search for a Genre
             </button>
-            {this.props.artist ? <SpotifyArtist /> : ""}
-            {this.props.song ? <SpotifySong /> : ""}
-            {this.props.playlist ? <SpotifyPlaylist /> : ""}
-            {this.props.genre ? <SpotifyGenre /> : ""}
+            {artist ? <SpotifyArtist /> : ""}
+            {song ? <SpotifySong /> : ""}
+            {playlist ? <SpotifyPlaylist /> : ""}
+            {genre ? <SpotifyGenre /> : ""}
           </div>
         ) : (
           ""

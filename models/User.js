@@ -16,19 +16,7 @@ const userSchema = new Schema({
   email: String,
   alltracks: [],
   images: [[Object]],
-  playlists: [],
-  ownPlaylist: []
+  playlists: []
 });
 
 mongoose.model("users", userSchema);
-
-// user: {
-// country: null,
-//   display_name: String,
-//   email: String,
-//   external_urls: {},
-// image: [],
-//   // product: String,
-//   type: String,
-// uri: String
-// }

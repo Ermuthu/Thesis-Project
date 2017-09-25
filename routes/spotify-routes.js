@@ -6,20 +6,28 @@ const mongoose = require("mongoose");
 const keys = require("../config/keys");
 
 module.exports = app => {
-  var spotify = new Spotify({
+  const spotify = new Spotify({
     id: keys.spotifyClientID,
     secret: keys.spotifyClientSecret
-    // callbackURL: "http://localhost:3000/auth/spotify/callback"
   });
-  // app.get("/spotify", requireLogin, async (req, res) => {
-  //   const users = await Users.find({ _user: req.user.id }).select({});
-  spotify
-    .request("https://api.spotify.com/v1/users/dmartss/playlists")
-    .then(function(data) {
-      console.log(data);
-      // req.body(data);
-      // data = data;
-    });
+  app.get("/spotify", requireLogin, async (req, res) => {
+    // const user = await Users.find({ _user: req.user.id }).select({});
+    spotify
+      .request("https://api.spotify.com/v1/users/dmartss")
+      .then(function(data) {
+        console.log(data);
+        // const { data } = req.body;
+        // await user.save();
+        // res.send(user);
+        // spotifyApi.setAccessToken("req.body.accessToken");
+        console.log(spotify);
+
+        console.log(user);
+
+        // req.body(data);
+        // data = data;
+      });
+  });
 };
 // res.send(users);
 // console.log(users);
@@ -36,7 +44,6 @@ module.exports = app => {
 //     .catch(function(err) {
 //       console.error("Error occurred: " + err);
 //     });
-// spotifyApi.setAccessToken("req.body.accessToken");
 // });
 
 // var token = newUser.accessToken;

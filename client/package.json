@@ -27,7 +27,8 @@
     "really-smooth-scroll": "^2.1.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "styled-components": "^2.1.2"
+    "styled-components": "^2.1.2",
+    "youtube-api-search": "^0.0.5"
   },
   "scripts": {
     "start": "react-scripts start",

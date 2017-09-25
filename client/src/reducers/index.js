@@ -5,6 +5,7 @@ import artist from "./artistReducer";
 import song from "./songReducer";
 import playlist from "./playlistReducer";
 import genre from "./genreReducer";
+import youtube from "./youtubeReducer";
 
 export default combineReducers({
   auth,
@@ -12,5 +13,6 @@ export default combineReducers({
   song,
   playlist,
   genre,
-  logs
+  logs,
+  youtube
 });

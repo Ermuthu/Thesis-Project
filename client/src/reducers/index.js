@@ -1,16 +1,16 @@
 import { combineReducers } from "redux";
-import authReducer from "./authReducer";
-import logsReducer from "./logsReducer";
-import artistReducer from "./artistReducer";
-import songReducer from "./songReducer";
-import playlistReducer from "./playlistReducer";
-import genreReducer from "./genreReducer";
+import auth from "./authReducer";
+import logs from "./logsReducer";
+import artist from "./artistReducer";
+import song from "./songReducer";
+import playlist from "./playlistReducer";
+import genre from "./genreReducer";
 
 export default combineReducers({
-  auth: authReducer,
-  artist: artistReducer,
-  song: songReducer,
-  playlist: playlistReducer,
-  genre: genreReducer,
-  logs: logsReducer
+  auth,
+  artist,
+  song,
+  playlist,
+  genre,
+  logs
 });

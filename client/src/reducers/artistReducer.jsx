@@ -1,4 +1,5 @@
 import { FETCH_ARTIST } from "../actions/constants";
+// import initialState from "./InitialState";
 
 export default function(state = null, action) {
   // console.log("reducer fetch artist -> ", action.payload);
@@ -9,14 +10,3 @@ export default function(state = null, action) {
       return state;
   }
 }
-
-// const searchReducer = (state = {}, action) => {
-//   Object.freeze(state);
-
-//   switch (action.type) {
-//     case RECEIVE_RESULTS:
-//       return action.results;
-//     default:
-//       return state;
-//   }
-// };

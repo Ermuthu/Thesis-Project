@@ -9,11 +9,6 @@ class SpotifyArtist extends Component {
     return (
       <ArtistContainer>
         {list.map((item, index) => {
-          console.log(item);
-          const trackImg = item.images[0].url;
-          console.log("artist", artist);
-          console.log("list", list);
-          console.log("trackImg", trackImg);
           return (
             <div key={index}>
               <div>
@@ -42,3 +37,9 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(SpotifyArtist);
+
+// console.log(item);
+// console.log("artist", artist);
+// console.log("list", list);
+// console.log("trackImg", trackImg);
+// const trackImg = item.images[0].url;

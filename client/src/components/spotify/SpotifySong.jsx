@@ -41,8 +41,6 @@ class SpotifySong extends Component {
   renderSong() {
     const { song } = this.props;
     const tracks = song.tracks.items;
-    // console.log("song", song);
-    // console.log("tracks", tracks[0]);
     return (
       <SongContainer>
         {tracks.map((track, index) => {

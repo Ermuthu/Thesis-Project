@@ -3,8 +3,22 @@ import * as actions from "./constants";
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get("/api/current_user");
+  // const token = res.data.accessToken;
   dispatch({ type: actions.FETCH_USER, payload: res.data });
+  // dispatch(setToken(token));
+  // dispatch({ type: actions.SET_TOKEN, payload: res.data.accessToken });
+  // dispatch(fetchArtist(actions.SET_TOKEN));
 };
+
+// export const setToken = token => async dispatch => {
+//   const action = {
+//     type: actions.SET_TOKEN,
+//     token
+//   };
+//   dispatch(fetchArtist(token));
+//   console.log("action in token", token);
+//   return token;
+// };
 
 const BASE_URL = "https://api.spotify.com/v1/search?";
 
@@ -42,6 +56,7 @@ export const fetchPlaylist = (input, state, auth) => async dispatch => {
     headers: headers
   });
   dispatch({ type: actions.FETCH_PLAYLIST, payload: res.data });
+  console.log("playlist data", res.data.playlists.items);
 };
 
 export const fetchGenre = (input, state, auth) => async dispatch => {
@@ -55,6 +70,8 @@ export const fetchGenre = (input, state, auth) => async dispatch => {
   });
   dispatch({ type: actions.FETCH_GENRE, payload: res.data });
 };
+
+export const selectedPlaylist = playlistID => async dispatch => {};
 
 export const clearSearch = () => async dispatch => {
   dispatch({ type: actions.CLEAR_SEARCH, payload: {} });
@@ -77,16 +94,6 @@ export const addSearch = text => {
   console.log("action in searchSong", action);
   return action;
 };
-
-// console.log("song of the query -> ", song);
-// console.log(state.accessToken);
-// console.log("headers", headers);
-// console.log(accessToken);
-// console.log("song", `${song}`);
-
-//   "Content-Type": "application/json",
-//   Authorization: "Bearer " + this.getToken()
-// }
 
 // export const fetchArtist = (accessToken, values) => {
 //   const search = `v1/search?q=${values}&type=artist&limit=1`;

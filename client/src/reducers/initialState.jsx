@@ -5,7 +5,7 @@ export default {
     playing: false
   },
   youtube: {
-    videos: [],
+    videos: [1, 2, 3, 4, 5],
     term: ""
   },
   accessToken: null,

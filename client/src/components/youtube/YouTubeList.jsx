@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import VideoListItem from "./YouTubeItems";
+import { SongContainer } from "./YouTube.Style";
 
 const VideoList = ({ youtube }) => {
   if (!youtube) {
@@ -11,7 +12,7 @@ const VideoList = ({ youtube }) => {
     return <VideoListItem key={video.etag} video={video} />;
   });
 
-  return <div>{videoResults}</div>;
+  return <SongContainer>{videoResults}</SongContainer>;
 };
 
 function mapStateToProps({ youtube }) {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { hMain, Div, H4, UL, LI, Logout } from "./Header.Style";
+import { hMain, Div, H4, UL, LI, LIL, Logout } from "./Header.Style";
 
 class Header extends Component {
   renderHeader() {
@@ -28,19 +28,22 @@ class Header extends Component {
           </hMain>
         );
       default:
+        const { auth } = this.props;
         return [
           <Div key="1">
             <Logout key="1">
-              <a href="/api/logout">
+              <LI href="/api/logout">
                 <i className="large material-icons">exit_to_app</i>
-              </a>
-              <Link to={this.props.auth ? "/home" : "/"}>
-                <i className="large material-icons">home</i>
-              </Link>
+              </LI>
+              <LIL>
+                <Link to={auth ? "/home" : "/"}>
+                  <i className="large material-icons">home</i>
+                </Link>
+              </LIL>
             </Logout>
             <H4>
-              Welcome, {this.props.auth.spotifyId}
-              {this.props.auth.displayName}
+              Welcome, {auth.spotifyId}
+              {auth.displayName}
             </H4>
           </Div>
         ];

@@ -9,10 +9,18 @@ export const ytc = styled.div`
   text-align: center;
 `;
 
-export const ArtistContainer = styled.div`
+export const SongContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
+  text-align: center;
+`;
+
+export const ArtistContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
   text-align: center;
 `;
 

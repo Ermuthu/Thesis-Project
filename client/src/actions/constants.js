@@ -5,6 +5,7 @@ export const FETCH_ARTIST = "FETCH_ARTIST";
 export const FETCH_SONG = "FETCH_SONG";
 export const FETCH_PLAYLIST = "FETCH_PLAYLIST";
 export const FETCH_GENRE = "FETCH_GENRE";
+export const SELECTED_PLAYLIST = "SELECTED_PLAYLIST";
 
 export const ADD_SEARCH = "ADD_SEARCH";
 

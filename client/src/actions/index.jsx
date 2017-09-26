@@ -53,6 +53,17 @@ export const fetchPlaylist = (input, state, auth) => async dispatch => {
   console.log("playlist data", res.data.playlists.items);
 };
 
+export const selectedPlaylist = (selected, state, auth) => async dispatch => {
+  const headers = {
+    Authorization: "Bearer " + state.accessToken
+  };
+  const res = await axios.get(selected, {
+    method: "get",
+    headers: headers
+  });
+  dispatch({ type: actions.SELECTED_PLAYLIST, payload: res.data });
+};
+
 export const fetchGenre = (input, state, auth) => async dispatch => {
   const FETCH_URL = `${BASE_URL}q=${input}&type=genre`;
   const headers = {
@@ -64,8 +75,6 @@ export const fetchGenre = (input, state, auth) => async dispatch => {
   });
   dispatch({ type: actions.FETCH_GENRE, payload: res.data });
 };
-
-export const selectedPlaylist = playlistID => async dispatch => {};
 
 export const clearSearch = () => async dispatch => {
   dispatch({ type: actions.CLEAR_SEARCH, payload: {} });

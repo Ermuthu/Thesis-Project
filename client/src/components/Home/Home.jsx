@@ -1,30 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+// import Profile from "./Profile";
 import { Nav, SpL, YtL, Img, SpI, YtI } from "./Home.Style";
 
 class Home extends Component {
   renderProfile() {
-    const { auth } = this.props;
-    // const profile = auth.playlists;
-    console.log(auth);
-    // conso;
-    //   {
-    //     auth.map((item, index) => {
-    //       return (
-    //         <div key={index}>
-    //           <div>
-    //             <div>{item.name}</div>
-    //             <img src={item.images[0].url} alt="" />
-    //           </div>
-    //         </div>
-    //       );
-    //     });
+    // const { auth } = this.props;
+    // const profile = auth._json;
+    // console.log(auth);
+    // console.log(profile);
+    // console.log(auth);
+    // console.log(auth);
   }
-  // }
   render() {
     const { auth } = this.props;
     return (
       <div>
+        {/* <Profile />; */}
         {auth ? (
           <Nav>
             {this.renderProfile()}
@@ -46,7 +38,10 @@ class Home extends Component {
 }
 
 function mapStateToProps({ auth }) {
-  return { auth };
+  // console.log(auth);
+  return {
+    auth
+  };
 }
 
 export default connect(mapStateToProps)(Home);

@@ -1,6 +1,6 @@
 import * as actions from "../actions/constants";
 
-export default function(state = {}, action) {
+export default function(state = [], action) {
   // console.log("auth reducer", action.payload);
   switch (action.type) {
     case actions.FETCH_USER:

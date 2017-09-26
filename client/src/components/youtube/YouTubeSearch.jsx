@@ -6,10 +6,6 @@ import * as actions from "../../actions";
 class SearchBar extends Component {
   state = { term: "" };
 
-  submitYoutube() {
-    this.props.actions.fetchYouTube(this.state.term);
-  }
-
   render() {
     return (
       <div className="search-bar">
@@ -17,11 +13,19 @@ class SearchBar extends Component {
           value={this.state.term}
           onKeyPress={event => {
             if (event.key === "Enter" && this.state.term) {
-              this.submitYoutube();
+              this.props.actions.fetchYouTube(this.state.term);
             }
           }}
           onChange={event => this.setState({ term: event.target.value })}
         />
+        <button
+          type="button"
+          className="btn waves-effect waves-light"
+          disabled={!this.state.term}
+          onClick={() => this.props.actions.fetchYouTube(this.state.term)}
+        >
+          Search
+        </button>
       </div>
     );
   }

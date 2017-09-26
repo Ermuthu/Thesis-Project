@@ -16,10 +16,10 @@ export const fetchYouTube = term => async dispatch => {
   });
 };
 
-export const fetchArtist = (input, state, auth) => async dispatch => {
+export const fetchArtist = (input, accessToken) => async dispatch => {
   const FETCH_URL = `${BASE_URL}q=${input}&type=artist&limit=1`;
   const headers = {
-    Authorization: "Bearer " + state.accessToken
+    Authorization: "Bearer " + accessToken
   };
   const res = await axios.get(FETCH_URL, {
     method: "get",
@@ -28,10 +28,10 @@ export const fetchArtist = (input, state, auth) => async dispatch => {
   dispatch({ type: actions.FETCH_ARTIST, payload: res.data });
 };
 
-export const fetchSong = (input, state, auth) => async dispatch => {
+export const fetchSong = (input, accessToken) => async dispatch => {
   const FETCH_URL = `${BASE_URL}q=${input}&type=track`;
   const headers = {
-    Authorization: "Bearer " + state.accessToken
+    Authorization: "Bearer " + accessToken
   };
   const res = await axios.get(FETCH_URL, {
     method: "get",
@@ -40,10 +40,10 @@ export const fetchSong = (input, state, auth) => async dispatch => {
   dispatch({ type: actions.FETCH_SONG, payload: res.data });
 };
 
-export const fetchPlaylist = (input, state, auth) => async dispatch => {
+export const fetchPlaylist = (input, accessToken) => async dispatch => {
   const FETCH_URL = `${BASE_URL}q=${input}&type=playlist`;
   const headers = {
-    Authorization: "Bearer " + state.accessToken
+    Authorization: "Bearer " + accessToken
   };
   const res = await axios.get(FETCH_URL, {
     method: "get",
@@ -66,10 +66,10 @@ export const selectedPlaylist = (url, accessToken) => async dispatch => {
   dispatch({ type: actions.SELECTED_PLAYLIST, payload: res.data });
 };
 
-export const fetchGenre = (input, state, auth) => async dispatch => {
+export const fetchGenre = (input, accessToken) => async dispatch => {
   const FETCH_URL = `${BASE_URL}q=${input}&type=genre`;
   const headers = {
-    Authorization: "Bearer " + state.accessToken
+    Authorization: "Bearer " + accessToken
   };
   const res = await axios.get(FETCH_URL, {
     method: "get",

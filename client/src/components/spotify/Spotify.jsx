@@ -9,25 +9,11 @@ import SpotifyGenre from "./SpotifyGenre";
 
 class Spotify extends Component {
   state = { input: "" };
-  componentWillMount() {
-    this.props.actions.clearSearch();
-  }
-
-  submitArtist() {
-    this.props.actions.fetchArtist(this.state.input, this.state.accessToken);
-  }
-  submitSong() {
-    this.props.actions.fetchSong(this.state.input, this.state.accessToken);
-  }
-  submitGenre() {
-    this.props.actions.fetchGenre(this.state.input, this.state.accessToken);
-  }
-  submitPlaylist() {
-    this.props.actions.fetchPlaylist(this.state.input, this.state.accessToken);
-  }
 
   render() {
     const { auth, artist, song, playlist, genre } = this.props;
+    const accessToken = auth.accessToken;
+    let input = this.state.input;
     return (
       <div>
         {auth ? (
@@ -46,7 +32,7 @@ class Spotify extends Component {
                 })}
               onKeyPress={event => {
                 if (event.key === "Enter" && this.state.input) {
-                  this.submitArtist();
+                  this.props.actions.fetchPlaylist();
                 }
               }}
             />
@@ -54,7 +40,7 @@ class Spotify extends Component {
               type="button"
               className="btn waves-effect waves-light"
               disabled={!this.state.input}
-              onClick={() => this.submitArtist()}
+              onClick={() => this.props.actions.fetchArtist(input, accessToken)}
             >
               Search for an Artist
             </button>
@@ -62,7 +48,7 @@ class Spotify extends Component {
               type="button"
               disabled={!this.state.input}
               className="btn btn-success"
-              onClick={() => this.submitSong()}
+              onClick={() => this.props.actions.fetchSong(input, accessToken)}
             >
               Search for a Song!
             </button>
@@ -70,7 +56,8 @@ class Spotify extends Component {
               type="button"
               disabled={!this.state.input}
               className="btn btn-success"
-              onClick={() => this.submitPlaylist()}
+              onClick={() =>
+                this.props.actions.fetchPlaylist(input, accessToken)}
             >
               Search for a Playlist
             </button>
@@ -78,7 +65,7 @@ class Spotify extends Component {
               type="button"
               disabled={!this.state.input}
               className="btn btn-success"
-              onClick={() => this.submitPlaylist()}
+              onClick={() => this.props.actions.fetchGenre(input, accessToken)}
             >
               Search for a Genre
             </button>
@@ -95,10 +82,12 @@ class Spotify extends Component {
   }
 }
 
+// anything returned from mapStateToProps will become props in spotify
 function mapStateToProps({ auth, artist, song, playlist, genre }) {
   return { auth, artist, song, playlist, genre };
 }
 
+// make dispatch methods available as props for spotify
 function mapDispatchtoProps(dispatch) {
   return {
     actions: bindActionCreators(actions, dispatch)

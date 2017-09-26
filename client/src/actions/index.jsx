@@ -50,17 +50,19 @@ export const fetchPlaylist = (input, state, auth) => async dispatch => {
     headers: headers
   });
   dispatch({ type: actions.FETCH_PLAYLIST, payload: res.data });
-  console.log("playlist data", res.data.playlists.items);
+  // console.log("playlist data", res.data.playlists.items);
 };
 
-export const selectedPlaylist = (selected, state, auth) => async dispatch => {
+export const selectedPlaylist = (url, accessToken) => async dispatch => {
+  // console.log("accessToken", accessToken, "url", url);
   const headers = {
-    Authorization: "Bearer " + state.accessToken
+    Authorization: "Bearer " + accessToken
   };
-  const res = await axios.get(selected, {
+  const res = await axios.get(url, {
     method: "get",
     headers: headers
   });
+  console.log(res.data);
   dispatch({ type: actions.SELECTED_PLAYLIST, payload: res.data });
 };
 

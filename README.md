@@ -2,7 +2,7 @@
 ### Dan Martin
 #### Thesis Project
 
-![Screenshot](./images/Screenshot.png)
+![Screenshot](/images/Screenshot.png)
 
 ### The technologies I used are:
   * React
@@ -14,6 +14,8 @@
 I am a big fan of react, and was initially planning on using plain react for my frontend, but after spending so much time using react and hearing about redux with react I was eager to do research on my own after this class ended. However, I decided this would be the perfect opportunity to do that. So I did some research on react-redux, and while doing so I decided I would also teach myself how to use Mongo for my database. On top of all of that, this is my first time implementing an OAuth API.
 
 I went through some huge learning curves with all of these new technologies. Redux is awesome, however it can be quite confusing at first. Especially using APIs with OAuth, and Spotify's specifically which requires users access tokens on every call. I tried out a few new NPM packages and cool ES6 tricks I came across during my research.
+
+##### users can now search with youtube and spotify, and I made the playlist flow more functional. Users can now click on a playlist after it renders and they are then given items from that playlist. I am currently working on the next steps to get songs and artists etc from those playlists, and then the same with genres.
 
 
 ### Installation instructions for any dependencies
@@ -27,7 +29,8 @@ Some unsolved problems right now are my API calls and the repetition of the acti
 
 There were a lot of hurdles that took me quite some time to solve. For example, handling the OAuth system with mongo, and storing the users data, including their access and refresh tokens to then later use in the API calls. Furthermore, using those access tokens specific to the user that is currently logged in, in the action creators when fetching from the API. Handling all of the states in the store got hairy and confusing at times. The whole system of global state, action creators, async promises, dispatching information to reducers, switch statements from those dispatched actions, and returning states based on cases, otherwise returning default state, all handled in the global state store.. Theres also some improvements I want to make to my use of Mongo, I know theres some more I can do with it, especially in terms of making the users experience much more personalized. I really want to let users CRUD everything to their actual Spotify accounts, and let them keep a log of their progress, which I already somewhat implemented, but not fully.
 
-I got the YouTube/Google OAuth to work, yet haven't had enough time to let users search yet, I know exactly how I am going to do it, so I will get to it soon.
+~~I got the YouTube/Google OAuth to work, yet haven't had enough time to let users search yet, I know exactly how I am going to do it, so I will get to it soon.~~
+
 
 
 #### User stories

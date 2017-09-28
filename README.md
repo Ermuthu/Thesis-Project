@@ -36,9 +36,91 @@ There were a lot of hurdles that took me quite some time to solve. For example, 
 #### User stories
 
 - On initial render of home page, users will be prompted to login through their spotify or google accounts, once successfully logged in, they are redirected to their home page (/home).
-- On the home screen, they have the option to search through Spotify's API or youtubes.
-- They can search through artists, songs, playlists or genres.
+- On the home screen, they have the option to search through Spotify or Youtube's API's
+- They can search through artists, songs, playlists or genres on Spotify, and anything on Youtube.
 - They will soon be able to set goals for their meditations and keep track of them, as well as keep track of the meditations they liked
+
+## Code flow I like
+### Button to call action creator,
+```
+<button 
+type="button"
+disabled={!this.state.input}
+className="btn btn-success"
+onClick={() => this.props.actions.fetchPlaylist(input, accessToken)}> Search for a Playlist </button>
+```
+### Action creator to fetch the playlist,
+```
+export const fetchPlaylist = (input, accessToken) => async dispatch => {
+  const FETCH_URL = `${BASE_URL}q=${input}&type=playlist`;
+  const headers = {
+    Authorization: "Bearer " + accessToken
+  };
+  const res = await axios.get(FETCH_URL, {
+    method: "get",
+    headers: headers
+  });
+  dispatch({ type: actions.FETCH_PLAYLIST, payload: res.data });
+};
+```
+### Then once playlist renders, users can select from the playlists that rendered,
+```
+<PlaylistContainer
+              key={index}
+              onClick={() =>
+                this.props.actions.selectedPlaylist(url, accessToken)}
+            >
+```
+### Then the action creator to fetch the selected playlist,
+```
+export const selectedPlaylist = (url, accessToken) => async dispatch => {
+  const headers = {
+    Authorization: "Bearer " + accessToken
+  };
+  const res = await axios.get(url, {
+    method: "get",
+    headers: headers
+  });
+  dispatch({ type: actions.SELECTED_PLAYLIST, payload: res.data });
+};
+```
+### The action creators dispatch to the reducers, with the help of redux thunk to dispatch instead of just return in the action,
+```
+export default function(state = null, action) {
+  switch (action.type) {
+    case FETCH_PLAYLIST:
+      return action.payload;
+    case SELECTED_PLAYLIST:
+      return action.payload;
+    default:
+      return state;
+  }
+}
+```
+### It is then combined in the combine reducers,
+```
+export default combineReducers({
+  auth,
+  artist,
+  song,
+  playlist,
+  genre,
+  logs,
+  youtube
+});
+```
+### And sent to the store in the main client index.js
+```
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.querySelector("#root")
+);
+```
+#### That is the beauty of states in redux
 
 **Login Page**
 ![Wireframe 1](./images/login.jpg)

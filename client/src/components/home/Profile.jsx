@@ -8,9 +8,7 @@ const Profile = ({ auth }) => {
     const profileId = auth.profile.displayName;
     console.log("profile ->", profile);
 
-    //   const url = `https://www.video.com/embed/${videoId}`;
     return (
-      //   <div>
       //   <div key={auth}>
       <div>{profileId}</div>
     );

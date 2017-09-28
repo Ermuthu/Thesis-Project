@@ -14,6 +14,16 @@ export const ArtistContainer = styled.div`
   text-align: center;
 `;
 
+export const PlaylistContainer = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  align-content: center;
+  align-items: center;
+`;
+
 export const Inner = styled.div`
   position: absolute;
   display: flex;

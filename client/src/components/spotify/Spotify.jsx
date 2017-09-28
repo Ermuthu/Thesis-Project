@@ -32,7 +32,7 @@ class Spotify extends Component {
                 })}
               onKeyPress={event => {
                 if (event.key === "Enter" && this.state.input) {
-                  this.props.actions.fetchPlaylist();
+                  this.props.actions.fetchPlaylist(input, accessToken);
                 }
               }}
             />

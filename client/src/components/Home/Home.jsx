@@ -16,7 +16,6 @@ class Home extends Component {
     const { auth } = this.props;
     return (
       <div>
-        {/* <Profile />; */}
         {auth ? (
           <Nav>
             {this.renderProfile()}

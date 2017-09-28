@@ -2,20 +2,29 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
-import { SongContainer } from "./Spotify.Style";
+import { PlaylistContainer } from "./Spotify.Style";
 
 class SpotifyPlaylist extends Component {
   renderPlaylistSongs() {
     const { playlist } = this.props;
-    const songs = playlist.items;
+    // console.log(playlist);
+    const results = playlist.items;
+    console.log(results);
     return (
       <div key="3">
-        {songs.map((item, index) => {
+        {results.map((item, index) => {
           console.log(item);
+          console.log(item.track.album);
+          const trackImg = item.track.album.images[0].url;
           return (
-            <div key={index}>
+            <PlaylistContainer key={index}>
               <div>{item.track.name}</div>
-            </div>
+              <img
+                src={trackImg}
+                alt="track"
+                style={{ width: "200px", height: "200px" }}
+              />
+            </PlaylistContainer>
           );
         })}
       </div>
@@ -28,13 +37,15 @@ class SpotifyPlaylist extends Component {
     const accessToken = auth.accessToken;
     // console.log("playlist at render", list);
     return (
-      <SongContainer>
+      <div>
         {list.map((item, index) => {
           const trackImg = item.images[0].url;
-          console.log(item.tracks.href);
+          {
+            /* console.log(item.tracks.href); */
+          }
           const url = item.tracks.href;
           return (
-            <div
+            <PlaylistContainer
               key={index}
               onClick={() =>
                 this.props.actions.selectedPlaylist(url, accessToken)}
@@ -45,10 +56,10 @@ class SpotifyPlaylist extends Component {
                 alt="track"
                 style={{ width: "200px", height: "200px" }}
               />
-            </div>
+            </PlaylistContainer>
           );
         })}
-      </SongContainer>
+      </div>
     );
   }
   render() {

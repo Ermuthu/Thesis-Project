@@ -47,8 +47,11 @@ passport.use(
       proxy: true
     },
     async (accessToken, refreshToken, profile, done) => {
+      console.log(profile);
       const user = await new User({
         googleId: profile.id,
+        displayName: profile.displayName,
+        profile,
         accessToken,
         refreshToken
       }).save();

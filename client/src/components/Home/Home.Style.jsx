@@ -1,14 +1,19 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Nav = styled.div`
   padding-top: 50px;
   display: flex;
   justify-content: center;
+  ${({ alignContent }) =>
+    alignContent ? css`align-content: ${alignContent};` : null} ${({
+      flexDirection
+    }) => (flexDirection ? css`flex-direction: ${flexDirection};` : null)};
+  ${({ alignItems }) => (alignItems ? css`align-items: ${alignItems};` : null)};
 `;
 
 export const Img = styled.div`
-  background-image: url(${require("./background.jpg")});
+  background-image: url(${require("../../images/background.jpg")});
   background-position: cover;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -20,7 +25,7 @@ export const SpI = styled.div`
   float: left;
   height: 65vh;
   text-align: center;
-  background-image: url(${require("./Spotify.png")});
+  background-image: url(${require("../../images/Spotify.png")});
   opacity: 0.9;
   background-repeat: no-repeat;
   background-position: center;
@@ -48,7 +53,7 @@ export const YtI = styled.div`
   float: right;
   height: 65vh;
   text-align: center;
-  background-image: url(${require("./YouTube.png")});
+  background-image: url(${require("../../images/YouTube.png")});
   opacity: 0.9;
   background-repeat: no-repeat;
   background-position: center;

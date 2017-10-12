@@ -1,24 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import Profile from "./Profile";
-import { Nav, SpL, YtL, Img, SpI, YtI } from "./Home.Style";
+import { Nav, SpL, YtL, SpI, YtI } from "./Home.Style";
 
 class Home extends Component {
-  renderProfile() {
-    // const { auth } = this.props;
-    // const profile = auth._json;
-    // console.log(auth);
-    // console.log(profile);
-    // console.log(auth);
-    // console.log(auth);
-  }
   render() {
     const { auth } = this.props;
     return (
       <div>
-        {auth ? (
+        {auth.spotifyId ? (
           <Nav>
-            {this.renderProfile()}
             <div>
               <SpI>
                 <SpL to={"/spotify"}>Search Spotify</SpL>
@@ -29,7 +19,18 @@ class Home extends Component {
             </div>
           </Nav>
         ) : (
-          <Img />
+          <Nav alignItems="center" flexDirection="column">
+            <b style={{ textAlign: "center", padding: 50 }}>
+              You're logged in with your google account, you can only search
+              youtube, if you want to search both youtube and spotify, please
+              log in with your spotify account
+            </b>
+            <div>
+              <YtI>
+                <YtL to={"/youtube"}>Search Youtube</YtL>
+              </YtI>
+            </div>
+          </Nav>
         )}
       </div>
     );
@@ -37,7 +38,6 @@ class Home extends Component {
 }
 
 function mapStateToProps({ auth }) {
-  // console.log(auth);
   return {
     auth
   };

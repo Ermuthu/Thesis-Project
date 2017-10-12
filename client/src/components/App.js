@@ -3,10 +3,12 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import ReallySmoothScroll from "really-smooth-scroll";
 import * as actions from "../actions";
+
 import Header from "./header/Header";
 import Home from "./home/Home";
 import Spotify from "./spotify/Spotify";
 import Youtube from "./youtube/Youtube";
+import Landing from "./Landing";
 
 ReallySmoothScroll.shim();
 
@@ -21,7 +23,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header />
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={Landing} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/spotify" component={Spotify} />
             <Route exact path="/youtube" component={Youtube} />

@@ -42,8 +42,11 @@ class Header extends Component {
               </LIL>
             </Logout>
             <H4>
-              Welcome, {auth.spotifyId}
-              {auth.displayName}
+              {auth.spotifyId ? (
+                <p>Welcome, {auth.spotifyId}</p>
+              ) : (
+                <p> Welcome, {auth.displayName} </p>
+              )}
             </H4>
           </Div>
         ];
@@ -55,6 +58,7 @@ class Header extends Component {
 }
 
 function mapStateToProps({ auth }) {
+  console.log(auth);
   return { auth };
 }
 

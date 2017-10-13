@@ -52,14 +52,11 @@ class Header extends Component {
         ];
     }
   }
-  render() {
-    return <div>{this.renderHeader()}</div>;
-  }
+  render = () => <div>{this.renderHeader()}</div>;
 }
 
-function mapStateToProps({ auth }) {
-  console.log(auth);
+const mapStateToProps = ({ auth }) => {
   return { auth };
-}
+};
 
 export default connect(mapStateToProps)(Header);

@@ -7,9 +7,6 @@ import { SongContainer, Inner } from "./Spotify.Style";
 
 class SpotifySong extends Component {
   state = { playUrl: "", audio: null, playing: false };
-  componentDidMount() {
-    this.props.fetchSong();
-  }
   componentWillUnmount() {
     this.props.clearSearch();
   }

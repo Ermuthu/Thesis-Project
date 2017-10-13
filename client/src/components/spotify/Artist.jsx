@@ -4,29 +4,32 @@ import { ArtistContainer } from "./Spotify.Style";
 import { fetchArtist, clearSearch } from "../../actions";
 
 class SpotifyArtist extends Component {
-  componentDidMount() {
-    this.props.fetchArtist();
-  }
   componentWillUnmount() {
     this.props.clearSearch();
   }
 
-  renderArtist() {
+  render() {
     const { artist } = this.props;
     if (!artist) {
       return <div> Loading ... </div>;
     }
     const list = artist.items;
     console.log(list);
+    console.log(artist);
     return (
       <ArtistContainer>
         {list.map((item, index) => {
           const name = item.name;
-          const artistId = item.id;
+          const artistImg = item.images[0] ? item.images[0].url : "";
           return (
             <div key={index}>
               <div>
                 <div>{name}</div>
+                <img
+                  src={artistImg}
+                  alt="artist"
+                  style={{ width: "200px", height: "200px" }}
+                />
               </div>
             </div>
           );
@@ -35,11 +38,12 @@ class SpotifyArtist extends Component {
       </ArtistContainer>
     );
   }
-  render() {
-    const { artist } = this.props;
-    return <div>{this.renderArtist()}</div>;
-  }
 }
+//   render() {
+//     const { artist } = this.props;
+//     return <div>{this.renderArtist()}</div>;
+//   }
+// }
 
 const mapStateToProps = ({ artist }) => {
   return {

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { fetchGenre, clearSearch } from "../../actions";
 import { SongContainer, Inner } from "./Spotify.Style";

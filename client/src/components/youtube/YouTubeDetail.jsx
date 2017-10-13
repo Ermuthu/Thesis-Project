@@ -3,10 +3,8 @@ import { connect } from "react-redux";
 
 const VideoDetail = ({ youtube }) => {
   if (!youtube) return <div>Loading...</div>;
-  console.log("youtubedetail ->", youtube);
   const videos = youtube.map(video => {
     const videoId = youtube.id.videoId;
-    console.log("videoId ->", videoId);
     // const url = `https://www.video.com/embed/${videoId}`;
     return (
       //   <div>
@@ -29,9 +27,9 @@ const VideoDetail = ({ youtube }) => {
   });
 };
 
-function mapStateToProps({ youtube }) {
+const mapStateToProps = ({ youtube }) => {
   return { youtube };
-}
+};
 
 export default connect(mapStateToProps)(VideoDetail);
 // export default VideoDetail;

@@ -3,10 +3,17 @@ import * as actions from "./constants";
 import YTSearch from "youtube-api-search";
 const API = "AIzaSyBZpZmAdTa0lMogVGolFT2sIVUEnIk-yQ0";
 const BASE_URL = "https://api.spotify.com/v1/search?";
+const CATEGORY_URL = "https://api.spotify.com/v1/browse/categories/";
+const headers = {
+  Authorization: "Bearer " + localStorage.getItem("access_token")
+};
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get("/api/current_user");
   dispatch({ type: actions.FETCH_USER, payload: res.data });
+  localStorage.setItem("access_token", res.data.accessToken);
+  localStorage.setItem("refresh_token", res.data.refreshToken);
+  // console.log(headers);
 };
 
 export const fetchYouTube = term => async dispatch => {
@@ -16,35 +23,27 @@ export const fetchYouTube = term => async dispatch => {
   });
 };
 
-export const fetchArtist = (input, accessToken) => async dispatch => {
-  const FETCH_URL = `${BASE_URL}q=${input}&type=artist&limit=1`;
-  const headers = {
-    Authorization: "Bearer " + accessToken
-  };
+export const fetchArtist = input => async dispatch => {
+  const FETCH_URL = `${BASE_URL}q=${input}&type=artist`;
   const res = await axios.get(FETCH_URL, {
     method: "get",
     headers: headers
   });
-  dispatch({ type: actions.FETCH_ARTIST, payload: res.data });
+  dispatch({ type: actions.FETCH_ARTIST, payload: res.data.artists });
 };
 
-export const fetchSong = (input, accessToken) => async dispatch => {
+export const fetchSong = input => async dispatch => {
   const FETCH_URL = `${BASE_URL}q=${input}&type=track`;
-  const headers = {
-    Authorization: "Bearer " + accessToken
-  };
   const res = await axios.get(FETCH_URL, {
     method: "get",
     headers: headers
   });
-  dispatch({ type: actions.FETCH_SONG, payload: res.data });
+  dispatch({ type: actions.FETCH_SONG, payload: res.data.tracks });
+  // console.log(res);
 };
 
-export const fetchPlaylist = (input, accessToken) => async dispatch => {
+export const fetchPlaylist = input => async dispatch => {
   const FETCH_URL = `${BASE_URL}q=${input}&type=playlist`;
-  const headers = {
-    Authorization: "Bearer " + accessToken
-  };
   const res = await axios.get(FETCH_URL, {
     method: "get",
     headers: headers
@@ -53,11 +52,7 @@ export const fetchPlaylist = (input, accessToken) => async dispatch => {
   // console.log("playlist data", res.data.playlists.items);
 };
 
-export const selectedPlaylist = (url, accessToken) => async dispatch => {
-  // console.log("accessToken", accessToken, "url", url);
-  const headers = {
-    Authorization: "Bearer " + accessToken
-  };
+export const selectedPlaylist = url => async dispatch => {
   const res = await axios.get(url, {
     method: "get",
     headers: headers
@@ -66,16 +61,14 @@ export const selectedPlaylist = (url, accessToken) => async dispatch => {
   dispatch({ type: actions.SELECTED_PLAYLIST, payload: res.data });
 };
 
-export const fetchGenre = (input, accessToken) => async dispatch => {
-  const FETCH_URL = `${BASE_URL}q=${input}&type=genre`;
-  const headers = {
-    Authorization: "Bearer " + accessToken
-  };
+export const fetchGenre = input => async dispatch => {
+  const FETCH_URL = `${CATEGORY_URL}${input}/playlists`;
   const res = await axios.get(FETCH_URL, {
     method: "get",
     headers: headers
   });
-  dispatch({ type: actions.FETCH_GENRE, payload: res.data });
+  dispatch({ type: actions.FETCH_GENRE, payload: res.data.playlists });
+  // console.log(res);
 };
 
 export const clearSearch = () => async dispatch => {
@@ -96,7 +89,7 @@ export const addSearch = text => {
     type: actions.ADD_SEARCH,
     text
   };
-  console.log("action in searchSong", action);
+  // console.log("action in searchSong", action);
   return action;
 };
 

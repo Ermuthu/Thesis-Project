@@ -15,7 +15,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(
   cookieSession({
-    maxAge: 1 * 24 * 60 * 60 * 1000,
+    maxAge: 12 * 60 * 60 * 1000,
     keys: [keys.cookieKey]
   })
 );
@@ -45,5 +45,5 @@ app.listen(PORT, err => {
 });
 
 app.get("*", function(req, res) {
-  res.status(404).send({ message: "ugh errors man.. amirite tho roflmao" });
+  res.status(404).send({ message: "Error!" });
 });

@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../actions";
-import SpotifyArtist from "./Artist";
-import SpotifySong from "./Song";
-import SpotifyPlaylist from "./Playlist";
-import SpotifyGenre from "./Genre";
 import { Link } from "react-router-dom";
 
 class Spotify extends Component {

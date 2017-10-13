@@ -6,7 +6,10 @@ export default function(state = null, action) {
     case FETCH_PLAYLIST:
       return action.payload;
     case SELECTED_PLAYLIST:
-      return action.payload;
+      return {
+        ...state,
+        playlists: action.payload
+      };
     default:
       return state;
   }

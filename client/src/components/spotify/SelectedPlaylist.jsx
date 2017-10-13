@@ -12,26 +12,33 @@ class SelectedPlaylist extends Component {
     if (!playlist) {
       return <div> Loading ... </div>;
     }
-    // console.log("selected playlist at render =>", playlist);
-    const results = playlist.items;
-    // console.log("selected items =>", results);
+    console.log("selected playlist at render =>", playlist);
+    const results = playlist.playlists ? playlist.playlists.items : "";
+    console.log("selected items =>", results);
     return (
-      <div key="3">
-        {results.map((item, index) => {
-          /* console.log("selected playlist item map=>", item); */
-          /* const track = item.track;*/
-          const trackImg = item.track.album.images[0].url;
-          return (
-            <PlaylistContainer>
-              <div>{item.track.name}</div>
-              <img
-                src={trackImg}
-                alt="track"
-                style={{ width: "200px", height: "200px" }}
-              />
-            </PlaylistContainer>
-          );
-        })}
+      <div>
+        {results
+          ? results.map((item, index) => {
+              console.log("selected playlist item map=>", item);
+              const track = item.track ? item.track : "";
+              console.log(track);
+              const album = track.album ? track.album : "";
+              console.log(album);
+              const trackImg = album.images[0].url;
+              return (
+                <div key={index}>
+                  <div>
+                    {track.name}
+                    <img
+                      src={trackImg}
+                      alt="song"
+                      style={{ width: "200px", height: "200px" }}
+                    />
+                  </div>
+                </div>
+              );
+            })
+          : ""}
       </div>
     );
   }

@@ -8,7 +8,7 @@ class SpotifyPlaylist extends Component {
   renderPlaylist() {
     const { playlist } = this.props;
     const list = playlist.items;
-    console.log("playlist at render", list);
+    // console.log("playlist at render", list);
     return (
       <div>
         {list.map((item, index) => {

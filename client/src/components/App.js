@@ -8,6 +8,7 @@ import Header from "./header/Header";
 import Home from "./home/Home";
 import Spotify from "./spotify/Spotify";
 import Playlist from "./spotify/Playlist";
+import SelectedPlaylist from "./spotify/SelectedPlaylist";
 import Genre from "./spotify/Genre";
 import Song from "./spotify/Song";
 import Artist from "./spotify/Artist";
@@ -33,6 +34,11 @@ class App extends Component {
             <Route exact path="/spotify/song" component={Song} />
             <Route exact path="/spotify/genre" component={Genre} />
             <Route exact path="/spotify/playlist" component={Playlist} />
+            <Route
+              exact
+              path="/spotify/playlist/:id"
+              component={SelectedPlaylist}
+            />
             {/* <Route
               exact
               path="/spotify/playlist/:id"

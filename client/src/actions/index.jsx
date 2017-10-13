@@ -48,7 +48,7 @@ export const fetchPlaylist = input => async dispatch => {
     method: "get",
     headers: headers
   });
-  dispatch({ type: actions.FETCH_PLAYLIST, payload: res.data });
+  dispatch({ type: actions.FETCH_PLAYLIST, payload: res.data.playlists });
   // console.log("playlist data", res.data.playlists.items);
 };
 
@@ -57,7 +57,7 @@ export const selectedPlaylist = url => async dispatch => {
     method: "get",
     headers: headers
   });
-  console.log(res.data);
+  // console.log(res.data);
   dispatch({ type: actions.SELECTED_PLAYLIST, payload: res.data });
 };
 

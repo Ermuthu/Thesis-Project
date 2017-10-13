@@ -1,39 +1,13 @@
 import React, { Component } from "react";
-import { bindActionCreators } from "redux";
-import * as actions from "../../actions";
+import { Link } from "react-router-dom";
+import { selectedPlaylist } from "../../actions";
 import { connect } from "react-redux";
 import { PlaylistContainer } from "./Spotify.Style";
 
 class SpotifyPlaylist extends Component {
-  renderPlaylistSongs() {
-    const { playlist } = this.props;
-    // console.log(playlist);
-    const results = playlist.items;
-    console.log(results);
-    return (
-      <div key="3">
-        {results.map((item, index) => {
-          /* console.log(item); */
-          /* console.log(item.track.album); */
-          const trackImg = item.track.album.images[0].url;
-          return (
-            <PlaylistContainer key={index}>
-              <div>{item.track.name}</div>
-              <img
-                src={trackImg}
-                alt="track"
-                style={{ width: "200px", height: "200px" }}
-              />
-            </PlaylistContainer>
-          );
-        })}
-      </div>
-    );
-  }
-
   renderPlaylist() {
     const { playlist } = this.props;
-    const list = playlist.playlists.items;
+    const list = playlist.items;
     console.log("playlist at render", list);
     return (
       <div>
@@ -42,31 +16,30 @@ class SpotifyPlaylist extends Component {
           const url = item.tracks.href;
           return (
             <PlaylistContainer
-              key={index}
-              onClick={() => this.props.actions.selectedPlaylist(url)}
+              key={item.id}
+              onClick={() => this.props.selectedPlaylist(url)}
             >
-              <div>{item.name}</div>
-              <img
-                src={trackImg}
-                alt="track"
-                style={{ width: "200px", height: "200px" }}
-              />
+              <Link to={`/spotify/playlist/${item.id}`}>
+                <div>{item.name}</div>
+                <img
+                  src={trackImg}
+                  alt="track"
+                  style={{ width: "200px", height: "200px" }}
+                />
+              </Link>
             </PlaylistContainer>
           );
         })}
       </div>
     );
   }
+
   render() {
     const { playlist } = this.props;
-    // const songs = playlist.url;
-    // console.log(songs);
-    return (
-      <div>
-        {playlist.playlists ? this.renderPlaylist() : ""}
-        {playlist.href ? this.renderPlaylistSongs() : ""}
-      </div>
-    );
+    if (!playlist) {
+      return <div> Loading ... </div>;
+    }
+    return <div>{this.renderPlaylist()}</div>;
   }
 }
 
@@ -76,10 +49,4 @@ const mapStateToProps = ({ playlist }) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    actions: bindActionCreators(actions, dispatch)
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SpotifyPlaylist);
+export default connect(mapStateToProps, { selectedPlaylist })(SpotifyPlaylist);

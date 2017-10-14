@@ -1,9 +1,5 @@
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const SpotifyStrategy = require("passport-spotify").Strategy;
 const mongoose = require("mongoose");
-const keys = require("../config/keys");
-
 const User = mongoose.model("users");
 const spotifyAuthStrategy = require("./spotifyPassport");
 const youtubeAuthStrategy = require("./youtubePassport");
@@ -19,8 +15,3 @@ passport.deserializeUser((id, done) => {
     done(null, user);
   });
 });
-
-// const existingUser = await User.findOne({ accessToken: accessToken });
-// if (existingUser) {
-//   return done(null, existingUser);
-// }

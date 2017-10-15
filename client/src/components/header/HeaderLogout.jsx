@@ -3,11 +3,12 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Div, Logout, LIL, H4, LI } from "./Header.Style";
+import { logOut } from "../../actions/auth";
 
-const HeaderLogout = ({ auth }) => (
+const HeaderLogout = ({ auth, logOut }) => (
   <Div>
     <Logout>
-      <LI href="/api/logout">
+      <LI href="/api/logout" onClick={logOut}>
         <i className="large material-icons">exit_to_app</i>
       </LI>
       <LIL>
@@ -30,8 +31,6 @@ HeaderLogout.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-const mapStateToProps = ({ auth }) => {
-  return { auth };
-};
+const mapStateToProps = ({ auth }) => ({ auth });
 
-export default connect(mapStateToProps)(HeaderLogout);
+export default connect(mapStateToProps, { logOut })(HeaderLogout);

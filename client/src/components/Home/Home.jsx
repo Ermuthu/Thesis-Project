@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { Nav, SpL, YtL, SpI, YtI } from "./Home.Style";
+import { fetchUser } from "../../actions/auth";
 
 class Home extends Component {
+  componentDidMount = () => this.props.fetchUser();
   render() {
     const { auth } = this.props;
     return (
@@ -37,10 +40,10 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => {
-  return {
-    auth
-  };
+Home.propTypes = {
+  fetchUser: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps)(Home);
+const mapStateToProps = ({ auth }) => ({ auth });
+
+export default connect(mapStateToProps, { fetchUser })(Home);

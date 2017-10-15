@@ -12,8 +12,7 @@ module.exports = app => {
     passport.authenticate("spotify", {
       scope: scopes,
       showDialog: true
-    }),
-    function(req, res) {}
+    })
   );
   app.get(
     "/auth/spotify/callback",
@@ -22,28 +21,4 @@ module.exports = app => {
       res.redirect("/home");
     }
   );
-
-  app.get(
-    "/auth/google",
-    passport.authenticate("google", {
-      scope: ["profile", "email"],
-      showDialog: true
-    })
-  );
-  app.get(
-    "/auth/google/callback",
-    passport.authenticate("google"),
-    (req, res) => {
-      res.redirect("/home");
-    }
-  );
-
-  app.get("/api/current_user", (req, res) => {
-    res.send(req.user);
-  });
-
-  app.get("/api/logout", (req, res) => {
-    req.logout();
-    res.redirect("/");
-  });
 };

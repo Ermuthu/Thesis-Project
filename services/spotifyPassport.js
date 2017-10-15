@@ -16,6 +16,8 @@ const spotifyAuthStrategy = passport.use(
     async (accessToken, refreshToken, profile, done) => {
       const user = await new User({
         spotifyId: profile.id,
+        photos: profile.photos[0],
+        profileUrl: profile.profileUrl,
         profile,
         accessToken,
         refreshToken

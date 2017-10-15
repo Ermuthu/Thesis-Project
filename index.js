@@ -23,8 +23,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 // app.use(express.static("public"));
 
+require("./routes/spotify-auth-routes")(app);
+require("./routes/google-auth-routes")(app);
 require("./routes/auth-routes")(app);
-require("./routes/spotify-routes")(app);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

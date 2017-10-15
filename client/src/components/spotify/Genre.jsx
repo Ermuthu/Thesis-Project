@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchGenre, clearSearch } from "../../actions";
+import { fetchGenre, clearSearch } from "../../actions/spotify";
 import { SongContainer, Inner } from "./Spotify.Style";
 
 class SpotifyGenre extends Component {
@@ -8,9 +8,6 @@ class SpotifyGenre extends Component {
   // componentDidMount() {
   //   this.props.fetchGenre();
   // }
-  componentWillUnmount() {
-    this.props.clearSearch();
-  }
 
   // i did not write this playing method on my own
   playGenre(url) {

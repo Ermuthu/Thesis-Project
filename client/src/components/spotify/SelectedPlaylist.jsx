@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { PlaylistContainer } from "./Spotify.Style";
 import { connect } from "react-redux";
-import { selectedPlaylist } from "../../actions";
+import { selectedPlaylist } from "../../actions/spotify";
 
 class SelectedPlaylist extends Component {
   componentDidMount() {

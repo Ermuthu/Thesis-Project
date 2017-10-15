@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as actions from "../../actions";
+import * as actions from "../../actions/spotify";
 import { Link } from "react-router-dom";
 
 class Spotify extends Component {
@@ -33,7 +33,7 @@ class Spotify extends Component {
             />
             <Link
               to={"/spotify/artist"}
-              className="btn waves-effect waves-light"
+              className="btn btn-success"
               disabled={!this.state.input}
               onClick={() => this.props.actions.fetchArtist(input)}
             >
@@ -72,12 +72,10 @@ class Spotify extends Component {
   }
 }
 
-// anything returned from mapStateToProps will become props in spotify
 function mapStateToProps({ auth }) {
   return { auth };
 }
 
-// make dispatch methods available as props for spotify
 function mapDispatchtoProps(dispatch) {
   return {
     actions: bindActionCreators(actions, dispatch)

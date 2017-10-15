@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { selectedPlaylist } from "../../actions";
+import { selectedPlaylist } from "../../actions/spotify";
 import { connect } from "react-redux";
 import { PlaylistContainer } from "./Spotify.Style";
 

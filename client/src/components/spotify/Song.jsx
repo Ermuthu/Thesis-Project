@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import { bindActionCreators } from "redux";
 // import * as actions from "../../actions";
-import { fetchSong, clearSearch } from "../../actions";
+import { fetchSong, clearSearch } from "../../actions/spotify";
 import { connect } from "react-redux";
 import { SongContainer, Inner } from "./Spotify.Style";
 

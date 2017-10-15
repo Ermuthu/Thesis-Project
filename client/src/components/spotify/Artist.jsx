@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ArtistContainer } from "./Spotify.Style";
-import { fetchArtist, clearSearch } from "../../actions";
+import { fetchArtist, clearSearch } from "../../actions/spotify";
 
 class SpotifyArtist extends Component {
   componentWillUnmount() {

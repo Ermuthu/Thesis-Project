@@ -40,6 +40,4 @@ export const fetchGenre = input => async dispatch => {
   // console.log(res);
 };
 
-export const clearSearch = () => async dispatch => {
-  dispatch({ type: actions.CLEAR_SEARCH, payload: {} });
-};
+export const clearSearch = () => ({ type: actions.CLEAR_SEARCH });

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 // import ReallySmoothScroll from "really-smooth-scroll";
-import * as actions from "../actions";
+import { fetchUser } from "../actions/auth";
 import PropTypes from "prop-types";
 import Header from "./header/Header";
 import Home from "./home/Home";
@@ -39,11 +39,6 @@ class App extends Component {
               path="/spotify/playlist/:id"
               component={SelectedPlaylist}
             />
-            {/* <Route
-              exact
-              path="/spotify/playlist/:id"
-              component={PlaylistShow}
-            /> */}
             <Route exact path="/youtube" component={Youtube} />
           </div>
         </BrowserRouter>
@@ -53,6 +48,6 @@ class App extends Component {
 }
 
 App.propTypes = {
-  fetchUser: PropTypes.func.isRequired
+  fetchUser: PropTypes.func
 };
-export default connect(null, actions)(App);
+export default connect(null, { fetchUser })(App);

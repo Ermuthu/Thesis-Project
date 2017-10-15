@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "materialize-css": "^0.100.2",
+    "normalizr": "^3.2.4",
     "prop-types": "^15.6.0",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.3",
@@ -27,7 +28,10 @@
     "react-waypoint": "^7.1.0",
     "really-smooth-scroll": "^2.1.1",
     "redux": "^3.7.2",
+    "redux-actions": "^2.2.1",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
+    "seamless-immutable": "^7.1.2",
     "styled-components": "^2.1.2",
     "youtube-api-search": "^0.0.5"
   },

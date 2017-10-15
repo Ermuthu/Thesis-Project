@@ -30,8 +30,6 @@ class SearchBar extends Component {
   }
 }
 
-function mapStateToProps({ youtube }) {
-  return { youtube };
-}
+const mapStateToProps = ({ youtube }) => ({ youtube });
 
 export default connect(mapStateToProps, { fetchYouTube })(SearchBar);

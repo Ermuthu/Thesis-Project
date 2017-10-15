@@ -15,8 +15,6 @@ const VideoList = ({ youtube }) => {
   return <SongContainer>{videoResults}</SongContainer>;
 };
 
-const mapStateToProps = ({ youtube }) => {
-  return { youtube };
-};
+const mapStateToProps = ({ youtube }) => ({ youtube });
 
 export default connect(mapStateToProps)(VideoList);

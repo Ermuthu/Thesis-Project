@@ -13,9 +13,7 @@ class Youtube extends Component {
     );
   }
 }
-const mapStateToProps = ({ youtube }) => {
-  return { youtube };
-};
+const mapStateToProps = ({ youtube }) => ({ youtube });
 
 export default connect(mapStateToProps)(Youtube);
 // export default connect(null, actions)(Youtube);

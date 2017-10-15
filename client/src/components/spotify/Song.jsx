@@ -80,11 +80,7 @@ class SpotifySong extends Component {
   // }
 }
 
-const mapStateToProps = ({ song }) => {
-  return {
-    song
-  };
-};
+const mapStateToProps = ({ song }) => ({ song });
 
 export default connect(mapStateToProps, { fetchSong, clearSearch })(
   SpotifySong

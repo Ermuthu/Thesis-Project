@@ -75,18 +75,9 @@ class SpotifyGenre extends Component {
       </SongContainer>
     );
   }
-  // render() {
-  // const { genre } = this.props;
-  // const playlist = data.playlists.items;
-  // return <div>{this.renderGenre()}</div>;
-  // }
 }
 
-const mapStateToProps = ({ genre }) => {
-  return {
-    genre
-  };
-};
+const mapStateToProps = ({ genre }) => ({ genre });
 
 export default connect(mapStateToProps, { fetchGenre, clearSearch })(
   SpotifyGenre

@@ -72,14 +72,10 @@ class Spotify extends Component {
   }
 }
 
-function mapStateToProps({ auth }) {
-  return { auth };
-}
+const mapStateToProps = ({ auth }) => ({ auth });
 
-function mapDispatchtoProps(dispatch) {
-  return {
-    actions: bindActionCreators(actions, dispatch)
-  };
-}
+const mapDispatchtoProps = dispatch => ({
+  actions: bindActionCreators(actions, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchtoProps)(Spotify);

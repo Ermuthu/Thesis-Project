@@ -29,8 +29,6 @@ const VideoListItem = ({ youtube, video }) => {
   );
 };
 
-const mapStateToProps = ({ youtube }) => {
-  return { youtube };
-};
+const mapStateToProps = ({ youtube }) => ({ youtube });
 
 export default connect(mapStateToProps)(VideoListItem);

@@ -47,10 +47,6 @@ class SelectedPlaylist extends Component {
 //   }
 // }
 
-const mapStateToProps = ({ playlist }) => {
-  return {
-    playlist
-  };
-};
+const mapStateToProps = ({ playlist }) => ({ playlist });
 
 export default connect(mapStateToProps, { selectedPlaylist })(SelectedPlaylist);

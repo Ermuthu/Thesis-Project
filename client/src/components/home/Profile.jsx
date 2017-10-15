@@ -15,8 +15,6 @@ const Profile = ({ auth }) => {
   });
 };
 
-const mapStateToProps = ({ auth }) => {
-  return { auth };
-};
+const mapStateToProps = ({ auth }) => ({ auth });
 
 export default connect(mapStateToProps)(Profile);

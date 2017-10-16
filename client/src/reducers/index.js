@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 import auth from "./reducer_auth";
-import logs from "./reducer_logs";
 import artist from "./reducer_artist";
 import song from "./reducer_song";
 import playlist from "./reducer_playlist";
 import genre from "./reducer_genre";
 import youtube from "./reducer_youtube";
+import ui from "./ui_reducer";
 
 export default combineReducers({
   auth,
@@ -13,6 +13,6 @@ export default combineReducers({
   song,
   playlist,
   genre,
-  logs,
-  youtube
+  youtube,
+  ui
 });

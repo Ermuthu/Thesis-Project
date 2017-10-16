@@ -1,17 +1,12 @@
 import React, { Component } from "react";
-// import { bindActionCreators } from "redux";
-// import * as actions from "../../actions";
-import { fetchSong, clearSearch } from "../../actions/spotify";
+import { clearSearch } from "../../actions/spotify";
 import { connect } from "react-redux";
 import { SongContainer, Inner } from "./Spotify.Style";
 
 class SpotifySong extends Component {
   state = { playUrl: "", audio: null, playing: false };
-  componentWillUnmount() {
-    this.props.clearSearch();
-  }
+  componentWillUnmount = () => this.props.clearSearch();
 
-  // i did not write this playing method on my own
   playSong(url) {
     let audio = new Audio(url);
     if (!this.state.playing) {
@@ -44,9 +39,7 @@ class SpotifySong extends Component {
     if (!song) {
       return <div> Loading ... </div>;
     }
-    console.log(song);
     const tracks = song.items;
-    console.log(tracks);
     return (
       <SongContainer>
         {tracks.map((track, index) => {
@@ -74,14 +67,7 @@ class SpotifySong extends Component {
       </SongContainer>
     );
   }
-  // render() {
-  // const { song } = this.props;
-  // return <div>{this.renderSong()}</div>;
-  // }
 }
-
 const mapStateToProps = ({ song }) => ({ song });
 
-export default connect(mapStateToProps, { fetchSong, clearSearch })(
-  SpotifySong
-);
+export default connect(mapStateToProps, { clearSearch })(SpotifySong);

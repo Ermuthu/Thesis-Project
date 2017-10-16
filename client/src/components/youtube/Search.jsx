@@ -6,15 +6,16 @@ class SearchBar extends Component {
   state = { term: "" };
 
   render() {
+    const { fetchYouTube } = this.props;
     return (
       <div className="search-bar">
         <input
-          value={this.state.term}
           onKeyPress={event => {
             if (event.key === "Enter" && this.state.term) {
-              this.props.fetchYouTube(this.state.term);
+              fetchYouTube(this.state.term);
             }
           }}
+          value={this.state.term}
           onChange={event => this.setState({ term: event.target.value })}
         />
         <button
@@ -30,6 +31,4 @@ class SearchBar extends Component {
   }
 }
 
-const mapStateToProps = ({ youtube }) => ({ youtube });
-
-export default connect(mapStateToProps, { fetchYouTube })(SearchBar);
+export default connect(null, { fetchYouTube })(SearchBar);

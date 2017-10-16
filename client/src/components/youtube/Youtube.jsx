@@ -1,11 +1,15 @@
 import React from "react";
 import SearchBar from "./Search";
 import VideoList from "./List";
+import { connect } from "react-redux";
 
-const Youtube = ({ children }) => (
+const Youtube = ({ children, youtube }) => (
   <div>
     <SearchBar>{children}</SearchBar>
-    <VideoList>{children}</VideoList>
+    <VideoList youtube={youtube}>{children}</VideoList>
   </div>
 );
-export default Youtube;
+
+const mapStateToProps = ({ youtube }) => ({ youtube });
+
+export default connect(mapStateToProps)(Youtube);

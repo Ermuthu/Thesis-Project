@@ -27,6 +27,7 @@ export default {
     success: false,
     input: "",
     selectedPlaylist: [],
-    selectedGenre: []
+    selectedGenre: [],
+    selectedArtist: []
   }
 };

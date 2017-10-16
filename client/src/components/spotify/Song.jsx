@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { clearSearch } from "../../actions/spotify";
 import { connect } from "react-redux";
-import { SongContainer, Inner } from "./Spotify.Style";
+import { SongContainer, Inner, Image } from "./Spotify.Style";
 
 class SpotifySong extends Component {
   state = { playUrl: "", audio: null, playing: false };
@@ -36,16 +36,14 @@ class SpotifySong extends Component {
 
   render() {
     const { song } = this.props;
-    if (!song) {
-      return <div> Loading ... </div>;
-    }
-    const tracks = song.items;
     return (
       <SongContainer>
-        {tracks.map((track, index) => {
-          const trackImg = track.album.images[0].url;
+        {song.items.map(track => {
           return (
-            <div key={index} onClick={() => this.playSong(track.preview_url)}>
+            <div
+              key={track.id}
+              onClick={() => this.playSong(track.preview_url)}
+            >
               <div>{track.name}</div>
               <Inner>
                 {this.state.playing ? (
@@ -56,11 +54,7 @@ class SpotifySong extends Component {
                   <span>&#9654;</span>
                 )}
               </Inner>
-              <img
-                src={trackImg}
-                alt="track"
-                style={{ width: "200px", height: "200px" }}
-              />
+              <Image src={track.trackImg} alt="track" />
             </div>
           );
         })}

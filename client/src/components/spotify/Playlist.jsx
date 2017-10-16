@@ -16,9 +16,10 @@ const SpotifyPlaylist = ({ playlist, selectedPlaylist }) => (
           <Image src={item.trackImg} alt="track" />
         </Link>
       </PlaylistContainer>
-    ))};
+    ))}
   </div>
 );
+
 const mapStateToProps = ({ playlist }) => ({ playlist });
 
 export default connect(mapStateToProps, { selectedPlaylist })(SpotifyPlaylist);

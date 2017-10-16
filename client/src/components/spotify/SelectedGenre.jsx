@@ -5,7 +5,6 @@ import { SongContainer, Inner, Image } from "./Spotify.Style";
 
 class SelectedGenre extends Component {
   state = { playUrl: "", audio: null, playing: false };
-  componentWillUnmount = () => this.props.clearSearch();
 
   playSong(url) {
     let audio = new Audio(url);
@@ -36,19 +35,12 @@ class SelectedGenre extends Component {
 
   render() {
     const { genre } = this.props;
-    if (!genre) {
-      return <div> Loading ... </div>;
-    }
-    const results = genre.selectedGenre ? genre.selectedGenre : "";
     return (
       <SongContainer>
-        {results.map(item => {
-          const track = item.track ? item.track : "";
-          const album = track.album ? track.album : "";
-          const trackImg = album.images[0].url;
+        {genre.selectedGenre.map(item => {
           return (
-            <div key={item.id} onClick={() => this.playSong(track.preview_url)}>
-              <div>{track.name}</div>
+            <div key={item.id} onClick={() => this.playSong(item.preview_url)}>
+              <div>{item.name}</div>
               <Inner>
                 {this.state.playing ? (
                   <span>
@@ -58,7 +50,7 @@ class SelectedGenre extends Component {
                   <span>&#9654;</span>
                 )}
               </Inner>
-              <Image src={trackImg} alt="song" />
+              <Image src={item.trackImg} alt="song" />
             </div>
           );
         })}

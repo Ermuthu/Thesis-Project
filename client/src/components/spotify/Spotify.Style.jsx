@@ -14,6 +14,11 @@ export const ArtistContainer = styled.div`
   text-align: center;
 `;
 
+export const Image = styled.img`
+  width: 200px;
+  height: 200px;
+`;
+
 export const PlaylistContainer = styled.div`
   display: inline-flex;
   flex-direction: column;

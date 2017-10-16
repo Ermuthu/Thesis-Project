@@ -9,11 +9,6 @@ const VideoListItem = ({ youtube, video }) => {
   }
   const videoId = video.id.videoId;
   const url = `https:www.youtube.com/embed/${videoId}`;
-  // const imageUrl = video.snippet.thumbnails.default.url;
-  // console.log(youtube);
-  // console.log(video);
-  // console.log(url);
-  // console.log(videoId);
   return (
     <ArtistContainer>
       <div className="video-detail col-md-8">

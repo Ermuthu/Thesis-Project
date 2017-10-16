@@ -1,24 +1,24 @@
 import { FETCH_ARTIST, CLEAR_SEARCH } from "../actions/constants";
-// import initialState from "./InitialState";
+import initialState from "./state_initial";
 
-const initialState = {
-  error: {},
-  loading: false,
-  items: [],
-  success: false
-};
-
-export default function(state = initialState, action) {
+export default function(state = initialState.spotify, action) {
   // console.log("reducer fetch artist -> ", action.payload);
   switch (action.type) {
     case FETCH_ARTIST:
       return {
         ...state,
         items: action.payload.items,
-        success: true
+        success: true,
+        input: action.payload.input,
+        error: null,
+        isLoading: false
       };
     case CLEAR_SEARCH:
-      return initialState;
+      return {
+        ...state,
+        success: false,
+        items: []
+      };
     default:
       return state;
   }

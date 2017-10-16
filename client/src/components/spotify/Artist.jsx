@@ -4,9 +4,7 @@ import { ArtistContainer } from "./Spotify.Style";
 import { fetchArtist, clearSearch } from "../../actions/spotify";
 
 class SpotifyArtist extends Component {
-  // componentWillUnmount() {
-  // this.props.clearSearch();
-  // }
+  componentWillUnmount = () => this.props.clearSearch();
 
   render() {
     const { artist, clearSearch } = this.props;
@@ -18,7 +16,6 @@ class SpotifyArtist extends Component {
     // console.log(artist);
     return (
       <ArtistContainer>
-        <button type="button" onClick={clearSearch} />
         {list.map((item, index) => {
           const name = item.name;
           const artistImg = item.images[0] ? item.images[0].url : "";

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import * as actions from "../../actions/spotify";
 import { Link } from "react-router-dom";
 
@@ -8,7 +7,13 @@ class Spotify extends Component {
   state = { input: "" };
 
   render() {
-    const { auth } = this.props;
+    const {
+      auth,
+      fetchArtist,
+      fetchSong,
+      fetchGenre,
+      fetchPlaylist
+    } = this.props;
     let input = this.state.input;
     return (
       <div>
@@ -25,17 +30,12 @@ class Spotify extends Component {
                 this.setState({
                   input: event.target.value
                 })}
-              onKeyPress={event => {
-                if (event.key === "Enter" && this.state.input) {
-                  this.props.actions.fetchPlaylist(input);
-                }
-              }}
             />
             <Link
               to={"/spotify/artist"}
               className="btn btn-success"
               disabled={!this.state.input}
-              onClick={() => this.props.actions.fetchArtist(input)}
+              onClick={() => fetchArtist(input)}
             >
               Search for an Artist
             </Link>
@@ -43,7 +43,7 @@ class Spotify extends Component {
               to={"/spotify/song"}
               disabled={!this.state.input}
               className="btn btn-success"
-              onClick={() => this.props.actions.fetchSong(input)}
+              onClick={() => fetchSong(input)}
             >
               Search for a Song!
             </Link>
@@ -51,7 +51,7 @@ class Spotify extends Component {
               to="/spotify/playlist"
               disabled={!this.state.input}
               className="btn btn-success"
-              onClick={() => this.props.actions.fetchPlaylist(input)}
+              onClick={() => fetchPlaylist(input)}
             >
               Search for a Playlist
             </Link>
@@ -59,7 +59,7 @@ class Spotify extends Component {
               to="/spotify/genre"
               disabled={!this.state.input}
               className="btn btn-success"
-              onClick={() => this.props.actions.fetchGenre(input)}
+              onClick={() => fetchGenre(input)}
             >
               Search for a Genre
             </Link>
@@ -74,8 +74,4 @@ class Spotify extends Component {
 
 const mapStateToProps = ({ auth }) => ({ auth });
 
-const mapDispatchtoProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchtoProps)(Spotify);
+export default connect(mapStateToProps, actions)(Spotify);

@@ -39,21 +39,12 @@ class SelectedPlaylist extends Component {
     if (!playlist) {
       return <div> Loading ... </div>;
     }
-    // console.log("selected playlist at render =>", playlist);
-    const results = playlist.selectedPlaylist ? playlist.selectedPlaylist : "";
-    // console.log("selected items =>", results);
     return (
       <SongContainer>
-        {results.map(item => {
-          const track = item.track ? item.track : "";
-          const album = track.album ? track.album : "";
-          const trackImg = album.images[0].url;
+        {playlist.selectedPlaylist.map(item => {
           return (
-            <div
-              key={item.track.uri}
-              onClick={() => this.playSong(track.preview_url)}
-            >
-              {track.name}
+            <div key={item.uri} onClick={() => this.playSong(item.preview_url)}>
+              {item.name}
               <Inner>
                 {this.state.playing ? (
                   <span>
@@ -63,7 +54,7 @@ class SelectedPlaylist extends Component {
                   <span>&#9654;</span>
                 )}
               </Inner>
-              <Image src={trackImg} alt="song" />
+              <Image src={item.trackImg} alt="song" />
             </div>
           );
         })}

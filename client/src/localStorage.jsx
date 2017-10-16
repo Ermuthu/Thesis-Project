@@ -21,6 +21,6 @@ export const saveState = state => {
   } catch (err) {}
 };
 
-export const removeState = state => {
-  sessionStorage.removeItem(state);
-};
+// export const removeState = state => {
+//   sessionStorage.removeItem(state);
+// };

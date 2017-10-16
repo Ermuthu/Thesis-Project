@@ -8,10 +8,13 @@ export const SongContainer = styled.div`
 `;
 
 export const ArtistContainer = styled.div`
-  display: flex;
+  display: inline-flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
-  text-align: center;
+  padding: 20px;
+  align-content: center;
+  align-items: center;
 `;
 
 export const Image = styled.img`

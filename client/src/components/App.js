@@ -6,6 +6,7 @@ import Spotify from "./spotify/Spotify";
 import Playlist from "./spotify/Playlist";
 import SelectedPlaylist from "./spotify/SelectedPlaylist";
 import SelectedGenre from "./spotify/SelectedGenre";
+import SelectedArtist from "./spotify/SelectedArtist";
 import Genre from "./spotify/Genre";
 import Song from "./spotify/Song";
 import Artist from "./spotify/Artist";
@@ -19,8 +20,8 @@ const App = () => (
       <Route exact path="/" component={Landing} />
       <Route path="/home" component={Home} />
       <Route path="/spotify" component={Spotify} />
-      <Route path="/spotify/artist" component={Artist} />
-      {/* <Route exact path="/spotify/artist/:id" component={ArtistShow} /> */}
+      <Route exact path="/spotify/artist" component={Artist} />
+      <Route path="/spotify/artist/:id" component={SelectedArtist} />
       <Route path="/spotify/song" component={Song} />
       <Route exact path="/spotify/genre" component={Genre} />
       <Route path="/spotify/genre/:id" component={SelectedGenre} />

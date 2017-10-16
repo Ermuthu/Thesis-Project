@@ -1,84 +1,38 @@
-import React, { Component } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchGenre, clearSearch } from "../../actions/spotify";
+import { selectedGenre } from "../../actions/spotify";
 import { SongContainer, Inner } from "./Spotify.Style";
 
-class SpotifyGenre extends Component {
-  state = { playUrl: "", audio: null, playing: false };
-  // componentDidMount() {
-  //   this.props.fetchGenre();
-  // }
-
-  // i did not write this playing method on my own
-  playGenre(url) {
-    let audio = new Audio(url);
-    if (!this.state.playing) {
-      audio.play();
-      this.setState({
-        playing: true,
-        playUrl: url,
-        audio
-      });
-    } else {
-      if (this.state.playUrl === url) {
-        this.state.audio.pause();
-        this.setState({
-          playing: false
-        });
-      } else {
-        this.state.audio.pause();
-        audio.play();
-        this.setState({
-          playing: true,
-          playUrl: url,
-          audio
-        });
-      }
-    }
+const SpotifyGenre = ({ genre, selectedGenre }) => {
+  if (!genre) {
+    return <div> Loading... </div>;
   }
-
-  render() {
-    const { genre } = this.props;
-    if (!genre) {
-      return <div> Loading... </div>;
-    }
-    console.log("genre", genre);
-    const playlists = genre.items;
-    console.log("playlist", playlists[0]);
-    return (
-      <SongContainer>
-        {playlists.map((playlist, index) => {
-          const trackImg = playlist.images[0].url;
-          return (
-            <div
-              key={index}
-              onClick={() => this.playGenre(playlist.preview_url)}
-            >
-              <div>{playlist.name}</div>
-              <Inner>
-                {this.state.playing ? (
-                  <span>
-                    <i className="material-icons">pause</i>
-                  </span>
-                ) : (
-                  <span>&#9654;</span>
-                )}
-              </Inner>
+  // console.log("genre", genre);
+  const playlists = genre.items ? genre.items : [];
+  // console.log("playlist", playlists[0]);
+  return (
+    <SongContainer>
+      {playlists.map((playlist, index) => {
+        const trackImg = playlist.images[0].url;
+        const href = playlist.tracks.href;
+        return (
+          <div key={index} onClick={() => selectedGenre(href)}>
+            <Link to={`/spotify/genre/${playlist.id}`}>
+              {playlist.name}
               <img
                 src={trackImg}
                 alt="track"
                 style={{ width: "200px", height: "200px" }}
               />
-            </div>
-          );
-        })}
-      </SongContainer>
-    );
-  }
-}
+            </Link>
+          </div>
+        );
+      })}
+    </SongContainer>
+  );
+};
 
 const mapStateToProps = ({ genre }) => ({ genre });
 
-export default connect(mapStateToProps, { fetchGenre, clearSearch })(
-  SpotifyGenre
-);
+export default connect(mapStateToProps, { selectedGenre })(SpotifyGenre);

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import VideoListItem from "./YouTubeItems";
+import VideoListItem from "./Items";
 import { SongContainer } from "./YouTube.Style";
 
 const VideoList = ({ youtube }) => {

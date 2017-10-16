@@ -1,19 +1,11 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import SearchBar from "./YouTubeSearch";
-import VideoList from "./YouTubeList";
+import React from "react";
+import SearchBar from "./Search";
+import VideoList from "./List";
 
-class Youtube extends Component {
-  render() {
-    return (
-      <div>
-        <SearchBar />
-        <VideoList />
-      </div>
-    );
-  }
-}
-const mapStateToProps = ({ youtube }) => ({ youtube });
-
-export default connect(mapStateToProps)(Youtube);
-// export default connect(null, actions)(Youtube);
+const Youtube = ({ children }) => (
+  <div>
+    <SearchBar>{children}</SearchBar>
+    <VideoList>{children}</VideoList>
+  </div>
+);
+export default Youtube;

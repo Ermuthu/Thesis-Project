@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { selectedGenre } from "../../actions/spotify";
-import { SongContainer, Inner, Image } from "./Spotify.Style";
+import { SongContainer, Image } from "./Spotify.Style";
 
 const SpotifyGenre = ({ genre, selectedGenre }) => (
   <SongContainer>

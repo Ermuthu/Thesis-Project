@@ -13,6 +13,11 @@ export const fetchArtist = input => async dispatch => {
   dispatch({ type: actions.FETCH_ARTIST, payload: res.data.artists });
 };
 
+export const selectedArtist = href => async dispatch => {
+  const res = await axios.get(href, fetch);
+  dispatch({ type: actions.SELECTED_ARTIST, payload: res.data });
+};
+
 export const fetchSong = input => async dispatch => {
   const FETCH_URL = `${BASE_URL}q=${input}&type=track`;
   const res = await axios.get(FETCH_URL, fetch);

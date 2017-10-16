@@ -37,7 +37,12 @@ export const fetchGenre = input => async dispatch => {
   const FETCH_URL = `${CATEGORY_URL}${input}/playlists`;
   const res = await axios.get(FETCH_URL, fetch);
   dispatch({ type: actions.FETCH_GENRE, payload: res.data.playlists });
-  // console.log(res);
+  // console.log(res.data.playlists);
+};
+
+export const selectedGenre = href => async dispatch => {
+  const res = await axios.get(href, fetch);
+  dispatch({ type: actions.SELECTED_GENRE, payload: res.data });
 };
 
 export const clearSearch = () => ({ type: actions.CLEAR_SEARCH });

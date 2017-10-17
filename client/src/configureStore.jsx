@@ -5,13 +5,17 @@ import { loadState, saveState } from "./localStorage";
 import throttle from "lodash/throttle";
 import { createLogger } from "redux-logger";
 import api from "./middleware/api";
+import throttling from "./middleware/throttle";
+import multi from "./middleware/multi";
 const logger = createLogger();
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const configureStore = () => {
   const persistedState = loadState();
-  const middleware = composeEnhancers(applyMiddleware(thunk, api, logger));
+  const middleware = composeEnhancers(
+    applyMiddleware(thunk, multi, throttling, logger)
+  );
   const store = createStore(reducers, persistedState, middleware);
 
   store.subscribe(

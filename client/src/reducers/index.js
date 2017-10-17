@@ -5,6 +5,7 @@ import song from "./reducer_song";
 import playlist from "./reducer_playlist";
 import genre from "./reducer_genre";
 import youtube from "./reducer_youtube";
+import { reducer as formReducer } from "redux-form";
 import ui from "./ui_reducer";
 
 export default combineReducers({
@@ -14,5 +15,6 @@ export default combineReducers({
   playlist,
   genre,
   youtube,
+  form: formReducer,
   ui
 });

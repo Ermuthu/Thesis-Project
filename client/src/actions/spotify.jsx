@@ -7,8 +7,18 @@ const headers = {
 };
 const fetch = { method: "get", headers: headers };
 
-export const fetchArtist = input => async dispatch => {
-  const FETCH_URL = `${BASE_URL}q=${input}&type=artist`;
+export const spotifyRequest = () => ({
+  type: actions.SPOTIFY_REQUEST,
+  isLoading: true,
+  error: null
+});
+
+export const requestArtist = artist => dispatch => {
+  dispatch(fetchArtist(artist.artist));
+};
+
+export const fetchArtist = artist => async dispatch => {
+  const FETCH_URL = `${BASE_URL}q=${artist}&type=artist`;
   const res = await axios.get(FETCH_URL, fetch);
   dispatch({ type: actions.FETCH_ARTIST, payload: res.data.artists });
 };

@@ -3,8 +3,9 @@ export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const API = "API";
 export const FETCH_USER = "FETCH_USER";
 export const LOGOUT = "LOGOUT";
-export const SET_TOKEN = "SET_TOKEN";
 
+export const SPOTIFY_REQUEST = "SPOTIFY_REQUEST";
+export const SPOTIFY_SUCCESS = "SPOTIFY_SUCCESS";
 export const FETCH_ARTIST = "FETCH_ARTIST";
 export const SELECTED_ARTIST = "SELECTED_ARTIST";
 

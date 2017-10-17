@@ -4,9 +4,15 @@ export default {
     audio: null,
     playing: false
   },
+  youtube: {
+    items: [],
+    selectedVideo: null,
+    term: "",
+    error: {},
+    isLoading: false,
+    success: false
+  },
   videos: [],
-  selectedVideo: null,
-  term: "",
   accessToken: null,
   refreshToken: null,
   user: {

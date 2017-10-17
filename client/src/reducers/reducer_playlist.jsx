@@ -4,9 +4,25 @@ import initialState from "./state_initial";
 export default function(state = initialState.spotify, action) {
   // console.log("reducer fetch playlist -> ", action.payload);
   switch (action.type) {
+    case actions.REQUEST_PLAYLIST:
+      return {
+        ...state,
+        isLoading: true,
+        error: null
+      };
+    case actions.PLAYLIST_SUCCESS:
+      return {
+        ...state,
+        isloading: false,
+        error: null,
+        success: true
+      };
     case actions.FETCH_PLAYLIST:
       return {
         ...state,
+        selectedGenre: [],
+        selectedArtist: [],
+        selectedPlaylist: [],
         items: action.payload.items.map(item => {
           return {
             trackImg: item.images[0].url,
@@ -16,9 +32,6 @@ export default function(state = initialState.spotify, action) {
             id: item.id
           };
         }),
-        selectedGenre: [],
-        selectedArtist: [],
-        selectedPlaylist: [],
         success: true,
         error: null,
         isLoading: false
@@ -27,6 +40,8 @@ export default function(state = initialState.spotify, action) {
       return {
         ...state,
         items: [],
+        selectedGenre: [],
+        selectedArtist: [],
         selectedPlaylist: action.payload.items.map(item => {
           return {
             track: item.track,
@@ -36,8 +51,7 @@ export default function(state = initialState.spotify, action) {
             preview_url: item.track.preview_url
           };
         }),
-        selectedGenre: [],
-        selectedArtist: [],
+
         success: true,
         error: null,
         isLoading: false

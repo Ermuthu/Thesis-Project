@@ -1,12 +1,28 @@
-import { FETCH_SONG, CLEAR_SEARCH } from "../actions/constants";
+import * as actions from "../actions/constants";
 import initialState from "./state_initial";
 
 export default function(state = initialState.spotify, action) {
   // console.log("reducer fetch song -> ", action.payload);
   switch (action.type) {
-    case FETCH_SONG:
+    case actions.REQUEST_SONG:
       return {
         ...state,
+        isLoading: true,
+        error: null
+      };
+    case actions.SONG_SUCCESS:
+      return {
+        ...state,
+        isloading: false,
+        error: null,
+        success: true
+      };
+    case actions.FETCH_SONG:
+      return {
+        ...state,
+        selectedGenre: [],
+        selectedArtist: [],
+        selectedPlaylist: [],
         items: action.payload.items.map(item => {
           return {
             name: item.name,
@@ -21,7 +37,7 @@ export default function(state = initialState.spotify, action) {
         error: null,
         isLoading: false
       };
-    case CLEAR_SEARCH:
+    case actions.CLEAR_SEARCH:
       return initialState;
     default:
       return state;

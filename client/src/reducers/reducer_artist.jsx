@@ -4,13 +4,19 @@ import initialState from "./state_initial";
 export default function(state = initialState.spotify, action) {
   // console.log("reducer fetch artist -> ", action.payload);
   switch (action.type) {
-    case actions.SPOTIFY_REQUEST:
+    case actions.REQUEST_ARTIST:
       return {
         ...state,
         isLoading: true,
         error: null
       };
-    case actions.SPOTIFY_SUCCESS:
+    case actions.ARTIST_SUCCESS:
+      return {
+        ...state,
+        isloading: false,
+        error: null,
+        success: true
+      };
     case actions.FETCH_ARTIST:
       return {
         ...state,

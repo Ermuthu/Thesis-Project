@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import Header from "./header/Header";
+import HeaderContainer from "./header/HeaderContainer";
 import Home from "./home/Home";
 import Spotify from "./spotify/Spotify";
 import Playlist from "./spotify/Playlist";
@@ -16,7 +16,7 @@ import Landing from "./Landing";
 const App = () => (
   <BrowserRouter>
     <div>
-      <Header />
+      <HeaderContainer />
       <Route exact path="/" component={Landing} />
       <Route path="/home" component={Home} />
       <Route path="/spotify" component={Spotify} />

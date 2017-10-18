@@ -6,14 +6,17 @@ import throttle from "lodash/throttle";
 import { createLogger } from "redux-logger";
 import throttling from "./middleware/throttle";
 import multi from "./middleware/multi";
-const logger = createLogger();
+import reduxCatch from "redux-catch";
+import errorHandler from "./middleware/errors";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const configureStore = () => {
   const persistedState = loadState();
+  const logger = createLogger();
+  const catcher = reduxCatch(errorHandler);
   const middleware = composeEnhancers(
-    applyMiddleware(thunk, multi, throttling, logger)
+    applyMiddleware(catcher, thunk, multi, throttling, logger)
   );
   const store = createStore(reducers, persistedState, middleware);
 
@@ -28,6 +31,6 @@ const configureStore = () => {
   return store;
 };
 
-window.store = configureStore;
+// window.store = configureStore;
 
 export default configureStore;

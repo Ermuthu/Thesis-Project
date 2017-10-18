@@ -7,7 +7,7 @@ export default function(state = initialState.spotify, action) {
     case actions.FETCH_FAILED:
       return {
         ...state,
-        error: { Error }
+        error: action.payload
       };
     case actions.REQUEST_ARTIST:
       return {

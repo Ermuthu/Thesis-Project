@@ -5,7 +5,8 @@ const initialState = {
   error: {},
   loading: false,
   auth: false,
-  success: false
+  success: false,
+  user: false
 };
 
 export default function(state = initialState, action) {
@@ -18,9 +19,18 @@ export default function(state = initialState, action) {
         loading: true
       };
     case actions.FETCH_USER:
-      return action.payload || false;
+      return {
+        ...state,
+        loggedIn: true,
+        auth: true,
+        success: true,
+        accessToken: action.payload.accessToken,
+        spotify: action.payload.spotifyId ? true : false,
+        loading: false,
+        user: action.payload
+      };
     case actions.LOGOUT:
-      return false;
+      return initialState;
     default:
       return state;
   }

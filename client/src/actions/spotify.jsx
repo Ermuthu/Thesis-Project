@@ -8,13 +8,13 @@ const headers = {
 const fetch = { method: "get", headers: headers };
 
 export const requestArtist = artist => dispatch => ({
-  type: actions.REQUEST_ARTIST,
+  type: actions.API,
+  payload: {
+    type: actions.ARTIST_SUCCESS,
+    success: dispatch(fetchArtist(artist.artist))
+  },
   meta: {
     throttle: 5000
-  },
-  onSuccess: {
-    type: actions.ARTIST_SUCCESS,
-    dispatch: dispatch(fetchArtist(artist.artist))
   }
 });
 

@@ -10,10 +10,10 @@ const HeaderLogout = ({ auth, logOut }) => (
       Logout
     </Login>
     <Home to={auth ? "/home" : "/"}>Home</Home>
-    {auth.spotifyId ? (
-      <StyledP nowrap>Welcome, {auth.spotifyId}</StyledP>
+    {auth.spotify ? (
+      <StyledP nowrap>Welcome, {auth.user.spotifyId}</StyledP>
     ) : (
-      <StyledP> Welcome, {auth.displayName} </StyledP>
+      <StyledP> Welcome, {auth.user.displayName} </StyledP>
     )}
   </Menu>
 );

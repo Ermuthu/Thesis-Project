@@ -38,7 +38,7 @@ export default function(state = initialState.spotify, action) {
         isLoading: false
       };
     case actions.CLEAR_SEARCH:
-      return initialState;
+      return initialState.spotify;
     default:
       return state;
   }

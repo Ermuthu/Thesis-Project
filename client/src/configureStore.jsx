@@ -4,7 +4,6 @@ import reducers from "./reducers";
 import { loadState, saveState } from "./localStorage";
 import throttle from "lodash/throttle";
 import { createLogger } from "redux-logger";
-import api from "./middleware/api";
 import throttling from "./middleware/throttle";
 import multi from "./middleware/multi";
 const logger = createLogger();

@@ -4,6 +4,11 @@ import initialState from "./state_initial";
 export default function(state = initialState.spotify, action) {
   // console.log("reducer fetch artist -> ", action.payload);
   switch (action.type) {
+    case actions.FETCH_FAILED:
+      return {
+        ...state,
+        error: { Error }
+      };
     case actions.REQUEST_ARTIST:
       return {
         ...state,
@@ -20,6 +25,9 @@ export default function(state = initialState.spotify, action) {
     case actions.FETCH_ARTIST:
       return {
         ...state,
+        selectedGenre: [],
+        selectedArtist: [],
+        selectedPlaylist: [],
         items: action.payload.items.map(item => {
           return {
             name: item.name,
@@ -29,9 +37,6 @@ export default function(state = initialState.spotify, action) {
             id: item.id
           };
         }),
-        selectedGenre: [],
-        selectedArtist: [],
-        selectedPlaylist: [],
         success: true,
         error: null,
         isLoading: false
@@ -55,7 +60,7 @@ export default function(state = initialState.spotify, action) {
         isLoading: false
       };
     case actions.CLEAR_SEARCH:
-      return initialState;
+      return initialState.spotify;
     default:
       return state;
   }

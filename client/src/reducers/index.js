@@ -6,7 +6,6 @@ import playlist from "./reducer_playlist";
 import genre from "./reducer_genre";
 import youtube from "./reducer_youtube";
 import { reducer as formReducer } from "redux-form";
-import ui from "./ui_reducer";
 
 export default combineReducers({
   auth,
@@ -15,6 +14,5 @@ export default combineReducers({
   playlist,
   genre,
   youtube,
-  form: formReducer,
-  ui
+  form: formReducer
 });

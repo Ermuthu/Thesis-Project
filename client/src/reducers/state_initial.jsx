@@ -14,23 +14,22 @@ export default {
     accessToken: null,
     refreshToken: null,
     photos: null,
-    spotify: false
+    spotify: false,
+    emails: null
   },
   youtube: {
     items: [],
     selectedVideo: null,
-    term: "",
     error: {},
     isLoading: false,
-    success: false
+    success: false,
+    url: "https:www.youtube.com/embed/"
   },
-  videos: [],
   spotify: {
     error: {},
     isLoading: false,
     items: [],
     success: false,
-    input: "",
     selectedPlaylist: [],
     selectedGenre: [],
     selectedArtist: []

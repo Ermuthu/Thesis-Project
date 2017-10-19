@@ -3,7 +3,7 @@ import initialState from "./state_initial";
 
 export default function(state = initialState.youtube, action) {
   switch (action.type) {
-    case actions.REQUEST_ARTIST:
+    case actions.YOUTUBE_SUCCESS:
       return {
         ...state,
         isLoading: true,

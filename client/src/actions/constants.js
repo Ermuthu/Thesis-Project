@@ -30,6 +30,8 @@ export const GENRE_SUCCESS = "GENRE_SUCCESS";
 export const CLEAR_SEARCH = "CLEAR_SEARCH";
 
 export const FETCH_YOUTUBE = "FETCH_YOUTUBE";
+export const YOUTUBE_SUCCESS = "YOUTUBE_SUCCESS";
+export const REQUEST_YOUTUBE = "REQUEST_YOUTUBE";
 
 export const START_NETWORK = "START_NETWORK";
 export const END_NETWORK = "END_NETWORK";

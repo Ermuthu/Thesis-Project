@@ -7,18 +7,64 @@ const headers = {
 };
 const fetch = { method: "get", headers: headers };
 
-export const requestArtist = artist => dispatch => ({
+export const reqArt = artist => dispatch => ({
   type: actions.API,
   payload: {
     type: actions.ARTIST_SUCCESS,
-    success: dispatch(fetchArtist(artist.artist))
+    success: dispatch(fetchArt(artist.artist))
   },
   meta: {
     throttle: 5000
   }
 });
+// export const reqArt = (artist, song, playlist, genre) => dispatch => {
+//   if (artist.artist)
+//     dispatch({
+//       type: actions.REQUEST_ARTIST,
+//       onSuccess: {
+//         type: actions.ARTIST_SUCCESS,
+//         dispatch: dispatch(fetchArt(artist.artist))
+//       }
+//     });
+//   if (song)
+//     dispatch({
+//       type: actions.REQUEST_SONG,
+//       onSuccess: {
+//         type: actions.SONG_SUCCESS,
+//         dispatch: dispatch(fetchSong(song.song))
+//       }
+//     });
+//   if (playlist)
+//     dispatch({
+//       type: actions.REQUEST_PLAYLIST,
+//       onSuccess: {
+//         type: actions.PLAYLIST_SUCCESS,
+//         dispatch: dispatch(fetchPlaylist(playlist.playlist))
+//       }
+//     });
+//   if (genre)
+//     dispatch({
+//       type: actions.REQUEST_GENRE,
+//       onSuccess: {
+//         type: actions.GENRE_SUCCESS,
+//         dispatch: dispatch(fetchGenre(genre.genre))
+//       }
+//     });
+//   // elseif(song) {
+//   //   dispatch = fetchSong(song.song);
+//   // },
+//   // elseif(genre) {
+//   //   dispatch = fetchGenre(genre.genre);
+//   // },
+//   // elseif(playlist) {
+//   //   dispatch = fetchPlaylist(playlist.playlist);
+//   // },
+//   // meta: {
+//   //   throttle: 5000
+//   // }
+// };
 
-export const fetchArtist = artist => async dispatch => {
+export const fetchArt = artist => async dispatch => {
   const FETCH_URL = `${BASE_URL}q=${artist}&type=artist`;
   const res = await axios.get(FETCH_URL, fetch);
   dispatch({ type: actions.FETCH_ARTIST, payload: res.data.artists });
@@ -29,7 +75,7 @@ export const selectedArtist = href => async dispatch => {
   dispatch({ type: actions.SELECTED_ARTIST, payload: res.data });
 };
 
-export const requestSong = song => dispatch => ({
+export const reqSong = song => dispatch => ({
   type: actions.REQUEST_SONG,
   onSuccess: {
     type: actions.SONG_SUCCESS,
@@ -41,10 +87,9 @@ export const fetchSong = song => async dispatch => {
   const FETCH_URL = `${BASE_URL}q=${song}&type=track`;
   const res = await axios.get(FETCH_URL, fetch);
   dispatch({ type: actions.FETCH_SONG, payload: res.data.tracks });
-  // console.log(res);
 };
 
-export const requestPlaylist = playlist => dispatch => ({
+export const reqPL = playlist => dispatch => ({
   type: actions.REQUEST_PLAYLIST,
   onSuccess: {
     type: actions.PLAYLIST_SUCCESS,
@@ -56,16 +101,14 @@ export const fetchPlaylist = playlist => async dispatch => {
   const FETCH_URL = `${BASE_URL}q=${playlist}&type=playlist`;
   const res = await axios.get(FETCH_URL, fetch);
   dispatch({ type: actions.FETCH_PLAYLIST, payload: res.data.playlists });
-  // console.log("playlist data", res.data.playlists.items);
 };
 
 export const selectedPlaylist = url => async dispatch => {
   const res = await axios.get(url, fetch);
-  // console.log(res.data);
   dispatch({ type: actions.SELECTED_PLAYLIST, payload: res.data });
 };
 
-export const requestGenre = genre => dispatch => ({
+export const reqGen = genre => dispatch => ({
   type: actions.REQUEST_GENRE,
   onSuccess: {
     type: actions.GENRE_SUCCESS,
@@ -77,7 +120,6 @@ export const fetchGenre = genre => async dispatch => {
   const FETCH_URL = `${CATEGORY_URL}${genre}/playlists`;
   const res = await axios.get(FETCH_URL, fetch);
   dispatch({ type: actions.FETCH_GENRE, payload: res.data.playlists });
-  // console.log(res.data.playlists);
 };
 
 export const selectedGenre = href => async dispatch => {
@@ -87,10 +129,18 @@ export const selectedGenre = href => async dispatch => {
 
 export const clearSearch = () => ({ type: actions.CLEAR_SEARCH });
 
+export const fetchFailed = error => dispatch => {
+  console.log(error);
+  dispatch({
+    type: actions.FETCH_FAILED,
+    payload: error
+  });
+};
+
 // export const spotifyRequest = () => ({
 //   type: actions.REQUEST_ARTIST,
 //   artist,
 //   history,
 //   url: `${BASE_URL}q=${artist.artist}&type=artist`,
-//   onSuccess: (res, dispatch) => dispatch(fetchArtist(artist, res.artist.items))
+//   onSuccess: (res, dispatch) => dispatch(fetchArt(artist, res.artist.items))
 // });

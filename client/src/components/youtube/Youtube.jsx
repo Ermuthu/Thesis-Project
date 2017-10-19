@@ -1,15 +1,14 @@
 import React from "react";
-import SearchBar from "./Search";
-import VideoList from "./List";
-import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import YouTubeField from "./FieldExport";
 
-const Youtube = ({ children, youtube }) => (
-  <div>
-    <SearchBar>{children}</SearchBar>
-    <VideoList youtube={youtube}>{children}</VideoList>
-  </div>
+const YouTube = ({ children, history }) => (
+  <YouTubeField history={history}>{children}</YouTubeField>
 );
 
-const mapStateToProps = ({ youtube }) => ({ youtube });
+YouTube.propTypes = {
+  history: PropTypes.object.isRequired,
+  children: PropTypes.any
+};
 
-export default connect(mapStateToProps)(Youtube);
+export default YouTube;

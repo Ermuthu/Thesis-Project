@@ -1,5 +1,6 @@
 import React from "react";
 import SpotifyField from "./FieldExport";
+import PropTypes from "prop-types";
 
 const Spotify = ({ clearSearch, handleSubmit, history, children }) => (
   <div>
@@ -12,5 +13,12 @@ const Spotify = ({ clearSearch, handleSubmit, history, children }) => (
     </button>
   </div>
 );
+
+Spotify.propTypes = {
+  history: PropTypes.object.isRequired,
+  children: PropTypes.any,
+  clearSearch: PropTypes.func,
+  handleSubmit: PropTypes.func
+};
 
 export default Spotify;

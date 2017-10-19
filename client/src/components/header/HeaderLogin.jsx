@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Menu, Login } from "./Children.Style";
 import { loginRequest } from "../../actions/auth";
 
-const HeaderLogin = () => (
+const HeaderLogin = ({ loginRequest }) => (
   <Menu>
     <Login href="/auth/google" onClick={loginRequest}>
       Login with Google

@@ -20,6 +20,7 @@ export default function(state = initialState.user, action) {
         displayName: action.payload.displayName,
         photos: action.payload.photos,
         loading: false,
+        emails: action.payload.emails,
         user: action.payload
       };
     case actions.LOGOUT:

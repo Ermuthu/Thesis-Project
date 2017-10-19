@@ -7,10 +7,10 @@ import { fetchUser } from "../../actions/auth";
 
 class Home extends Component {
   componentDidMount = () => this.props.fetchUser();
-  render() {
+  render = () => {
     const { auth } = this.props;
     return auth.spotify ? <HomeSpotify /> : <HomeYoutube />;
-  }
+  };
 }
 
 Home.propTypes = {

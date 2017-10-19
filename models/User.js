@@ -7,6 +7,7 @@ const userSchema = new Schema({
   displayName: String,
   googleId: String,
   photos: String,
+  emails: String,
   profileUrl: String,
   spotifyId: String,
   refreshToken: String,

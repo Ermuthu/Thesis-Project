@@ -15,6 +15,8 @@ const youtubeAuthStrategy = passport.use(
     async (accessToken, refreshToken, profile, done) => {
       const user = await new User({
         googleId: profile.id,
+        photos: profile.photos[0].value,
+        emails: profile.emails[0].value,
         displayName: profile.displayName,
         profile,
         accessToken,

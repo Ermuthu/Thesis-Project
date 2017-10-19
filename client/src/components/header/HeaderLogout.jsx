@@ -22,6 +22,4 @@ HeaderLogout.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-const mapStateToProps = ({ auth }) => ({ auth });
-
-export default connect(mapStateToProps, { logOut })(HeaderLogout);
+export default connect(null, { logOut })(HeaderLogout);

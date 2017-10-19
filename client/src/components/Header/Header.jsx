@@ -4,7 +4,7 @@ import HeaderLogin from "./HeaderLogin";
 import HeaderLogout from "./HeaderLogout";
 
 const Header = ({ auth }) => {
-  switch (auth.user) {
+  switch (auth.loggedIn) {
     case null:
       return "Loading...";
     case false:

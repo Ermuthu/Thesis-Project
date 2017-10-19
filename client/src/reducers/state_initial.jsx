@@ -4,6 +4,14 @@ export default {
     audio: null,
     playing: false
   },
+  user: {
+    loggedIn: false,
+    error: {},
+    loading: false,
+    success: false,
+    user: false,
+    displayName: null
+  },
   youtube: {
     items: [],
     selectedVideo: null,

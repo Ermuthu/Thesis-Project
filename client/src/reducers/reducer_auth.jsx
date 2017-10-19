@@ -1,17 +1,7 @@
 import * as actions from "../actions/constants";
+import initialState from "./state_initial";
 
-const initialState = {
-  loggedIn: false,
-  error: {},
-  loading: false,
-  auth: false,
-  success: false,
-  user: false
-};
-
-export default function(state = initialState, action) {
-  // console.log(state);
-  // console.log("auth reducer", action.payload);
+export default function(state = initialState.user, action) {
   switch (action.type) {
     case actions.LOGIN_REQUEST:
       return {
@@ -22,15 +12,15 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loggedIn: true,
-        auth: true,
         success: true,
         accessToken: action.payload.accessToken,
         spotify: action.payload.spotifyId ? true : false,
+        google: action.payload.displayName ? true : false,
         loading: false,
         user: action.payload
       };
     case actions.LOGOUT:
-      return initialState;
+      return initialState.user;
     default:
       return state;
   }

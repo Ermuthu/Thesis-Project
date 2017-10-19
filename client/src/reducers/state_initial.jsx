@@ -10,7 +10,11 @@ export default {
     loading: false,
     success: false,
     user: false,
-    displayName: null
+    displayName: null,
+    accessToken: null,
+    refreshToken: null,
+    photos: null,
+    spotify: false
   },
   youtube: {
     items: [],

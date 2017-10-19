@@ -18,8 +18,9 @@ const spotifyAuthStrategy = passport.use(
         spotifyId: profile.id,
         photos: profile.photos[0],
         profileUrl: profile.profileUrl,
+        displayName: profile.displayName,
         profile,
-        accessToken,
+        accessToken: accessToken ? refreshToken : accessToken,
         refreshToken
       }).save();
       done(null, user);

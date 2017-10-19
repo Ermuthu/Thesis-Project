@@ -14,8 +14,11 @@ export default function(state = initialState.user, action) {
         loggedIn: true,
         success: true,
         accessToken: action.payload.accessToken,
+        refreshToken: action.payload.refreshToken,
         spotify: action.payload.spotifyId ? true : false,
-        google: action.payload.displayName ? true : false,
+        google: action.payload.googleId ? true : false,
+        displayName: action.payload.displayName,
+        photos: action.payload.photos,
         loading: false,
         user: action.payload
       };

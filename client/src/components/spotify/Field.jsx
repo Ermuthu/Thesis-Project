@@ -3,28 +3,28 @@ import { Song, Artist, Playlist, Genre } from "./Inputs";
 
 const SpotifyField = ({ submitting, history, actions, handleSubmit }) => (
   <div>
-    <form onSubmit={handleSubmit(actions.requestArtist)}>
+    <form onSubmit={handleSubmit(actions.reqArt)}>
       {Artist()}
       <button
         disabled={submitting}
         onClick={() => history.push("/spotify/artist")}
       />
     </form>
-    <form onSubmit={handleSubmit(actions.requestSong)}>
+    <form onSubmit={handleSubmit(actions.reqSong)}>
       {Song()}
       <button
         disabled={submitting}
         onClick={() => history.push("/spotify/song")}
       />
     </form>
-    <form onSubmit={handleSubmit(actions.requestGenre)}>
+    <form onSubmit={handleSubmit(actions.reqGen)}>
       {Genre()}
       <button
         disabled={submitting}
         onClick={() => history.push("/spotify/genre")}
       />
     </form>
-    <form onSubmit={handleSubmit(actions.requestPlaylist)}>
+    <form onSubmit={handleSubmit(actions.reqPL)}>
       {Playlist()}
       <button
         disabled={submitting}

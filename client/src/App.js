@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import HeaderContainer from "./header/HeaderContainer";
+import HeaderContainer from "./components/header/HeaderContainer";
 import routes from "./routes";
 
 const App = () => (

@@ -1,19 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Artist } from "../../containers/Headers";
 
-const SelectedArtist = ({ selectedArtist }) => (
+const SelectedArtist = ({ selected }) => (
   <div>
-    <a href={selectedArtist.external_urls}>
-      <h1>
-        {selectedArtist.name} {selectedArtist.message}
-      </h1>
-    </a>
-    <img src={selectedArtist.img} alt="" />
+    <Artist
+      externalUrl={selected.external_url}
+      name={selected.name}
+      message={selected.message}
+      img={selected.img}
+    />
   </div>
 );
 
-const mapStateToProps = ({ artist }) => ({
-  selectedArtist: artist.selectedArtist
+const mapState = ({ artist }) => ({
+  selected: artist.selectedArtist
 });
 
-export default connect(mapStateToProps)(SelectedArtist);
+export default connect(mapState)(SelectedArtist);

@@ -33,6 +33,6 @@ export const FETCH_YOUTUBE = "FETCH_YOUTUBE";
 export const YOUTUBE_SUCCESS = "YOUTUBE_SUCCESS";
 export const REQUEST_YOUTUBE = "REQUEST_YOUTUBE";
 
-export const START_NETWORK = "START_NETWORK";
-export const END_NETWORK = "END_NETWORK";
-export const SWITCH_THEME = "SWITCH_THEME";
+export const PLAY_SONG = "PLAY_SONG";
+export const PLAY_SPOTIFY = "PLAY_SPOTIFY";
+export const PAUSE_SPOTIFY = "PAUSE_SPOTIFY";

@@ -137,6 +137,34 @@ export const fetchFailed = error => dispatch => {
   });
 };
 
+export const playSong = url => dispatch => {
+  dispatch({
+    type: actions.PLAY_SONG,
+    payload: url
+  });
+};
+
+export const playSpotify = (preview_url, isPlaying) => dispatch => {
+  const url = preview_url;
+  const audio = new Audio(preview_url);
+  const pause = audio.pause(preview_url);
+  dispatch({
+    type: actions.PLAY_SPOTIFY,
+    payload: {
+      playUrl: audio.play(),
+      isPlaying: true
+    }
+  });
+  dispatch(pauseSpotify(audio));
+};
+
+export const pauseSpotify = audio => dispatch => {
+  dispatch({
+    type: actions.PAUSE_SPOTIFY,
+    payload: { playUrl: audio.pause(), isPlaying: false }
+  });
+};
+
 // export const spotifyRequest = () => ({
 //   type: actions.REQUEST_ARTIST,
 //   artist,

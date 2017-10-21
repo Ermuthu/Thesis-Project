@@ -46,7 +46,10 @@ export default (state = initialState.spotify, action) => {
             album: item.track.album,
             trackImg: item.track.album.images[0].url,
             id: item.track.id,
-            preview_url: item.track.preview_url
+            preview_url: item.track.preview_url,
+            uri: item.track.uri,
+            name: item.track.name,
+            href: item.track.href
           };
         }),
         success: true,

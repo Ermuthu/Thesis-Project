@@ -1,7 +1,7 @@
 import * as actions from "../actions/constants";
 import initialState from "./state_initial";
 
-export default function(state = initialState.user, action) {
+export default (state = initialState.user, action) => {
   switch (action.type) {
     case actions.LOGIN_REQUEST:
       return {
@@ -28,4 +28,4 @@ export default function(state = initialState.user, action) {
     default:
       return state;
   }
-}
+};

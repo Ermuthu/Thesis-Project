@@ -1,7 +1,7 @@
 import * as actions from "../actions/constants";
 import initialState from "./state_initial";
 
-export default function(state = initialState.spotify, action) {
+export default (state = initialState.spotify, action) => {
   switch (action.type) {
     case actions.REQUEST_GENRE:
       return {
@@ -58,4 +58,4 @@ export default function(state = initialState.spotify, action) {
     default:
       return state;
   }
-}
+};

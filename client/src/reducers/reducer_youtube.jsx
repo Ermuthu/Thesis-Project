@@ -1,7 +1,7 @@
 import * as actions from "../actions/constants";
 import initialState from "./state_initial";
 
-export default function(state = initialState.youtube, action) {
+export default (state = initialState.youtube, action) => {
   switch (action.type) {
     case actions.YOUTUBE_SUCCESS:
       return {
@@ -27,4 +27,4 @@ export default function(state = initialState.youtube, action) {
     default:
       return state;
   }
-}
+};

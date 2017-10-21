@@ -1,8 +1,7 @@
 import * as actions from "../actions/constants";
 import initialState from "./state_initial";
 
-export default function(state = initialState.spotify, action) {
-  // console.log("reducer fetch playlist -> ", action.payload);
+export default (state = initialState.spotify, action) => {
   switch (action.type) {
     case actions.REQUEST_PLAYLIST:
       return {
@@ -61,4 +60,4 @@ export default function(state = initialState.spotify, action) {
     default:
       return state;
   }
-}
+};

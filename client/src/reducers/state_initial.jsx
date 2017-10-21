@@ -1,8 +1,8 @@
 export default {
-  currentSong: {
+  player: {
     playUrl: "",
     audio: null,
-    playing: false
+    isPlaying: false
   },
   user: {
     loggedIn: false,

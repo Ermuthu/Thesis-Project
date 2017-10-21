@@ -17,52 +17,6 @@ export const reqArt = artist => dispatch => ({
     throttle: 5000
   }
 });
-// export const reqArt = (artist, song, playlist, genre) => dispatch => {
-//   if (artist.artist)
-//     dispatch({
-//       type: actions.REQUEST_ARTIST,
-//       onSuccess: {
-//         type: actions.ARTIST_SUCCESS,
-//         dispatch: dispatch(fetchArt(artist.artist))
-//       }
-//     });
-//   if (song)
-//     dispatch({
-//       type: actions.REQUEST_SONG,
-//       onSuccess: {
-//         type: actions.SONG_SUCCESS,
-//         dispatch: dispatch(fetchSong(song.song))
-//       }
-//     });
-//   if (playlist)
-//     dispatch({
-//       type: actions.REQUEST_PLAYLIST,
-//       onSuccess: {
-//         type: actions.PLAYLIST_SUCCESS,
-//         dispatch: dispatch(fetchPlaylist(playlist.playlist))
-//       }
-//     });
-//   if (genre)
-//     dispatch({
-//       type: actions.REQUEST_GENRE,
-//       onSuccess: {
-//         type: actions.GENRE_SUCCESS,
-//         dispatch: dispatch(fetchGenre(genre.genre))
-//       }
-//     });
-//   // elseif(song) {
-//   //   dispatch = fetchSong(song.song);
-//   // },
-//   // elseif(genre) {
-//   //   dispatch = fetchGenre(genre.genre);
-//   // },
-//   // elseif(playlist) {
-//   //   dispatch = fetchPlaylist(playlist.playlist);
-//   // },
-//   // meta: {
-//   //   throttle: 5000
-//   // }
-// };
 
 export const fetchArt = artist => async dispatch => {
   const FETCH_URL = `${BASE_URL}q=${artist}&type=artist`;
@@ -144,26 +98,25 @@ export const playSong = url => dispatch => {
   });
 };
 
-export const playSpotify = (preview_url, isPlaying) => dispatch => {
-  const url = preview_url;
-  const audio = new Audio(preview_url);
-  const pause = audio.pause(preview_url);
-  dispatch({
-    type: actions.PLAY_SPOTIFY,
-    payload: {
-      playUrl: audio.play(),
-      isPlaying: true
-    }
-  });
-  dispatch(pauseSpotify(audio));
-};
+export const playSpotify = preview_url => ({
+  type: actions.PLAY_SPOTIFY,
+  payload: {
+    preview_url
+  },
+  meta: {
+    active: true
+  }
+});
 
-export const pauseSpotify = audio => dispatch => {
-  dispatch({
-    type: actions.PAUSE_SPOTIFY,
-    payload: { playUrl: audio.pause(), isPlaying: false }
-  });
-};
+export const pauseSpotify = preview_url => ({
+  type: actions.PAUSE_SPOTIFY,
+  payload: {
+    playUrl: preview_url
+  },
+  meta: {
+    notActive: true
+  }
+});
 
 // export const spotifyRequest = () => ({
 //   type: actions.REQUEST_ARTIST,

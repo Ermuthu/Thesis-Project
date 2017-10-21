@@ -5,18 +5,15 @@ import { loadState, saveState } from "./localStorage";
 import throttle from "lodash/throttle";
 import { createLogger } from "redux-logger";
 import throttling from "./middleware/throttle";
-import multi from "./middleware/multi";
-import reduxCatch from "redux-catch";
-import errorHandler from "./middleware/errors";
+import spotifyMiddleware from "./middleware/spotify";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const configureStore = () => {
   const persistedState = loadState();
   const logger = createLogger();
-  const catcher = reduxCatch(errorHandler);
   const middleware = composeEnhancers(
-    applyMiddleware(catcher, thunk, multi, throttling, logger)
+    applyMiddleware(thunk, throttling, logger, spotifyMiddleware)
   );
   const store = createStore(reducers, persistedState, middleware);
 
@@ -31,6 +28,6 @@ const configureStore = () => {
   return store;
 };
 
-// window.store = configureStore;
+window.store = configureStore;
 
 export default configureStore;

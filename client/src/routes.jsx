@@ -3,7 +3,7 @@ import Home from "./components/home/Home";
 import Spotify from "./components/spotify/SpotifyExport";
 import Playlist from "./components/spotify/results/Playlist";
 import Genre from "./components/spotify/results/Genre";
-import Song from "./components/spotify/results/Song";
+import Song from "./components/spotify/results/SongExport";
 import Artist from "./components/spotify/results/Artist";
 import SelectedPlaylist from "./components/spotify/results/selected/SelectedPlaylist";
 import SelectedGenre from "./components/spotify/results/selected/SelectedGenre";

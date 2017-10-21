@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { reduxForm } from "redux-form";
 
-const mapStateToProps = ({ youtube }) => ({ youtube });
+const mapState = ({ youtube }) => ({ youtube });
 
 export default reduxForm({
   form: "SpotifyForm"
-})(connect(mapStateToProps)(withRouter(YouTube)));
+})(connect(mapState)(withRouter(YouTube)));

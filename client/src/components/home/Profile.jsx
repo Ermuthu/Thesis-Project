@@ -8,14 +8,14 @@ const Profile = ({ auth }) => (
     {auth.user.followers}
     {auth.user.profile.emails[0].value}
     <a href={auth.user.profileUrl}>Your Spotify Profile</a>
-    <img src={auth.photos} />
+    <img src={auth.photos} alt="" />
   </div>
 );
 
-const mapStateToProps = ({ auth }) => ({ auth });
+const mapState = ({ auth }) => ({ auth });
 
 Profile.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapState)(Profile);

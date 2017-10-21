@@ -7,7 +7,7 @@ export default (state = initialState.player, action) => {
       return {
         ...state,
         isPlaying: true,
-        url: action.payload
+        playUrl: action.payload
       };
     case actions.PLAY_SPOTIFY:
       return {

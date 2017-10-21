@@ -11,10 +11,10 @@ const YouTubeList = ({ youtube }) => {
   return <SongContainer>{YTResults}</SongContainer>;
 };
 
-const mapStateToProps = ({ youtube }) => ({ youtube });
+const mapState = ({ youtube }) => ({ youtube });
 
 YouTubeList.propTypes = {
   youtube: PropTypes.object.isRequired
 };
 
-export default connect(mapStateToProps)(YouTubeList);
+export default connect(mapState)(YouTubeList);

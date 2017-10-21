@@ -91,14 +91,14 @@ export const fetchFailed = error => dispatch => {
   });
 };
 
-export const playSong = url => dispatch => {
+export const playSong2 = url => dispatch => {
   dispatch({
     type: actions.PLAY_SONG,
     payload: url
   });
 };
 
-export const playSpotify = preview_url => ({
+export const playSong = preview_url => ({
   type: actions.PLAY_SPOTIFY,
   payload: {
     preview_url
@@ -108,15 +108,17 @@ export const playSpotify = preview_url => ({
   }
 });
 
-export const pauseSpotify = preview_url => ({
-  type: actions.PAUSE_SPOTIFY,
-  payload: {
-    playUrl: preview_url
-  },
-  meta: {
-    notActive: true
-  }
-});
+export const pauseSong = preview_url => {
+  return {
+    type: actions.PAUSE_SPOTIFY,
+    payload: {
+      playUrl: preview_url
+    },
+    meta: {
+      notActive: true
+    }
+  };
+};
 
 // export const spotifyRequest = () => ({
 //   type: actions.REQUEST_ARTIST,

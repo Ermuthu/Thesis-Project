@@ -19,6 +19,6 @@ Header.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-const mapStateToProps = ({ auth }) => ({ auth });
+const mapState = ({ auth }) => ({ auth });
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapState)(Header);

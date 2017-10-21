@@ -18,6 +18,6 @@ Home.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-const mapStateToProps = ({ auth }) => ({ auth });
+const mapState = ({ auth }) => ({ auth });
 
-export default connect(mapStateToProps, { fetchUser })(Home);
+export default connect(mapState, { fetchUser })(Home);

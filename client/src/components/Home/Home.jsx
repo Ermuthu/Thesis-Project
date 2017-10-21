@@ -14,7 +14,8 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  fetchUser: PropTypes.func.isRequired
+  fetchUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = ({ auth }) => ({ auth });

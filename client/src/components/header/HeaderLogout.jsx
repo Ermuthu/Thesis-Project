@@ -19,7 +19,8 @@ const HeaderLogout = ({ auth, logOut }) => (
 );
 
 HeaderLogout.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  logOut: PropTypes.func
 };
 
 export default connect(null, { logOut })(HeaderLogout);

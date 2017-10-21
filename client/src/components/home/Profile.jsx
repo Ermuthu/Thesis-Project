@@ -2,21 +2,19 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-const Profile = ({ auth }) => {
-  const profile = auth.map(person => {
-    const profileId = auth.profile.displayName;
-    console.log("profile ->", profile);
-
-    return (
-      //   <div key={auth}>
-      <div>{profileId}</div>
-    );
-  });
-};
+const Profile = ({ auth }) => (
+  <div>
+    {auth.displayName}
+    {auth.user.followers}
+    {auth.user.profile.emails[0].value}
+    <a href={auth.user.profileUrl}>Your Spotify Profile</a>
+    <img src={auth.photos} />
+  </div>
+);
 
 const mapStateToProps = ({ auth }) => ({ auth });
 
-YouTubeField.propTypes = {
+Profile.propTypes = {
   auth: PropTypes.object.isRequired
 };
 

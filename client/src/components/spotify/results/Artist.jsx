@@ -20,6 +20,6 @@ const SpotifyArtist = ({ artist, selectedArtist }) => (
   </div>
 );
 
-const mapStateToProps = ({ artist }) => ({ artist });
+const mapState = ({ artist }) => ({ artist });
 
-export default connect(mapStateToProps, { selectedArtist })(SpotifyArtist);
+export default connect(mapState, { selectedArtist })(SpotifyArtist);

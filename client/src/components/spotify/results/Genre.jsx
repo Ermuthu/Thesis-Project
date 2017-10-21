@@ -19,6 +19,6 @@ const SpotifyGenre = ({ genre, selectedGenre }) => (
   </SongContainer>
 );
 
-const mapStateToProps = ({ genre }) => ({ genre });
+const mapState = ({ genre }) => ({ genre });
 
-export default connect(mapStateToProps, { selectedGenre })(SpotifyGenre);
+export default connect(mapState, { selectedGenre })(SpotifyGenre);

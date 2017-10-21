@@ -1,67 +1,48 @@
-import React, { Component } from "react";
-import { clearSearch } from "../../../actions/spotify";
+import React from "react";
 import { connect } from "react-redux";
-import { SongContainer, Inner, Image } from "../Spotify.Style";
+import { playSong, playSpotify, pauseSpotify } from "../../../actions/spotify";
+import { TrackHeader, PositionHeader } from "../containers/Headers";
+import { PlayButton } from "../containers/images";
+import SpotifyPlayer from "react-spotify-player";
 
-class SpotifySong extends Component {
-  state = { playUrl: "", audio: null, playing: false };
-  componentWillUnmount = () => this.props.clearSearch();
-
-  playSong(url) {
-    let audio = new Audio(url);
-    if (!this.state.playing) {
-      audio.play();
-      this.setState({
-        playing: true,
-        playUrl: url,
-        audio
-      });
-    } else {
-      if (this.state.playUrl === url) {
-        this.state.audio.pause();
-        this.setState({
-          playing: false
-        });
-      } else {
-        this.state.audio.pause();
-        audio.play();
-        this.setState({
-          playing: true,
-          playUrl: url,
-          audio
-        });
-      }
-    }
-  }
-
-  render() {
-    const { song } = this.props;
-    return (
-      <SongContainer>
-        {song.items.map(track => {
-          return (
-            <div
-              key={track.id}
-              onClick={() => this.playSong(track.preview_url)}
-            >
-              <div>{track.name}</div>
-              <Inner>
-                {this.state.playing ? (
-                  <span>
-                    <i className="material-icons">pause</i>
-                  </span>
-                ) : (
-                  <span>&#9654;</span>
-                )}
-              </Inner>
-              <Image src={track.trackImg} alt="track" />
+const SpotifySong = ({ song, player, playSong, playSpotify, pauseSpotify }) => {
+  return (
+    <div>
+      {song.items.map(songs => {
+        return (
+          <div key={songs.id}>
+            {/* <div onClick={() => playSong(songs.uri)}> */}
+            <img src={songs.trackImg} />
+            <SpotifyPlayer
+              uri={songs.uri}
+              size={{ width: "90%", height: "300" }}
+              view={"list"}
+              theme={"black"}
+            />
+            <div onClick={() => playSpotify(songs.preview_url)}>
+              {songs.name}
             </div>
-          );
-        })}
-      </SongContainer>
-    );
-  }
-}
-const mapStateToProps = ({ song }) => ({ song });
+            <div onClick={() => pauseSpotify(songs.preview_url)}>
+              {songs.name}
+            </div>
 
-export default connect(mapStateToProps, { clearSearch })(SpotifySong);
+            <TrackHeader
+              name={
+                <a href={`${songs.preview_url}`} target="_blank">
+                  {songs.name}
+                </a>
+              }
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+const mapStateToProps = ({ song, player }) => ({ song, player });
+
+export default connect(mapStateToProps, {
+  pauseSpotify,
+  playSong,
+  playSpotify
+})(SpotifySong);

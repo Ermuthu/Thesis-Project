@@ -24,8 +24,13 @@ export const fetchArt = artist => async dispatch => {
   dispatch({ type: actions.FETCH_ARTIST, payload: res.data.artists });
 };
 
-export const nextTwentyA = href => async dispatch => {
-  const res = await axios.get(href, fetch);
+export const nextTwentyA = next => async dispatch => {
+  const res = await axios.get(next, fetch);
+  dispatch({ type: actions.FETCH_ARTIST, payload: res.data.artists });
+};
+
+export const prevTwentyA = prev => async dispatch => {
+  const res = await axios.get(prev, fetch);
   dispatch({ type: actions.FETCH_ARTIST, payload: res.data.artists });
 };
 
@@ -48,8 +53,13 @@ export const fetchSong = song => async dispatch => {
   dispatch({ type: actions.FETCH_SONG, payload: res.data.tracks });
 };
 
-export const nextTwenty = href => async dispatch => {
-  const res = await axios.get(href, fetch);
+export const nextTwenty = next => async dispatch => {
+  const res = await axios.get(next, fetch);
+  dispatch({ type: actions.FETCH_SONG, payload: res.data.tracks });
+};
+
+export const prevTwenty = prev => async dispatch => {
+  const res = await axios.get(prev, fetch);
   dispatch({ type: actions.FETCH_SONG, payload: res.data.tracks });
 };
 
@@ -64,6 +74,16 @@ export const reqPL = playlist => dispatch => ({
 export const fetchPlaylist = playlist => async dispatch => {
   const FETCH_URL = `${BASE_URL}q=${playlist}&type=playlist`;
   const res = await axios.get(FETCH_URL, fetch);
+  dispatch({ type: actions.FETCH_PLAYLIST, payload: res.data.playlists });
+};
+
+export const nextTwentyP = next => async dispatch => {
+  const res = await axios.get(next, fetch);
+  dispatch({ type: actions.FETCH_PLAYLIST, payload: res.data.playlists });
+};
+
+export const prevTwentyP = prev => async dispatch => {
+  const res = await axios.get(prev, fetch);
   dispatch({ type: actions.FETCH_PLAYLIST, payload: res.data.playlists });
 };
 
@@ -83,6 +103,16 @@ export const reqGen = genre => dispatch => ({
 export const fetchGenre = genre => async dispatch => {
   const FETCH_URL = `${CATEGORY_URL}${genre}/playlists`;
   const res = await axios.get(FETCH_URL, fetch);
+  dispatch({ type: actions.FETCH_GENRE, payload: res.data.playlists });
+};
+
+export const nextTwentyG = next => async dispatch => {
+  const res = await axios.get(next, fetch);
+  dispatch({ type: actions.FETCH_GENRE, payload: res.data.playlists });
+};
+
+export const prevTwentyG = prev => async dispatch => {
+  const res = await axios.get(prev, fetch);
   dispatch({ type: actions.FETCH_GENRE, payload: res.data.playlists });
 };
 

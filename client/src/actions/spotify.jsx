@@ -24,6 +24,11 @@ export const fetchArt = artist => async dispatch => {
   dispatch({ type: actions.FETCH_ARTIST, payload: res.data.artists });
 };
 
+export const nextTwentyA = href => async dispatch => {
+  const res = await axios.get(href, fetch);
+  dispatch({ type: actions.FETCH_ARTIST, payload: res.data.artists });
+};
+
 export const selectedArtist = href => async dispatch => {
   const res = await axios.get(href, fetch);
   dispatch({ type: actions.SELECTED_ARTIST, payload: res.data });
@@ -40,6 +45,11 @@ export const reqSong = song => dispatch => ({
 export const fetchSong = song => async dispatch => {
   const FETCH_URL = `${BASE_URL}q=${song}&type=track`;
   const res = await axios.get(FETCH_URL, fetch);
+  dispatch({ type: actions.FETCH_SONG, payload: res.data.tracks });
+};
+
+export const nextTwenty = href => async dispatch => {
+  const res = await axios.get(href, fetch);
   dispatch({ type: actions.FETCH_SONG, payload: res.data.tracks });
 };
 

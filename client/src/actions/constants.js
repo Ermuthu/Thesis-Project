@@ -1,4 +1,6 @@
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
 export const API = "API";
 export const FETCH_USER = "FETCH_USER";
@@ -36,3 +38,6 @@ export const REQUEST_YOUTUBE = "REQUEST_YOUTUBE";
 export const PLAY_SONG = "PLAY_SONG";
 export const PLAY_SPOTIFY = "PLAY_SPOTIFY";
 export const PAUSE_SPOTIFY = "PAUSE_SPOTIFY";
+
+export const NEXT_TWENTY = "NEXT_TWENTY";
+export const NEXT_TWENTYA = "NEXT_TWENTYA";

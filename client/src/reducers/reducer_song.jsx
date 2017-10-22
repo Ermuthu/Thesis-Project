@@ -37,7 +37,8 @@ export default (state = initialState.spotify, action) => {
         }),
         results: {
           href: song.href,
-          next: song.next
+          next: song.next,
+          prev: song.previous
         },
         success: true,
         error: null,

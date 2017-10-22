@@ -35,7 +35,8 @@ export default (state = initialState.spotify, action) => {
         }),
         results: {
           href: artist.href,
-          next: artist.next
+          next: artist.next,
+          prev: artist.previous
         },
         success: true,
         error: null,
@@ -54,8 +55,10 @@ export default (state = initialState.spotify, action) => {
           img: results.images[0].url,
           uri: results.uri,
           id: results.id,
-          message: ", Click for artists Spotify profile"
+          message: ", Click for artists Spotify profile",
+          followers: results.followers.total
         },
+        results: {},
         success: true,
         error: null,
         isLoading: false
@@ -67,6 +70,7 @@ export default (state = initialState.spotify, action) => {
         selectedPlaylist: [],
         selectedArtist: [],
         items: [],
+        results: {},
         success: false,
         error: action.payload.error,
         isLoading: false

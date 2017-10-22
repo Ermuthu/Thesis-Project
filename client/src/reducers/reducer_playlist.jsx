@@ -18,6 +18,7 @@ export default (state = initialState.spotify, action) => {
       };
     case actions.FETCH_PLAYLIST:
       const results = action.payload.items;
+      const playlist = action.payload;
       return {
         ...state,
         selectedGenre: [],
@@ -32,12 +33,18 @@ export default (state = initialState.spotify, action) => {
             id: item.id
           };
         }),
+        results: {
+          href: playlist.href,
+          next: playlist.next,
+          prev: playlist.previous
+        },
         success: true,
         error: null,
         isLoading: false
       };
     case actions.SELECTED_PLAYLIST:
       const selected = action.payload.items;
+      const playlistRes = action.payload;
       return {
         ...state,
         items: [],
@@ -49,10 +56,11 @@ export default (state = initialState.spotify, action) => {
             album: item.track.album,
             trackImg: item.track.album.images[0].url,
             uri: item.track.uri,
-            preview_url: item.track.preview_url
+            preview_url: item.track.preview_url,
+            id: selected.id
           };
         }),
-
+        results: {},
         success: true,
         error: null,
         isLoading: false

@@ -18,6 +18,7 @@ export default (state = initialState.spotify, action) => {
       };
     case actions.FETCH_GENRE:
       const results = action.payload.items;
+      const playlist = action.payload;
       return {
         ...state,
         selectedGenre: [],
@@ -31,6 +32,11 @@ export default (state = initialState.spotify, action) => {
             id: item.id
           };
         }),
+        results: {
+          href: playlist.href,
+          next: playlist.next,
+          prev: playlist.previous
+        },
         success: true,
         error: null,
         isLoading: false
@@ -54,6 +60,7 @@ export default (state = initialState.spotify, action) => {
             href: item.track.href
           };
         }),
+        results: {},
         success: true,
         error: null,
         isLoading: false

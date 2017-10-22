@@ -1,5 +1,5 @@
 import React from "react";
-import { Song, Artist, Playlist, Genre } from "./Inputs";
+import { Song, Artist, Playlist, Genre } from "../inputs/Inputs";
 
 const SpotifyField = ({ submitting, history, actions, handleSubmit }) => (
   <div>

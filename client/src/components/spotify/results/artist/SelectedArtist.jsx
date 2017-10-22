@@ -9,6 +9,8 @@ const SelectedArtist = ({ selected }) => (
       name={selected.name}
       message={selected.message}
       img={selected.img}
+      uri={selected.uri}
+      followers={selected.followers}
     />
   </div>
 );

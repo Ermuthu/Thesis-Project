@@ -1,5 +1,5 @@
 import React from "react";
-import SpotifyField from "./FieldExport";
+import SpotifyField from "./Field/FieldExport";
 import PropTypes from "prop-types";
 
 const Spotify = ({ clearSearch, handleSubmit, history, children }) => (

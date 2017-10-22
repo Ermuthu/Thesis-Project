@@ -1,5 +1,4 @@
 import * as actions from "../actions/constants";
-import { playSong, pauseSong } from "../actions/spotify";
 
 const spotifyMiddleware = ({ dispatch }) => next => action => {
   if (action.type !== actions.PLAY_SPOTIFY && actions.PAUSE_SPOTIFY) {

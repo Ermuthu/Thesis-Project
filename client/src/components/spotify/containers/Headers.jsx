@@ -1,6 +1,6 @@
 import React from "react";
 import SpotifyPlayer from "react-spotify-player";
-import { SongContainer, Inner, Image } from "../Spotify.Style";
+import { SongContainer } from "../Spotify.Style";
 
 export const SongsDisplay = props => (
   <SongContainer>
@@ -21,7 +21,14 @@ export const Artist = props => (
       <h1>
         {props.name} {props.message}
       </h1>
+      <h3> Followers: {props.followers} </h3>
     </a>
     <img src={props.img} alt="" />
+    <SpotifyPlayer
+      uri={props.uri}
+      size={{ width: "90%", height: "300" }}
+      view={"list"}
+      theme={"black"}
+    />
   </div>
 );

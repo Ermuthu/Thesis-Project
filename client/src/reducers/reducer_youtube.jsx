@@ -10,11 +10,12 @@ export default (state = initialState.youtube, action) => {
         error: null
       };
     case actions.FETCH_YOUTUBE:
+      const results = action.payload;
       return {
         ...state,
         isLoading: false,
         error: null,
-        items: action.payload.map(item => {
+        items: results.map(item => {
           return {
             etag: item.etag,
             videoId: item.id.videoId,

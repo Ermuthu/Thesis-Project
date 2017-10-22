@@ -2,9 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { ArtistContainer, Image } from "../Spotify.Style";
-import { selectedArtist } from "../../../actions/spotify";
+import { selectedArtist, nextTwentyA } from "../../../actions/spotify";
 
-const SpotifyArtist = ({ artist, selectedArtist }) => (
+const SpotifyArtist = ({ artist, next, nextTwentyA, selectedArtist }) => (
   <div>
     {artist.items.map(artist => (
       <ArtistContainer
@@ -17,9 +17,12 @@ const SpotifyArtist = ({ artist, selectedArtist }) => (
         </Link>
       </ArtistContainer>
     ))}
+    <div onClick={() => nextTwentyA(next)}>Next 20 from this Search</div>
   </div>
 );
 
-const mapState = ({ artist }) => ({ artist });
+const mapState = ({ artist }) => ({ artist, next: artist.results.next });
 
-export default connect(mapState, { selectedArtist })(SpotifyArtist);
+export default connect(mapState, { selectedArtist, nextTwentyA })(
+  SpotifyArtist
+);

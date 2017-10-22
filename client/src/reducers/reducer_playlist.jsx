@@ -17,12 +17,13 @@ export default (state = initialState.spotify, action) => {
         success: true
       };
     case actions.FETCH_PLAYLIST:
+      const results = action.payload.items;
       return {
         ...state,
         selectedGenre: [],
         selectedArtist: [],
         selectedPlaylist: [],
-        items: action.payload.items.map(item => {
+        items: results.map(item => {
           return {
             trackImg: item.images[0].url,
             url: item.tracks.href,
@@ -36,12 +37,13 @@ export default (state = initialState.spotify, action) => {
         isLoading: false
       };
     case actions.SELECTED_PLAYLIST:
+      const selected = action.payload.items;
       return {
         ...state,
         items: [],
         selectedGenre: [],
         selectedArtist: [],
-        selectedPlaylist: action.payload.items.map(item => {
+        selectedPlaylist: selected.map(item => {
           return {
             track: item.track,
             album: item.track.album,

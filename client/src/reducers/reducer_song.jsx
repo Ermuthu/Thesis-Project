@@ -17,21 +17,28 @@ export default (state = initialState.spotify, action) => {
         success: true
       };
     case actions.FETCH_SONG:
+      const results = action.payload.items;
+      const song = action.payload;
       return {
         ...state,
         selectedGenre: [],
         selectedArtist: [],
         selectedPlaylist: [],
-        items: action.payload.items.map(item => {
+        items: results.map(item => {
           return {
             name: item.name,
             id: item.id,
             preview_url: item.preview_url,
             uri: item.uri,
             album: item.album,
-            trackImg: item.album.images[0].url
+            trackImg: item.album.images[0].url,
+            albumLink: item.album.href
           };
         }),
+        results: {
+          href: song.href,
+          next: song.next
+        },
         success: true,
         error: null,
         isLoading: false

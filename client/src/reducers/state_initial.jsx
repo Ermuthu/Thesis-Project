@@ -32,6 +32,10 @@ export default {
     success: false,
     selectedPlaylist: [],
     selectedGenre: [],
-    selectedArtist: []
+    selectedArtist: [],
+    results: {
+      href: null,
+      next: null
+    }
   }
 };

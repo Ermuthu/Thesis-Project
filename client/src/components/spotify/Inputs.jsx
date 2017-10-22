@@ -16,7 +16,7 @@ export const Song = () => (
     component={renderInput}
     type="text"
     name="song"
-    placeholder="search by song"
+    placeholder="search by Song"
   />
 );
 

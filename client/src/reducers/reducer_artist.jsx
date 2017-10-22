@@ -17,12 +17,14 @@ export default (state = initialState.spotify, action) => {
         success: true
       };
     case actions.FETCH_ARTIST:
+      const items = action.payload.items;
+      const artist = action.payload;
       return {
         ...state,
         selectedGenre: [],
         selectedArtist: [],
         selectedPlaylist: [],
-        items: action.payload.items.map(item => {
+        items: items.map(item => {
           return {
             name: item.name,
             trackImg: item.images[0] ? item.images[0].url : item.name,
@@ -31,22 +33,27 @@ export default (state = initialState.spotify, action) => {
             id: item.id
           };
         }),
+        results: {
+          href: artist.href,
+          next: artist.next
+        },
         success: true,
         error: null,
         isLoading: false
       };
     case actions.SELECTED_ARTIST:
+      const results = action.payload;
       return {
         ...state,
         items: [],
         selectedGenre: [],
         selectedPlaylist: [],
         selectedArtist: {
-          external_urls: action.payload.external_urls.spotify,
-          name: action.payload.name,
-          img: action.payload.images[0].url,
-          uri: action.payload.uri,
-          id: action.payload.id,
+          external_urls: results.external_urls.spotify,
+          name: results.name,
+          img: results.images[0].url,
+          uri: results.uri,
+          id: results.id,
           message: ", Click for artists Spotify profile"
         },
         success: true,

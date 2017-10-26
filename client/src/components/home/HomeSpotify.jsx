@@ -3,7 +3,7 @@ import { Nav, YtL, SpI, YtI } from "./Home.Style";
 import { Link } from "react-router-dom";
 import Profile from "./Profile";
 
-const HomeSpotify = () => (
+export const HomeSpotify = () => (
   <Nav>
     <Profile />
     <Link to={"/spotify"}>Search Spotify</Link>
@@ -13,4 +13,9 @@ const HomeSpotify = () => (
   </Nav>
 );
 
-export default HomeSpotify;
+export const HomeYoutube = () => (
+  <Nav>
+    <YtI />
+    <YtL to={"/youtube"}>Search Youtube</YtL>
+  </Nav>
+);

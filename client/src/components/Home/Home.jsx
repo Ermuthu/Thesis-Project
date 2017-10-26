@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import HomeSpotify from "./HomeSpotify";
-import HomeYoutube from "./HomeYoutube";
+import { HomeSpotify, HomeYoutube } from "./HomeSpotify";
 import { fetchUser } from "../../actions/auth";
 
 class Home extends Component {

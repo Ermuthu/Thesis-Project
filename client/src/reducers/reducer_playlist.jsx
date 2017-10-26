@@ -44,7 +44,6 @@ export default (state = initialState.spotify, action) => {
       };
     case actions.SELECTED_PLAYLIST:
       const selected = action.payload.items;
-      const playlistRes = action.payload;
       return {
         ...state,
         items: [],
@@ -64,6 +63,18 @@ export default (state = initialState.spotify, action) => {
         success: true,
         error: null,
         isLoading: false
+      };
+    case actions.PLAYLIST_FETCH_FAILED:
+      return {
+        ...state,
+        selectedGenre: [],
+        selectedPlaylist: [],
+        selectedArtist: [],
+        items: [],
+        results: {},
+        success: false,
+        error: "error",
+        isLoading: true
       };
     case actions.CLEAR_SEARCH:
       return initialState.spotify;

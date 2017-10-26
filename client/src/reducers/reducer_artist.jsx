@@ -63,7 +63,7 @@ export default (state = initialState.spotify, action) => {
         error: null,
         isLoading: false
       };
-    case actions.FETCH_FAILED:
+    case actions.ARTIST_FETCH_FAILED:
       return {
         ...state,
         selectedGenre: [],
@@ -72,8 +72,8 @@ export default (state = initialState.spotify, action) => {
         items: [],
         results: {},
         success: false,
-        error: action.payload.error,
-        isLoading: false
+        error: "error",
+        isLoading: true
       };
     case actions.CLEAR_SEARCH:
       return initialState.spotify;

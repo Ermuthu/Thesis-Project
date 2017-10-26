@@ -44,6 +44,18 @@ export default (state = initialState.spotify, action) => {
         error: null,
         isLoading: false
       };
+    case actions.SONG_FETCH_FAILED:
+      return {
+        ...state,
+        selectedGenre: [],
+        selectedPlaylist: [],
+        selectedArtist: [],
+        items: [],
+        results: {},
+        success: false,
+        error: "error",
+        isLoading: true
+      };
     case actions.CLEAR_SEARCH:
       return initialState.spotify;
     default:

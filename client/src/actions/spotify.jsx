@@ -7,11 +7,13 @@ const headers = {
 };
 const fetch = { method: "get", headers: headers };
 
-export const reqArt = artist => dispatch => ({
-  type: actions.API,
-  payload: {
+export const reqArt = (artist, error) => dispatch => ({
+  onSuccess: {
     type: actions.ARTIST_SUCCESS,
-    success: dispatch(fetchArt(artist.artist))
+    dipsatch: dispatch(fetchArt(artist.artist))
+  },
+  error: {
+    error: dispatch(fetchArtFailed(error))
   },
   meta: {
     throttle: 5000
@@ -39,11 +41,22 @@ export const selectedArtist = href => async dispatch => {
   dispatch({ type: actions.SELECTED_ARTIST, payload: res.data });
 };
 
-export const reqSong = song => dispatch => ({
+export const fetchArtFailed = error => dispatch => {
+  console.log("artist fetch fail", error);
+  dispatch({
+    type: actions.ARTIST_FETCH_FAILED,
+    payload: error
+  });
+};
+
+export const reqSong = (song, error) => dispatch => ({
   type: actions.REQUEST_SONG,
   onSuccess: {
     type: actions.SONG_SUCCESS,
     dispatch: dispatch(fetchSong(song.song))
+  },
+  error: {
+    error: dispatch(fetchSongFailed(error))
   }
 });
 
@@ -63,11 +76,22 @@ export const prevTwenty = prev => async dispatch => {
   dispatch({ type: actions.FETCH_SONG, payload: res.data.tracks });
 };
 
-export const reqPL = playlist => dispatch => ({
+export const fetchSongFailed = error => dispatch => {
+  console.log("song fetch fail", error);
+  dispatch({
+    type: actions.SONG_FETCH_FAILED,
+    payload: error
+  });
+};
+
+export const reqPL = (playlist, error) => dispatch => ({
   type: actions.REQUEST_PLAYLIST,
   onSuccess: {
     type: actions.PLAYLIST_SUCCESS,
     dispatch: dispatch(fetchPlaylist(playlist.playlist))
+  },
+  error: {
+    error: dispatch(fetchPlaylistFailed(error))
   }
 });
 
@@ -92,11 +116,22 @@ export const selectedPlaylist = url => async dispatch => {
   dispatch({ type: actions.SELECTED_PLAYLIST, payload: res.data });
 };
 
-export const reqGen = genre => dispatch => ({
+export const fetchPlaylistFailed = error => dispatch => {
+  console.log("playlist fetch fail", error);
+  dispatch({
+    type: actions.PLAYLIST_FETCH_FAILED,
+    payload: error
+  });
+};
+
+export const reqGen = (genre, error) => dispatch => ({
   type: actions.REQUEST_GENRE,
   onSuccess: {
     type: actions.GENRE_SUCCESS,
     dispatch: dispatch(fetchGenre(genre.genre))
+  },
+  error: {
+    error: dispatch(fetchGenreFailed(error))
   }
 });
 
@@ -121,15 +156,15 @@ export const selectedGenre = href => async dispatch => {
   dispatch({ type: actions.SELECTED_GENRE, payload: res.data });
 };
 
-export const clearSearch = () => ({ type: actions.CLEAR_SEARCH });
-
-export const fetchFailed = error => dispatch => {
-  console.log(error);
+export const fetchGenreFailed = error => dispatch => {
+  console.log("genre failed", error);
   dispatch({
-    type: actions.FETCH_FAILED,
+    type: actions.GENRE_FETCH_FAILED,
     payload: error
   });
 };
+
+export const clearSearch = () => ({ type: actions.CLEAR_SEARCH });
 
 export const playSong2 = url => dispatch => {
   dispatch({

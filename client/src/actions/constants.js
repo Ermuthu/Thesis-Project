@@ -1,6 +1,7 @@
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
+export const REFRESH_TOKEN = "REFRESH_TOKEN";
 
 export const API = "API";
 export const FETCH_USER = "FETCH_USER";
@@ -13,7 +14,10 @@ export const FETCH_ARTIST = "FETCH_ARTIST";
 export const SELECTED_ARTIST = "SELECTED_ARTIST";
 export const ARTIST_SUCCESS = "ARTIST_SUCCESS";
 
-export const FETCH_FAILED = "FETCH_FAILED";
+export const SONG_FETCH_FAILED = "SONG_FETCH_FAILED";
+export const ARTIST_FETCH_FAILED = "ARTIST_FETCH_FAILED";
+export const GENRE_FETCH_FAILED = "FETCH_FAILED";
+export const PLAYLIST_FETCH_FAILED = "PLAYLIST_FETCH_FAILED";
 
 export const FETCH_SONG = "FETCH_SONG";
 export const REQUEST_SONG = "REQUEST_SONG";
@@ -38,6 +42,3 @@ export const REQUEST_YOUTUBE = "REQUEST_YOUTUBE";
 export const PLAY_SONG = "PLAY_SONG";
 export const PLAY_SPOTIFY = "PLAY_SPOTIFY";
 export const PAUSE_SPOTIFY = "PAUSE_SPOTIFY";
-
-export const NEXT_TWENTY = "NEXT_TWENTY";
-export const NEXT_TWENTYA = "NEXT_TWENTYA";

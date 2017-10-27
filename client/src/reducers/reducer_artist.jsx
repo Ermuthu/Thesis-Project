@@ -10,13 +10,6 @@ export default (state = initialState.spotify, action) => {
         error: null
       };
     case actions.ARTIST_SUCCESS:
-      return {
-        ...state,
-        isloading: false,
-        error: null,
-        success: true
-      };
-    case actions.FETCH_ARTIST:
       const items = action.payload.items;
       const artist = action.payload;
       return {
@@ -46,7 +39,6 @@ export default (state = initialState.spotify, action) => {
       const results = action.payload;
       return {
         ...state,
-        items: [],
         selectedGenre: [],
         selectedPlaylist: [],
         selectedArtist: {
@@ -58,12 +50,11 @@ export default (state = initialState.spotify, action) => {
           message: ", Click for artists Spotify profile",
           followers: results.followers.total
         },
-        results: {},
         success: true,
         error: null,
         isLoading: false
       };
-    case actions.ARTIST_FETCH_FAILED:
+    case actions.ARTIST_FAILED:
       return {
         ...state,
         selectedGenre: [],
@@ -72,7 +63,7 @@ export default (state = initialState.spotify, action) => {
         items: [],
         results: {},
         success: false,
-        error: "error",
+        error: action.payload,
         isLoading: true
       };
     case actions.CLEAR_SEARCH:

@@ -10,17 +10,11 @@ export default (state = initialState.spotify, action) => {
         error: null
       };
     case actions.GENRE_SUCCESS:
-      return {
-        ...state,
-        isloading: false,
-        error: null,
-        success: true
-      };
-    case actions.FETCH_GENRE:
       const results = action.payload.items;
       const playlist = action.payload;
       return {
         ...state,
+        isLoading: false,
         selectedGenre: [],
         selectedArtist: [],
         selectedPlaylist: [],
@@ -45,7 +39,6 @@ export default (state = initialState.spotify, action) => {
       const selected = action.payload.items;
       return {
         ...state,
-        items: [],
         selectedArtist: [],
         selectedPlaylist: [],
         selectedGenre: selected.map(item => {
@@ -60,12 +53,12 @@ export default (state = initialState.spotify, action) => {
             href: item.track.href
           };
         }),
-        results: {},
         success: true,
         error: null,
         isLoading: false
       };
-    case actions.GENRE_FETCH_FAILED:
+    case actions.GENRE_FAILED:
+      console.log(action.payload);
       return {
         ...state,
         selectedGenre: [],
@@ -74,7 +67,7 @@ export default (state = initialState.spotify, action) => {
         items: [],
         results: {},
         success: false,
-        error: "error",
+        error: action.payload,
         isLoading: true
       };
     case actions.CLEAR_SEARCH:

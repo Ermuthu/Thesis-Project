@@ -10,13 +10,6 @@ export default (state = initialState.spotify, action) => {
         error: null
       };
     case actions.SONG_SUCCESS:
-      return {
-        ...state,
-        isloading: false,
-        error: null,
-        success: true
-      };
-    case actions.FETCH_SONG:
       const results = action.payload.items;
       const song = action.payload;
       return {
@@ -44,7 +37,7 @@ export default (state = initialState.spotify, action) => {
         error: null,
         isLoading: false
       };
-    case actions.SONG_FETCH_FAILED:
+    case actions.SONG_FAILED:
       return {
         ...state,
         selectedGenre: [],
@@ -53,7 +46,7 @@ export default (state = initialState.spotify, action) => {
         items: [],
         results: {},
         success: false,
-        error: "error",
+        error: action.payload,
         isLoading: true
       };
     case actions.CLEAR_SEARCH:

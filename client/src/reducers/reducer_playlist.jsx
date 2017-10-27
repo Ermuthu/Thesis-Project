@@ -10,13 +10,6 @@ export default (state = initialState.spotify, action) => {
         error: null
       };
     case actions.PLAYLIST_SUCCESS:
-      return {
-        ...state,
-        isloading: false,
-        error: null,
-        success: true
-      };
-    case actions.FETCH_PLAYLIST:
       const results = action.payload.items;
       const playlist = action.payload;
       return {
@@ -46,7 +39,6 @@ export default (state = initialState.spotify, action) => {
       const selected = action.payload.items;
       return {
         ...state,
-        items: [],
         selectedGenre: [],
         selectedArtist: [],
         selectedPlaylist: selected.map(item => {
@@ -59,12 +51,11 @@ export default (state = initialState.spotify, action) => {
             id: selected.id
           };
         }),
-        results: {},
         success: true,
         error: null,
         isLoading: false
       };
-    case actions.PLAYLIST_FETCH_FAILED:
+    case actions.PLAYLIST_FAILED:
       return {
         ...state,
         selectedGenre: [],
@@ -73,7 +64,7 @@ export default (state = initialState.spotify, action) => {
         items: [],
         results: {},
         success: false,
-        error: "error",
+        error: action.payload,
         isLoading: true
       };
     case actions.CLEAR_SEARCH:

@@ -1,11 +1,6 @@
 import axios from "axios";
 import * as actions from "./constants";
-const BASE_URL = "https://api.spotify.com/v1/search?";
-const CATEGORY_URL = "https://api.spotify.com/v1/browse/categories/";
-const headers = {
-  Authorization: "Bearer " + sessionStorage.getItem("accessToken")
-};
-const fetch = { method: "get", headers: headers };
+import { BASE_URL, CATEGORY_URL, headers, fetch } from "./searchConsts";
 
 export const reqGen = genre => dispatch => ({
   type: actions.REQUEST_GENRE,
